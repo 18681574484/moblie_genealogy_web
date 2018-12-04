@@ -4,6 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import { Search, Tabbar, TabbarItem, Icon, Tab, Tabs } from 'vant';
+
+
+Vue.use(Search).use(Tabbar).use(TabbarItem).use(Icon).use(Tab);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
