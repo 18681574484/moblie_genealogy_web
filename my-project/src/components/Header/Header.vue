@@ -44,13 +44,16 @@ export default {
 
 <style scoped lang="less">
 .headerTab {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 285px;
-    background-color: #D2211B;
-    top: 0;
-    left: 0;
-    padding: 0 20px;
+    height: 1.85rem;
+    // background-color: #D2211B;
+    // top: 0;
+    // left: 0;
+    padding: 0 0.2rem;
     box-sizing:border-box;
+    // margin-bottom: 1.4rem;
+    z-index: 99;
+    overflow: hidden;
 }
 </style>

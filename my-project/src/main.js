@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import "../build/rem"
 
-import { Search, Tabbar, TabbarItem, Icon, Tab, Tabs } from 'vant';
+import Vant from 'vant';
+import 'vant/lib/index.css';
 
-
-Vue.use(Search).use(Tabbar).use(TabbarItem).use(Icon).use(Tab);
-
+Vue.use(Vant);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

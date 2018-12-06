@@ -60,42 +60,47 @@ export default {
         position: absolute;
         bottom: 0;
         left: 0;
-        height: 97px;
+        height: 0.97rem;
         width: 100%;
-        border-top: 1px solid #ccc;
+        border-top: 0.01rem solid #ccc;
+        padding: 0 0.2rem;
         overflow: hidden;
+        box-sizing:border-box;
+        z-index: 999;
+        background-color: #fff;
         .footUl {
             display: flex;
             li {
-                height: 97px;
-                width: 192px;
+                height: 0.97rem;
+                width: 1.5rem;
                 position: relative;
                 img {
-                    width: 40px;
-                    height: 42px;
+                    width: 0.44rem;
+                    height: 0.44rem;
                     position: absolute;
-                    top: 8px;
                     left: 50%;
-                    transform: translateX(-50%)
+                    transform: translateX(-50%);
+                    top: 0.1rem;
                 }
                 p {
-                    margin: 0;
-                    float: left;
-                    font-size: 18px;
-                    text-align: center;
+                    font-size: 0.18rem;
                     position: absolute;
                     left: 50%;
-                    bottom: 12px;
-                    transform: translateX(-50%)
+                    bottom: -0.15rem;
+                    transform: translateX(-50%);
+                    margin-top: 0.5rem;
                 }
             }
             .add {
-                img {
-                    top: 50%;
-                    transform: translate(-50%, -50%)
-                }
+                flex-grow: 1;
+              img {
+                    width: 0.69rem;
+                    height: 0.69rem;
+              }
             }
             
         }
     }
 </style>
+
+

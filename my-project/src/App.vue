@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <!-- 头部组件模块 -->
-    <Header></Header>
-    
-    
+      <!-- 头部固定搜索组件 -->
+      <Header></Header>
 
-    <!-- 底部组件模块 -->
-    <Footer></Footer>
+
+      <router-view></router-view>
+
+      <!-- 底部固定组件 -->
+      <Footer></Footer>
   </div>
 </template>
 
@@ -16,8 +17,8 @@ import Footer from '@/components/footer/Footer.vue'
 export default {
   name: 'App',
   components: {
-    Header,
-    Footer
+      Footer,
+      Header
   }
 }
 </script>
@@ -31,12 +32,27 @@ export default {
 //   color: #2c3e50;
 //   margin-top: 60px;
 // }
-#app {
-  width: 100%;
-  height: 100%;
-  padding-top: 285px;
-  padding-bottom: 98px;
-  position: relative;
-  box-sizing:border-box;
-}
+  #app {
+    // height: 100%;
+    // position: relative;
+    // display:-webkit-box;display:-webkit-flex;
+    // display:-ms-flexbox;
+    // display:flex;
+    // -webkit-box-orient:vertical;
+    // -webkit-flex-direction:column;
+    // -ms-flex-direction:column;
+    // flex-direction:column;
+    // width:100%;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-flex-direction:column;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+  }
+
 </style>

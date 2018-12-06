@@ -1,16 +1,7 @@
 <template>
     <div class="searchDiv">
-        
-        <img src="@/assets/images/logo@2x.png" alt="">
-<!--         
-        <van-search 
-        placeholder="炎黄统谱网" 
-        input-align="center"
-        
-         /> -->
-         <!-- <div class="inputDiv">
-             <input type="text" placeholder="炎黄统谱网"  >
-         </div> -->
+        <img class="searImg" src="@/assets/images/logo@2x.png" alt="">
+
          <div class="inputDiv">
              <img src="@/assets/images/search.png" alt="">
              <input type="text" placeholder="炎黄统谱网"  >
@@ -57,39 +48,42 @@ export default {
 <style scoped lang="less">
    .searchDiv {
        width: 100%;
-       height: 60px;
+       height: 0.6rem;
        position: relative;
-       padding-left: 55px;
+    //    padding-left: 0.55rem;
        box-sizing:border-box;
-
-        img {
-            width: 55px;
-            height: 55px;
-            margin-right: 22px;
+        overflow: hidden;
+        .searImg {
+            transform: scale(0.5);
             position: absolute;
-            left: 0;
+            left:  -0.2rem;
+            top: -0.2rem;
 
         }
         .inputDiv {
-            position: relative;
-            padding: 0 20px;
+            position: absolute;
+            // padding: 0 0.22rem;
             box-sizing:border-box;
+            right: 0.2rem;
+            top: 0;
             img {
                 position: absolute;
-                top: 15px;
-                left: 35%;
-                width: 33px;
-                height: 33px;
+                top: 0.15rem;
+                left:  -4.235rem;
+                width: 0.33rem;
+                height: 0.33rem;
             }
             input {
-                width: 100%;
-                height: 60px;
+                width: 6.32rem;
+                height: 0.6rem;
                 border: none;
-                border-radius: 20px;
+                border-radius: 0.2rem;
                 background-color:rgba(0, 52, 52, 0.1);
                 text-align: center;
                 color: white;
-                font-size: 24px;
+                font-size: 0.24rem;
+                position: absolute;
+                right: -0.15rem;
             }
         }
         
