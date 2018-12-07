@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Header from '@/components/Header/Header.vue'
+import Header from '@/components/Header/HeaderTake.vue'
 import Footer from '@/components/footer/Footer.vue'
 export default {
   name: 'App',

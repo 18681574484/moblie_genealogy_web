@@ -1,10 +1,5 @@
 <template>
     <div id="appList">
-        <!-- 背景 -->
-         <div class="homeList">
-         </div>
-        <!-- 轮播图 -->
-        <swipe></swipe>
          <div class="centre">
          <div class="centreDiv">
             <span class="newest">最新</span>
@@ -109,6 +104,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+::-webkit-scrollbar {
+display: none;/*隐藏滚轮*/
+}
 #appList {
     width: 100%;
     height: 100%;
@@ -130,8 +128,7 @@ export default {
         background-color: pink;
     }
     .centre {
-        padding: 0.23rem 0.2rem 0 0.2rem;
-        margin-top: 2.1rem;
+        padding: 0.23rem 0.2rem 0.98rem 0.2rem;
         flex: 1;
         box-sizing:border-box;
         overflow: hidden;
@@ -165,6 +162,7 @@ export default {
                 width: 2.3rem;
                 height: 1.44rem;
                 justify-content: flex-end ;
+                background: pink;
             }
              .centerHr {
                 width: 200%;
