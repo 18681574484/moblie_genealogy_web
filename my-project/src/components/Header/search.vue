@@ -49,7 +49,8 @@ export default {
    .searchDiv {
        width: 100%;
        height: 0.6rem;
-       position: relative;
+       position: fixed;
+       top: 0;
     //    padding-left: 0.55rem;
        box-sizing:border-box;
         overflow: hidden;

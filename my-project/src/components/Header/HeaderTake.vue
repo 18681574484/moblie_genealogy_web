@@ -96,6 +96,12 @@ export default {
                             text-align: center;
                             color: white;
                         }
+                                        
+                        input::-webkit-input-placeholder {
+                        /* placeholder颜色  */
+                        color: white;
+
+                    }
                 }
         }
 }

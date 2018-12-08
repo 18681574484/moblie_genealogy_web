@@ -1,25 +1,25 @@
 <template>
     <div class="footerDiv">
        <ul class="footUl">
-           <li>
+           <router-link to="/home"  tag="li">
                 <img src="@/assets/images/home.png" alt="">
                  <p>首页</p>
-           </li>
-           <li>
+           </router-link>
+           <router-link to="/chatting" tag="li">
                 <img src="@/assets/images/chat.png" alt="">
                 <p>聊天</p>
-           </li>
-           <li class="add">
+           </router-link>
+           <router-link to="/add" tag="li" class="add">
                <img src="@/assets/images/addition.png" alt="">
-           </li>
-           <li>
+           </router-link>
+           <router-link to="/video" tag="li">
                 <img src="@/assets/images/home.png" alt="">
                 <p>视频</p>
-           </li>
-           <li>
+           </router-link>
+           <router-link to="personal" tag="li">
                 <img src="@/assets/images/personage.png" alt="">
                 <p>我的</p>
-           </li>
+           </router-link>
        </ul>
     </div>
 </template>

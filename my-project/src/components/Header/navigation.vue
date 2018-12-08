@@ -54,6 +54,8 @@ export default {
         height: 0.88rem;
         width: 100%;
         font-size: 0.32rem;
+        padding: 0 0.2rem;
+        box-sizing: border-box;
         // 下划线元素
         .van-tabs__line {
             background: none;
@@ -68,9 +70,6 @@ export default {
             font-size: 0.32rem;
             color: white;
         }
-        // span 内容
-        .van-ellipsis {
-        }
         .van-hairline--top-bottom::after {
             border: none;
         }
@@ -82,9 +81,6 @@ export default {
             left: 6.7rem;
             top: -0.45rem;
             color: white;
-            // box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4)
-        }
-       
-        
+        } 
     }
 </style>
