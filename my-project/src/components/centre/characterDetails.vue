@@ -149,12 +149,11 @@ export default {
 <style scoped lang="less">
 .biography {
             font-size: 0.32rem;
-
             overflow: hidden;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
-            padding: 1.5rem 0.2rem 1rem 0;
+            padding: 1.5rem 0rem 1rem 0;
         // 头部固定
         header {
             font-size: 0.32rem;
@@ -347,11 +346,10 @@ export default {
                     font-size: 0.32rem;
                 }
                 .commentList {
-
                         li {
                             height: 2rem;
                             width: 100%;
-                            padding: 0 0.2rem;
+                            padding-left:  0.2rem;
                             border-top: 0.01rem solid #DBD8D8;
                             display: flex;
                             position: relative;

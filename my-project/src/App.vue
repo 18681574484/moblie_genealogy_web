@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <!-- 头部固定搜索组件 -->
-      <HeaderTake></HeaderTake>
+      <!-- <HeaderTake></HeaderTake> -->
 
       <router-view></router-view>
 

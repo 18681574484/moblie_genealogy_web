@@ -191,12 +191,14 @@ export default {
 display: none;/*隐藏滚轮*/
 }
 #appList {
-    width: 100%;
-    height: 100%;
-    flex: 1;
     position: relative;
-    box-sizing:border-box;
     display: flex;
+    margin-top: 0.45rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.24rem;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     .homeList {
         height: 2.85rem;
         width: 100%;

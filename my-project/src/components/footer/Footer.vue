@@ -57,7 +57,7 @@ export default {
 
 <style scoped lang="less">
     .footerDiv {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         height: 0.97rem;

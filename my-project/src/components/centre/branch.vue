@@ -3,7 +3,75 @@
         <!-- 右边按钮 -->
         <van-icon name="arrow-down" />
        <van-tabs v-model="active">
-            <van-tab title="关注">
+            <van-tab title="家族长老">
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="gz">
+                       <div>分支后裔</div>
+                       <div>千支同源</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="gz">
+                       <div>分支后裔</div>
+                       <div>千支同源</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="gz">
+                       <div>分支后裔</div>
+                       <div>千支同源</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="gz">
+                       <div>分支后裔</div>
+                       <div>千支同源</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
                 <div class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
@@ -22,8 +90,165 @@
                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
                 </div>
             </van-tab>
-            <van-tab title="全国张氏"></van-tab>
-            <van-tab title="省级张氏"></van-tab>
+            <van-tab title="家族栋梁">
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="pillar">+关注</div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="pillar">+关注</div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="pillar">+关注</div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="pillar">+关注</div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                       <div class="img">头像</div>
+                       <div class="celebrity">
+                           <h5>周星</h5>
+                            <span>慈善名人</span>
+                            <span>125万粉丝关注</span>
+                       </div>
+                   </div>
+                   <div class="pillar">+关注</div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+            </van-tab>
+            <van-tab title="组织架构">
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                                <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                       </div>
+                    <div class="rank">[副会长]</div>
+                   <div class="gz">
+                       <div class="organization">个人主页</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                                <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                       </div>
+                    <div class="rank">[会长]</div>
+                   <div class="gz">
+                       <div class="organization">个人主页</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                                <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                       </div>
+                    <div class="rank">[副会长]</div>
+                   <div class="gz">
+                       <div class="organization">个人主页</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                                <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                       </div>
+                    <div class="rank">[会长]</div>
+                   <div class="gz">
+                       <div class="organization">个人主页</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+                <div class="titleCenter">
+                   <div class="titleTop">
+                       <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                                <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                       </div>
+                    <div class="rank">[副会长]</div>
+                   <div class="gz">
+                       <div class="organization">个人主页</div>
+                   </div>
+                   </div>
+                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                </div>
+            </van-tab>
             <van-tab title="崇阳张氏"></van-tab>
             <van-tab title="标签 1"> </van-tab>
             <van-tab title="标签 2"> </van-tab>
@@ -122,7 +347,7 @@ export default {
                     display: flex;
                     flex-direction:  column; 
                     margin: 0 0 0 0.2rem;
-                         h5 {
+                    h5 {
                         font-size: 0.32rem;
                         margin: 0.12rem 0 0.15rem 0;
                      }
@@ -142,6 +367,14 @@ export default {
                 .titleTop {
                         display: flex;
                         justify-content: space-between;
+                    .rank {
+                        position: absolute;
+                        color: #0066FF;
+                        font-size: 0.26rem;
+                        font-weight: bolder;
+                        left: 2.5rem;
+                        top: 0.16rem;
+                    }
                 }
                 p {
                     font-size: 0.24rem;
@@ -164,6 +397,21 @@ export default {
                     border-radius: 0.3rem;
                     border: 0.01rem solid #D2211B;
                 }
+        }
+        // 组织架构
+        .organization {
+            margin-left: 1.3rem;
+        }
+        // 家族栋梁
+        .pillar {
+            width: 1.7rem;
+            height: 0.55rem;
+            border: 0.01rem solid #D2211B;
+            border-radius: 0.3rem;
+            font-size: 0.24rem;
+            color: #D2211B;
+            text-align: center;
+            line-height: 0.55rem;
         }
 }
 
