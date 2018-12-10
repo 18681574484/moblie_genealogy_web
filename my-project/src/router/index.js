@@ -68,7 +68,15 @@ export default new Router({
           {
             path: '/culture',
             component: culture
-          }
+          },   
+          {
+            path: '/branch',
+            component: branch
+          },
+          {
+            path: '/personnel',
+            component: personnel
+          }, 
 
 
         ]

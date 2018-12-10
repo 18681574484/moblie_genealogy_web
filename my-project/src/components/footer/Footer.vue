@@ -1,23 +1,23 @@
 <template>
     <div class="footerDiv">
        <ul class="footUl">
-           <router-link to="/home"  tag="li">
-                <img src="@/assets/images/home.png" alt="">
+           <router-link to="/home"  tag="li" >
+                <img  :src="home" alt="" >
                  <p>首页</p>
            </router-link>
-           <router-link to="/chatting" tag="li">
-                <img src="@/assets/images/chat.png" alt="">
+           <router-link to="/chatting" tag="li" >
+                <img :src="chat" alt="">
                 <p>聊天</p>
            </router-link>
-           <router-link to="/add" tag="li" class="add">
+           <router-link to="/add" tag="li" class="add" >
                <img src="@/assets/images/addition.png" alt="">
            </router-link>
-           <router-link to="/video" tag="li">
-                <img src="@/assets/images/home.png" alt="">
+           <router-link to="/video" tag="li"> 
+                <img :src="video" alt="">
                 <p>视频</p>
            </router-link>
            <router-link to="personal" tag="li">
-                <img src="@/assets/images/personage.png" alt="">
+                <img :src="personage" alt="">
                 <p>我的</p>
            </router-link>
        </ul>
@@ -31,23 +31,50 @@ export default {
     },
     data() {
         return {
-            
+            home: require("@/assets/images/home.png"),
+            chatting: require("@/assets/images/chat.png"),
+            video: require("@/assets/images/video.png"),
+            personage: require("@/assets/images/personage.png"),
+            chat: require("@/assets/images/chat.png")
         };
     },
     computed: {
 
     },
     created() {
-
+        this.url()
     },
     mounted() {
-
+        
     },
     watch: {
-
+        "$route": "url"
     },
     methods: {
-
+        url() {
+            var urlImg = this.$route.path
+            if(urlImg == '/home') {
+                this.home = require("@/assets/images/home1.png")
+            }else {
+                this.home = require("@/assets/images/home.png")
+            }
+            if(urlImg == '/video') {
+                this.video = require("@/assets/images/video1.png")
+            }else {
+                this.video = require("@/assets/images/video.png")
+            }
+            if(urlImg == '/personal') {
+                this.personage = require("@/assets/images/personage1.png")
+            }else{
+                this.personage = require("@/assets/images/personage.png")
+            }
+            if(urlImg == '/chatting') {
+                this.chat = require("@/assets/images/chat1.png")
+            }else{
+                this.chat = require("@/assets/images/chat.png")
+            }
+            
+        }
     },
     components: {
 

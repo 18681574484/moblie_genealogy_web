@@ -135,42 +135,47 @@
                         </div>
                     </div>
                     <div class="slideshow">
-                        <ul class="swipeUl">
-                        <li>
+                    <ul class="swipeUl">
+                        <router-link to="/" tag="li">
                                 <img src="@/assets/images/notice.png" alt="">
-                                <p>家族产业</p>
-                        </li>
-                            <li>
+                                <p>家族公告</p>
+                        </router-link>
+                        <router-link  to="/" tag="li">
                                 <img src="@/assets/images/dynamic.png" alt="">
-                                <p>家族名人</p>
-                        </li>
-                            <li>
+                                <p>家族动态</p>
+                        </router-link>
+                        <router-link to="/personnel" tag="li">
                                 <img src="@/assets/images/gold.png" alt="">
-                                <p>家族分支</p>
-                        </li>
-                            <li>
+                                <p>慈善公积金</p>
+                        </router-link>
+                        <router-link to="/video" tag="li">
                                 <img src="@/assets/images/book.png" alt="">
                                 <p>家族视频</p>
-                        </li>
+                        </router-link>
                         
                     </ul>
-                        <ul class="swipeUl">
-                        <li>
+                    <ul class="swipeUl ui-bottom">
+                        <router-link to="/" tag="li">
                                 <img src="@/assets/images/family.png" alt="">
                                 <p>家族产业</p>
-                        </li>
-                            <li>
+                        </router-link>
+                        
+                        <router-link to="/characterDeatils" tag="li">
                                 <img src="@/assets/images/person.png" alt="">
                                 <p>家族名人</p>
-                        </li>
-                            <li>
+                        </router-link>
+                            <router-link to="/branch" tag="li">
                                 <img src="@/assets/images/branch.png" alt="">
                                 <p>家族分支</p>
-                        </li>
-                            <li>
+                        </router-link>
+                        <router-link to="/" tag="li">
                                 <img src="@/assets/images/shi@2x.png" alt="">
                                 <p>家族视频</p>
-                        </li>
+                        </router-link>
+                         <router-link to="/" tag="li">
+                                <img src="@/assets/images/help.png" alt="">
+                                <p>家族视频</p>
+                        </router-link>
                         
                     </ul>
                     </div>
@@ -842,6 +847,11 @@ export default {
                     }
             }
            
+    }
+    .ui-bottom {
+        li {
+            width: 20%;
+        }
     }
  
 }

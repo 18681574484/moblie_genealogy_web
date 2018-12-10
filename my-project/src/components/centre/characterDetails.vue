@@ -2,7 +2,7 @@
     <div class="biography">
         <!-- 头部固定导航 -->
         <header>
-            <van-icon name="arrow-left" />
+            <van-icon @click="returnGo" name="arrow-left" />
             <h2>人物介绍</h2>
             <img src="@/assets/images/share.png" alt="">
         </header>
@@ -135,16 +135,18 @@ export default {
 
     },
     created() {
-
+        
     },
     mounted() {
-
+       
     },
     watch: {
 
     },
     methods: {
-
+         returnGo() {
+           this.$router.go(-1)
+        }
     },
     components: {
 
