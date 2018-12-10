@@ -8,16 +8,18 @@
         </header>
         <!-- 人物简介 -->
         <div class="characters">
-            <div class="message">
-                <div class="Img"></div>
-                <div>
-                    <h3>于小雨</h3>
-                    <span>企业家、慈善家</span>
-                    <div class="scutcheon">千支同源</div>
+            <div class="charctersBox">
+                  <div class="message">
+                    <div class="Img"></div>
+                    <div>
+                        <h3>于小雨</h3>
+                        <span>企业家、慈善家</span>
+                    </div>
                 </div>
+                <h2>基本介绍</h2>
+                <p>俞敏洪，1962年9月4日 出生于江苏省江阴市夏港街道，新东方教育集团创始人，英语教学与管理专家。担任新东方教育集团董事长、洪泰基金联合创始人、中国青年企业家协会副会长、中华全国青年联合会委员等职。</p>
             </div>
-            <h2>基本介绍</h2>
-            <p>俞敏洪，1962年9月4日 出生于江苏省江阴市夏港街道，新东方教育集团创始人，英语教学与管理专家。担任新东方教育集团董事长、洪泰基金联合创始人、中国青年企业家协会副会长、中华全国青年联合会委员等职。</p>
+            
             <div class="Character">
                 <div>
                     <h4>字派</h4>
@@ -29,29 +31,6 @@
                     <span>富永振江之</span>
                     <span>富永振江之</span>
                 </div>
-            </div>
-            <div class="list">
-                <h4>分支后裔</h4>
-                <ul class="flgureUl">
-                <li>
-                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                    <h5>三叔</h5>
-                    <span>作家、编剧</span>
-                    <div class="bunText">加关注</div>
-                </li>
-                    <li>
-                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                    <h5>三叔</h5>
-                    <span>作家、编剧</span>
-                    <div class="bunText">加关注</div>
-                </li>
-                <li>
-                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                    <h5>三叔</h5>
-                    <span>作家、编剧</span>
-                    <div class="bunText">加关注</div>
-                </li>
-            </ul>
             </div>
         </div>
         <!-- 评论 -->
@@ -240,7 +219,11 @@ export default {
             // overflow-x: hidden;
             // position: relative;
             padding: 0rem 0.2rem 0;
-
+                .charctersBox {
+                    box-shadow: 0 0 0.0625rem rgba(0, 0, 0, 0.3);
+                    padding: 0.2rem;
+                    border-radius: 0.1rem;
+                }
                 .message {
                     display: flex;
                     margin-bottom: 0.5rem;
@@ -258,17 +241,6 @@ export default {
                             font-size: 0.22rem;
                             color: #666666;
                             margin: 0.2rem 0 0 0;
-                        }
-                        .scutcheon {
-                            height: 0.46rem;
-                            width: 1.25rem;
-                            color:  white;
-                            font-size: 0.24rem;
-                            text-align: center;
-                            line-height: 0.46rem;
-                            border-radius: 0.2rem;
-                            margin-top: 0.17rem;
-                            background-color: #D2211B;
                         }
                 }
                 h2 {

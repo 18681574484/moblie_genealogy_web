@@ -191,14 +191,14 @@ export default {
 display: none;/*隐藏滚轮*/
 }
 #appList {
-    position: relative;
-    display: flex;
-    margin-top: 0.45rem;
-    margin-bottom: 1.2rem;
-    font-size: 0.24rem;
-    overflow: hidden;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // position: relative;
+    // display: flex;
+    // margin-top: 0.45rem;
+    // margin-bottom: 1.2rem;
+    // font-size: 0.24rem;
+    // overflow: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
     .homeList {
         height: 2.85rem;
         width: 100%;
@@ -213,7 +213,7 @@ display: none;/*隐藏滚轮*/
         background-color: pink;
     }
     .centre {
-        padding: 0.23rem 0.2rem 0.98rem 0.2rem;
+        padding: 4.2rem 0.2rem 0.98rem 0.2rem;
         flex: 1;
         box-sizing:border-box;
         overflow: hidden;

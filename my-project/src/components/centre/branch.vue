@@ -1,5 +1,6 @@
 <template>
-    <div class="celebrity">
+    <div class="box">
+      <div class="celebrity">
         <!-- 右边按钮 -->
         <van-icon name="arrow-down" />
        <van-tabs v-model="active">
@@ -7,9 +8,9 @@
                 <div class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <div class="img">头像</div>
+                       <router-link to="/characterIntroduction" tag="div" class="img">头像</router-link>
                        <div class="celebrity">
-                           <h5>周星</h5>
+                           <router-link to="/characterElite" tag="h5">周星</router-link>
                             <span>慈善名人</span>
                             <span>125万粉丝关注</span>
                        </div>
@@ -256,6 +257,7 @@
             <van-tab title="标签 4"> </van-tab>
         </van-tabs>
         <img src="@/assets/images/home_cbb@2x.png" alt="">
+      </div>
     </div>
 </template>
 
@@ -291,6 +293,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.box {
+    padding-top: 4rem;
+}
 .celebrity {
     margin-bottom: 1.2rem;
     font-size: 0.24rem;

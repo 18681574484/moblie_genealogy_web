@@ -169,6 +169,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
 
@@ -201,7 +202,7 @@ export default {
 
 <style scoped lang="less">
 .count {
-    margin-top: 0.45rem;
+    padding-top: 4.2rem;
     margin-bottom: 1.2rem;
     font-size: 0.24rem;
     overflow: hidden;

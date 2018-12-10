@@ -171,7 +171,7 @@ export default {
 
 <style scoped lang="less">
 .personnel {
-    margin-top: 0.45rem;
+    margin-top: 4.2rem;
     margin-bottom: 1.2rem;
     font-size: 0.24rem;
     overflow: hidden;

@@ -69,11 +69,12 @@ export default {
 
 <style scoped lang="less">
 .box {
-    margin-top: 0.45rem;
+    // margin-top: 0.45rem;
     margin-bottom: 1.2rem;
     overflow: hidden;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-top: 4rem;
 }
 .videoBox {
     font-size: 0.2rem;

@@ -54,8 +54,12 @@ export default {
 
 <style scoped lang="less">
 .headerBox {
+    margin-top: 0.1rem;
     height: 3.9rem;
     width: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
         .boxBgc {
             height: 2.85rem;
             width: 100%;

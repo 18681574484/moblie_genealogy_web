@@ -44,6 +44,48 @@
                         34
                     </div>
                 </div>
+                <div class="centerDiv">
+                    <div class="centerText">
+                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                        <div class="axisCentre">
+                            <span class="xu">序</span>
+                            <span>30条评论</span>
+                            <span>652124浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div class="centerImg">
+                        34
+                    </div>
+                </div>
+                 <div class="centerDiv">
+                    <div class="centerText">
+                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                        <div class="axisCentre">
+                            <span class="xu">序</span>
+                            <span>30条评论</span>
+                            <span>652124浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div class="centerImg">
+                        34
+                    </div>
+                </div>
+                 <div class="centerDiv">
+                    <div class="centerText">
+                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                        <div class="axisCentre">
+                            <span class="xu">序</span>
+                            <span>30条评论</span>
+                            <span>652124浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div class="centerImg">
+                        34
+                    </div>
+                </div>
             </van-tab>
             <van-tab title="源流"></van-tab>
             <van-tab title="序"></van-tab>
@@ -87,7 +129,7 @@ export default {
 
 <style scoped lang="less">
 .celebrity {
-    margin-top: 0.4rem;
+    margin-top: 4rem;
     margin-bottom: 1.2rem;
     font-size: 0.24rem;
     overflow: hidden;

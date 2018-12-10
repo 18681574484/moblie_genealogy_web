@@ -1,314 +1,322 @@
 <template>
-   <div class="home">
-        <!-- 背景 -->
-        <div class="bgc">
+    <div>
+        <div class="home">
+            <!-- 背景 -->
+            <div class="bgc">
+            </div>
+        <div class="homeHeader">
+            <!-- 搜索 -->
+            <div class="searchDiv">
+                    <img class="searImg" src="@/assets/images/logo@2x.png" alt="">
+
+                    <div class="inputDiv">
+                        <img src="@/assets/images/search.png" alt="">
+                        <input type="text" placeholder="炎黄统谱网"  >
+                    </div>
+            </div>
+            <!-- 滑动 -->
+            <div class="navigation">
+                <van-tabs v-model="active">
+                    <van-tab title="关注"></van-tab>
+                    <van-tab title="全国张氏"></van-tab>
+                    <van-tab title="省级张氏"></van-tab>
+                    <van-tab title="崇阳张氏"></van-tab>
+                    <van-tab title="标签 1"> </van-tab>
+                    <van-tab title="标签 2"> </van-tab>
+                    <van-tab title="标签 3"> </van-tab>
+                    <van-tab title="标签 4"> </van-tab>
+                </van-tabs>
+                <van-icon name="wap-nav" />
+                </div>
+                <div class="region">
+                    <div class="regionLeft"><span>选择地区</span><van-icon name="arrow-down" /></div>
+                    <div><van-icon name="location" /><span>武汉江夏</span></div>
+                    <div class="cloce">关注</div>
+                </div>
         </div>
-       <div class="homeHeader">
-           <!-- 搜索 -->
-           <div class="searchDiv">
-                <img class="searImg" src="@/assets/images/logo@2x.png" alt="">
-
-                <div class="inputDiv">
-                    <img src="@/assets/images/search.png" alt="">
-                    <input type="text" placeholder="炎黄统谱网"  >
-                </div>
-           </div>
-          <!-- 滑动 -->
-           <div class="navigation">
-              <van-tabs v-model="active">
-                <van-tab title="关注"></van-tab>
-                <van-tab title="全国张氏"></van-tab>
-                <van-tab title="省级张氏"></van-tab>
-                <van-tab title="崇阳张氏"></van-tab>
-                <van-tab title="标签 1"> </van-tab>
-                <van-tab title="标签 2"> </van-tab>
-                <van-tab title="标签 3"> </van-tab>
-                <van-tab title="标签 4"> </van-tab>
-              </van-tabs>
-              <van-icon name="wap-nav" />
-            </div>
-            <div class="region">
-                <div class="regionLeft"><span>选择地区</span><van-icon name="arrow-down" /></div>
-                <div><van-icon name="location" /><span>武汉江夏</span></div>
-                <div class="cloce">关注</div>
-            </div>
-       </div>
-       <!-- 内容滑动区域 -->
-       <div class="content">
-           <!-- 背景 -->
-           <div class="top-bgc"></div>
-           <div class="contentTop">
-                <h2>湖北省咸宁市崇阳县张氏联谊会</h2>
-                <!-- 轮播图 -->
-                <van-swipe :autoplay="3000" indicator-color="white">
-                    <van-swipe-item>1</van-swipe-item>
-                    <van-swipe-item>2</van-swipe-item>
-                    <van-swipe-item>3</van-swipe-item>
-                    <van-swipe-item>4</van-swipe-item>
-                </van-swipe>
-                <!-- 置顶公告 -->
-                <div class="notice">
-                    <div class="noticeSogin">
-                        <div>顶 置<span>公</span> 告</div>
-                        <h4>崇阳联谊会在某地召开崇阳联谊会在某地召开</h4>
-                    </div>
-                    <p>所谓图腾，就是原始时代的人们把某种动物，植物或非生物等当作自己的亲属，祖先或者保护神。相信他们有一种超自然力，会保护自己，并且还可以获得他们的力量和技能。在原始人的眼里，图腾实际是一个被人格化崇拜的对象</p>
-                </div>
-                <!-- 联谊情况 -->
-                <div class="fellowship">
-                    <h4>联谊情况</h4>
-                    <img src="@/assets/images/goose.png" alt="">
-                </div>
-                <div class="count">
-                    <div class="cpf">
-                        <h2>公益基金</h2>
-                        <span>总金额</span>
-                        <img src="@/assets/images/solid.png" alt="">
-
-                        <div class="cpfBottom">
-                            <span class="bottomRight">￥888888.58</span>
-                            <span class="sss">捐助</span>
+        <!-- 内容滑动区域 -->
+        <div class="content">
+            <!-- 背景 -->
+            <div class="top-bgc"></div>
+            <div class="contentTop">
+                    <h2>湖北省咸宁市崇阳县张氏联谊会</h2>
+                    <!-- 轮播图 -->
+                    <van-swipe :autoplay="3000" indicator-color="white">
+                        <van-swipe-item>1</van-swipe-item>
+                        <van-swipe-item>2</van-swipe-item>
+                        <van-swipe-item>3</van-swipe-item>
+                        <van-swipe-item>4</van-swipe-item>
+                    </van-swipe>
+                    <!-- 置顶公告 -->
+                    <div class="notice">
+                        <div class="noticeSogin">
+                            <div>顶 置<span>公</span> 告</div>
+                            <h4>崇阳联谊会在某地召开崇阳联谊会在某地召开</h4>
                         </div>
+                        <p>所谓图腾，就是原始时代的人们把某种动物，植物或非生物等当作自己的亲属，祖先或者保护神。相信他们有一种超自然力，会保护自己，并且还可以获得他们的力量和技能。在原始人的眼里，图腾实际是一个被人格化崇拜的对象</p>
                     </div>
-                    <div class="flgure">
-                        <div class="flgureText">
-                            <h5>刚刚捐款完亲</h5>
-                            <div class="textLeft">
-                                <span>共158人</span>
-                                <van-icon name="arrow" />
-                                <van-icon name="arrow" />
+                    <!-- 联谊情况 -->
+                    <div class="fellowship">
+                        <h4>联谊情况</h4>
+                        <img src="@/assets/images/goose.png" alt="">
+                    </div>
+                    <div class="count">
+                        <div class="cpf">
+                            <h2>公益基金</h2>
+                            <span>总金额</span>
+                            <img src="@/assets/images/solid.png" alt="">
+
+                            <div class="cpfBottom">
+                                <span class="bottomRight">￥888888.58</span>
+                                <span class="sss">捐助</span>
                             </div>
                         </div>
-                        <ul class="flgureUl">
+                        <div class="flgure">
+                            <div class="flgureText">
+                                <h5>刚刚捐款完亲</h5>
+                                <div class="textLeft">
+                                    <span>共158人</span>
+                                    <van-icon name="arrow" />
+                                    <van-icon name="arrow" />
+                                </div>
+                            </div>
+                            <ul class="flgureUl">
+                                <li>
+                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
+                                    <h5>周星</h5>
+                                    <span>捐助 1000元</span>
+                                    <div class="bunText">
+                                        <span>+关注</span>
+                                        <img src="@/assets/images/praise.png" alt="">
+                                        <span>12</span>
+                                    </div>
+                                </li>
+                                    <li>
+                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
+                                    <h5>周星</h5>
+                                    <span>捐助 1000元</span>
+                                    <div class="bunText">
+                                        <span>+关注</span>
+                                        <img src="@/assets/images/praise.png" alt="">
+                                        <span>12</span>
+                                    </div>
+                                </li>
+                                    <li>
+                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
+                                    <h5>周星</h5>
+                                    <span>捐助 1000元</span>
+                                    <div class="bunText">
+                                        <span>+关注</span>
+                                        <img src="@/assets/images/praise.png" alt="">
+                                        <span>12</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="contentBottom">
+                <div class="dynamic">
+                    <h3>家族<b>动</b>态</h3>
+                    <span>2018年11月9日星期五</span> 
+                </div>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
+                        </div>
+                        <div class="centerImg">
+                            34
+                        </div>
+                    </div>
+                    <div class="slideshow">
+                        <ul class="swipeUl">
+                        <li>
+                                <img src="@/assets/images/notice.png" alt="">
+                                <p>家族产业</p>
+                        </li>
                             <li>
-                                <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                <h5>周星</h5>
-                                <span>捐助 1000元</span>
-                                <div class="bunText">
-                                    <span>+关注</span>
-                                    <img src="@/assets/images/praise.png" alt="">
-                                    <span>12</span>
-                                </div>
-                            </li>
-                                <li>
-                                <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                <h5>周星</h5>
-                                <span>捐助 1000元</span>
-                                <div class="bunText">
-                                    <span>+关注</span>
-                                    <img src="@/assets/images/praise.png" alt="">
-                                    <span>12</span>
-                                </div>
-                            </li>
-                                <li>
-                                <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                <h5>周星</h5>
-                                <span>捐助 1000元</span>
-                                <div class="bunText">
-                                    <span>+关注</span>
-                                    <img src="@/assets/images/praise.png" alt="">
-                                    <span>12</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-           </div>
-           <div class="contentBottom">
-               <div class="dynamic">
-                  <h3>家族<b>动</b>态</h3>
-                  <span>2018年11月9日星期五</span> 
-               </div>
-                <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
+                                <img src="@/assets/images/dynamic.png" alt="">
+                                <p>家族名人</p>
+                        </li>
+                            <li>
+                                <img src="@/assets/images/gold.png" alt="">
+                                <p>家族分支</p>
+                        </li>
+                            <li>
+                                <img src="@/assets/images/book.png" alt="">
+                                <p>家族视频</p>
+                        </li>
                         
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                <div class="slideshow">
-                    <ul class="swipeUl">
-                       <li>
-                            <img src="@/assets/images/notice.png" alt="">
-                            <p>家族产业</p>
-                       </li>
+                    </ul>
+                        <ul class="swipeUl">
                         <li>
-                            <img src="@/assets/images/dynamic.png" alt="">
-                            <p>家族名人</p>
-                       </li>
-                        <li>
-                            <img src="@/assets/images/gold.png" alt="">
-                            <p>家族分支</p>
-                       </li>
-                        <li>
-                            <img src="@/assets/images/book.png" alt="">
-                            <p>家族视频</p>
-                       </li>
-                       
-                   </ul>
-                     <ul class="swipeUl">
-                       <li>
-                            <img src="@/assets/images/family.png" alt="">
-                            <p>家族产业</p>
-                       </li>
-                        <li>
-                            <img src="@/assets/images/person.png" alt="">
-                            <p>家族名人</p>
-                       </li>
-                        <li>
-                            <img src="@/assets/images/branch.png" alt="">
-                            <p>家族分支</p>
-                       </li>
-                        <li>
-                            <img src="@/assets/images/shi@2x.png" alt="">
-                            <p>家族视频</p>
-                       </li>
-                       
-                   </ul>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
+                                <img src="@/assets/images/family.png" alt="">
+                                <p>家族产业</p>
+                        </li>
+                            <li>
+                                <img src="@/assets/images/person.png" alt="">
+                                <p>家族名人</p>
+                        </li>
+                            <li>
+                                <img src="@/assets/images/branch.png" alt="">
+                                <p>家族分支</p>
+                        </li>
+                            <li>
+                                <img src="@/assets/images/shi@2x.png" alt="">
+                                <p>家族视频</p>
+                        </li>
                         
+                    </ul>
                     </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                        <div class="centerImg">
+                            34
                         </div>
-                        
                     </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                        <div class="centerImg">
+                            34
                         </div>
-                        
                     </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
                         </div>
-                        
+                        <div class="centerImg">
+                            34
+                        </div>
                     </div>
-                    <div class="centerImg">
-                        34
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
+                        </div>
+                        <div class="centerImg">
+                            34
+                        </div>
                     </div>
-                </div>
-                 <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="pillar">+关注</div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="videoBox">
-                    <h4>中国家谱博物馆落户进-2017年亮相</h4>
-                    <div class="videoCenter"></div>
-                    <a href="#">视频</a>
-                    <span>30条评论</span>
-                    <span>652次播放</span>
-                    <span>2018-10-11</span>
-                </div>
-                <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="gz">
-                       <div>分支后裔</div>
-                       <div>千支同源</div>
-                   </div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-           </div>
-       </div>
-   </div>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
+                        </div>
+                        <div class="centerImg">
+                            34
+                        </div>
+                    </div>
+                    <div class="centerDiv">
+                        <div class="centerText">
+                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <div class="axisCentre">
+                                <span class="xu">序</span>
+                                <span>30条评论</span>
+                                <span>652124浏览</span>
+                            </div>
+                            
+                        </div>
+                        <div class="centerImg">
+                            34
+                        </div>
+                    </div>
+                    <div class="titleCenter">
+                    <div class="titleTop">
+                        <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                            <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                    </div>
+                    <div class="pillar">+关注</div>
+                    </div>
+                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                    </div>
+                    <div class="videoBox">
+                        <h4>中国家谱博物馆落户进-2017年亮相</h4>
+                        <div class="videoCenter"></div>
+                        <a href="#">视频</a>
+                        <span>30条评论</span>
+                        <span>652次播放</span>
+                        <span>2018-10-11</span>
+                    </div>
+                    <div class="titleCenter">
+                    <div class="titleTop">
+                        <div class="centerLeft">
+                        <div class="img">头像</div>
+                        <div class="celebrity">
+                            <h5>周星</h5>
+                                <span>慈善名人</span>
+                                <span>125万粉丝关注</span>
+                        </div>
+                    </div>
+                    <div class="gz">
+                        <div>分支后裔</div>
+                        <div>千支同源</div>
+                    </div>
+                    </div>
+                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                    </div>
+            </div>
+            </div>
+            </div>
+    
+    
+        <Footer></Footer>
+    </div>
 </template>
 
 <script>
+import Footer from '@/components/footer/Footer.vue'
 export default {
    data() {
        return {
            active:1
        }
    },
-  components: {}
+  components: {
+      Footer
+  }
 }
 </script>
 

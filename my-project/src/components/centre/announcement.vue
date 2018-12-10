@@ -105,7 +105,7 @@ export default {
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0.45rem 0 1.2rem 0; 
+  padding: 4rem 0 1.2rem 0; 
   .card-1 {
     padding: 0.2rem 0.3rem;
     box-sizing: border-box;
