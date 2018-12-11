@@ -95,7 +95,7 @@
                 <div class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <div class="img">头像</div>
+                       <router-link to="/characterDeatils" tag="div" class="img">头像</router-link>
                        <div class="celebrity">
                            <h5></h5>
                             <span></span>

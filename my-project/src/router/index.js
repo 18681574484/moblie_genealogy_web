@@ -23,6 +23,7 @@ import countyLevel from '@/components/centre/countyLevel.vue'
 
 
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -101,6 +102,7 @@ export default new Router({
       path: '/countyLevel',
       component: countyLevel
     }
+
  
  
    

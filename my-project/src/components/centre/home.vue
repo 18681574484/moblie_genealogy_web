@@ -62,7 +62,7 @@
                         <img src="@/assets/images/goose.png" alt="">
                     </div>
                     <div class="count">
-                        <div class="cpf">
+                        <router-link  to="/personnel" tag="div" class="cpf" >
                             <h2>公益基金</h2>
                             <span>总金额</span>
                             <img src="@/assets/images/solid.png" alt="">
@@ -71,7 +71,7 @@
                                 <span class="bottomRight">￥888888.58</span>
                                 <span class="sss">捐助</span>
                             </div>
-                        </div>
+                        </router-link>
                         <div class="flgure">
                             <div class="flgureText">
                                 <h5>刚刚捐款完亲</h5>
@@ -141,7 +141,7 @@
                                 <img src="@/assets/images/notice.png" alt="">
                                 <p>家族公告</p>
                         </router-link>
-                        <router-link  to="/" tag="li">
+                        <router-link  to="/HomeList" tag="li">
                                 <img src="@/assets/images/dynamic.png" alt="">
                                 <p>家族动态</p>
                         </router-link>
@@ -161,7 +161,7 @@
                                 <p>家族产业</p>
                         </router-link>
                         
-                        <router-link to="/characterDeatils" tag="li">
+                        <router-link to="/branch" tag="li">
                                 <img src="@/assets/images/person.png" alt="">
                                 <p>家族名人</p>
                         </router-link>
