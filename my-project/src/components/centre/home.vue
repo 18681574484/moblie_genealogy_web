@@ -42,18 +42,19 @@
                     <h2>湖北省咸宁市崇阳县张氏联谊会</h2>
                     <!-- 轮播图 -->
                     <van-swipe :autoplay="3000" indicator-color="white">
-                        <van-swipe-item>1</van-swipe-item>
-                        <van-swipe-item>2</van-swipe-item>
-                        <van-swipe-item>3</van-swipe-item>
-                        <van-swipe-item>4</van-swipe-item>
+                        <van-swipe-item v-for="item in lunbo" :key="item.id">
+                            <div class="div1" :style="api.imgBG(item.picUrl)"></div>
+                        </van-swipe-item>
                     </van-swipe>
                     <!-- 置顶公告 -->
                     <div class="notice">
                         <div class="noticeSogin">
                             <div>顶 置<span>公</span> 告</div>
                             <h4>崇阳联谊会在某地召开崇阳联谊会在某地召开</h4>
+                            <!-- <h4>{{brief.data.siteName}}</h4> -->
                         </div>
                         <p>所谓图腾，就是原始时代的人们把某种动物，植物或非生物等当作自己的亲属，祖先或者保护神。相信他们有一种超自然力，会保护自己，并且还可以获得他们的力量和技能。在原始人的眼里，图腾实际是一个被人格化崇拜的对象</p>
+                        <!-- <p>{{brief.data.description}}</p> -->
                     </div>
                     <!-- 联谊情况 -->
                     <div class="fellowship">
@@ -136,7 +137,7 @@
                     </div>
                     <div class="slideshow">
                     <ul class="swipeUl">
-                        <router-link to="/" tag="li">
+                        <router-link to="/announcement" tag="li">
                                 <img src="@/assets/images/notice.png" alt="">
                                 <p>家族公告</p>
                         </router-link>
@@ -148,9 +149,9 @@
                                 <img src="@/assets/images/gold.png" alt="">
                                 <p>慈善公积金</p>
                         </router-link>
-                        <router-link to="/video" tag="li">
+                        <router-link to="/culture" tag="li">
                                 <img src="@/assets/images/book.png" alt="">
-                                <p>家族视频</p>
+                                <p>家族文化</p>
                         </router-link>
                         
                     </ul>
@@ -179,13 +180,13 @@
                         
                     </ul>
                     </div>
-                    <div class="centerDiv">
+                    <div class="centerDiv" v-for="item in dynamic.records" :key="item.id">
                         <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                            <h5>{{item.newsTitle}}</h5>
                             <div class="axisCentre">
                                 <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
+                                <span>{{item.status}}条评论</span>
+                                <span>{{item.visitNum}}浏览</span>
                             </div>
                             
                         </div>
@@ -193,76 +194,7 @@
                             34
                         </div>
                     </div>
-                    <div class="centerDiv">
-                        <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                            <div class="axisCentre">
-                                <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
-                            </div>
-                            
-                        </div>
-                        <div class="centerImg">
-                            34
-                        </div>
-                    </div>
-                    <div class="centerDiv">
-                        <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                            <div class="axisCentre">
-                                <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
-                            </div>
-                            
-                        </div>
-                        <div class="centerImg">
-                            34
-                        </div>
-                    </div>
-                    <div class="centerDiv">
-                        <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                            <div class="axisCentre">
-                                <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
-                            </div>
-                            
-                        </div>
-                        <div class="centerImg">
-                            34
-                        </div>
-                    </div>
-                    <div class="centerDiv">
-                        <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                            <div class="axisCentre">
-                                <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
-                            </div>
-                            
-                        </div>
-                        <div class="centerImg">
-                            34
-                        </div>
-                    </div>
-                    <div class="centerDiv">
-                        <div class="centerText">
-                            <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                            <div class="axisCentre">
-                                <span class="xu">序</span>
-                                <span>30条评论</span>
-                                <span>652124浏览</span>
-                            </div>
-                            
-                        </div>
-                        <div class="centerImg">
-                            34
-                        </div>
-                    </div>
+                    
                     <div class="titleCenter">
                     <div class="titleTop">
                         <div class="centerLeft">
@@ -314,14 +246,52 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 export default {
-   data() {
-       return {
-           active:1
+  props: {
+
+    },
+    data() {
+        return {
+            active: 1,
+            lunbo:[],   // 轮播图
+            dynamic:[],  // 家族动态
+            bulletin:{}  // 公告栏   
+        };
+    },
+    computed: {
+
+    },
+    created() {
+        this.home()
+    },
+    mounted() {
+        
+    },
+    watch: {
+
+    },
+    methods: {
+       home() { 
+            this.api.get(this.api.county.base + '/genogram/fanIndex/index/getFanIndexSlidePicList?siteId=100')
+            // 轮播图 
+           .then( res => {
+               this.lunbo = res.data
+              return this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanIndexFund?siteId=1")
+              // 公益基金
+           }).then( res => {
+            //    console.log(res)
+               return this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=123")
+           }).then( res => {
+               this.dynamic = res.data
+               return this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectVedioPage?showId=125")
+           }).then( res => {
+               console.log(res)
+           })
        }
-   },
-  components: {
-      Footer
-  }
+
+    },
+    components: {
+
+    }
 }
 </script>
 
@@ -336,7 +306,12 @@ export default {
         left: 0;
         z-index: 99;
     }
-
+    // 轮播图
+    .div1 {
+        height: 100%;
+        height: 100%;
+        background: no-repeat center / cover;
+    }
     .homeHeader {
         width: 100%;
         position: fixed;
@@ -856,3 +831,4 @@ export default {
  
 }
 </style>
+

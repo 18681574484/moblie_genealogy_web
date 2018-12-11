@@ -29,10 +29,10 @@ export default new Router({
   routes: [
     {
       path: '',
-      redirect: '/homePage'
+      redirect: '/home'
     },
     {
-      path: '/homePage',
+      path: '/home',
       component: Home
     },
     {
@@ -41,7 +41,7 @@ export default new Router({
         children:[
           // 首页
           {
-            path:'/home',
+            path:'/HomeList',
             component: HomeList
           },
           // 视频

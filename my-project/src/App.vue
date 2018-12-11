@@ -6,7 +6,7 @@
       <router-view></router-view>
 
       <!-- 底部固定组件 -->
-      <!-- <Footer></Footer> -->
+      <Footer></Footer>
   </div>
 </template>
 

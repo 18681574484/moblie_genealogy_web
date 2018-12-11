@@ -178,7 +178,7 @@ export default {
 
     },
     methods: {
-
+     
     },
     components: {
         swipe

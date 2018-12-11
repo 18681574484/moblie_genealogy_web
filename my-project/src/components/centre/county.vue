@@ -183,8 +183,8 @@ export default {
 
     },
     created() {
-
-    },
+        this.count()
+    },      
     mounted() {
 
     },
@@ -192,7 +192,12 @@ export default {
 
     },
     methods: {
-
+        count() {
+             this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
+             .then( res => {
+                 console.log(res)
+             })
+        }
     },
     components: {
 

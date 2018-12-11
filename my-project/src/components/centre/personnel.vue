@@ -143,14 +143,15 @@ export default {
     },
     data() {
         return {
-            active: 1
+            active: 1,
+            expenditureList: []
         };
     },
     computed: {
 
     },
     created() {
-
+       this.expenditure()
     },
     mounted() {
 
@@ -161,6 +162,14 @@ export default {
     methods: {
         onClick(index, title) {
             this.$toast(title);
+        },
+         expenditure() {
+             // 收益公开栏
+             this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=117")
+             .then( res => {
+                 console.log(res)
+                 this.expenditureList = res.data
+             })
         }
     },
     components: {

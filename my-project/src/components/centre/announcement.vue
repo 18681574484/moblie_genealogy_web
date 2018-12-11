@@ -76,14 +76,14 @@
                 <span>刚刚</span>
             </div>
         </div>
-         <div class="fellowship">
+         <div class="fellowship" v-for="item in auct.records" :key="item.id">
             <div class="fellowship-header">
                 <span>联谊会公告</span>
-                <span>中国家谱博物馆落户-2017亮相</span>
+                <span>中国家谱</span>
             </div>
             <div class="fellowship-box">
-                <span>30条评论</span>
-                <span>652142浏览</span>
+                <span>{{item.status}}条评论</span>
+                <span>{{item.visitNum}}浏览</span>
                 <span>刚刚</span>
             </div>
         </div>
@@ -93,9 +93,23 @@
 <script>
 export default {
    data() {
-       return {}
+       return {
+           auct: []
+       }
    },
-  components: {}
+    created() {
+        this.announcement()
+    },
+   components: {},
+   methods: {
+      announcement() {
+          this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=124")
+          .then( res => {
+              console.log(res)
+              this.auct = res.data
+          })  
+      }
+  }
 }
 </script>
 
@@ -105,7 +119,7 @@ export default {
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 4rem 0 1.2rem 0; 
+  padding: 4.2rem 0 1.2rem 0; 
   .card-1 {
     padding: 0.2rem 0.3rem;
     box-sizing: border-box;
@@ -197,7 +211,10 @@ export default {
     border-bottom: 0.02rem solid #DEDDDD;
     .fellowship-header{
       display: flex;
-      justify-content:space-between;
+    //   justify-content:space-between;
+        span {
+            margin-right: 0.2rem;
+        }
       span:first-child{
         text-align: center;
         font-size: 0.2rem;

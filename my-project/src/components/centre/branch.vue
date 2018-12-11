@@ -97,14 +97,14 @@
                        <div class="centerLeft">
                        <div class="img">头像</div>
                        <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
+                           <h5></h5>
+                            <span></span>
                             <span>125万粉丝关注</span>
                        </div>
                    </div>
                    <div class="pillar">+关注</div>
                    </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                   <p></p>
                 </div>
                 <div class="titleCenter">
                    <div class="titleTop">
@@ -268,14 +268,16 @@ export default {
     },
     data() {
         return {
-            active:0
+            active:0,
+            arr: [],
+            celebrity: []
         };
     },
     computed: {
 
     },
     created() {
-
+        this.branch()
     },
     mounted() {
 
@@ -284,7 +286,13 @@ export default {
 
     },
     methods: {
-
+        branch() {
+            // 组织架构
+            this.api.get(this.api.county.base + "/genogram/fanIndex/getFamilyStructureList?siteId=1")
+            .then( res => {
+                console.log(res)
+            })
+        }
     },
     components: {
 

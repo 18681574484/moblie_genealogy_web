@@ -2,83 +2,14 @@
     <div class="celebrity">
        <van-tabs v-model="active">
             <van-tab title="家族祠堂">
-                <div class="centerDiv">
+                
+                 <div class="centerDiv" v-for="item in cultural.records" :key="item.id">
                     <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                        <h5>{{item.newsTitle}}</h5>
                         <div class="axisCentre">
                             <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div class="centerImg">
-                        34
-                    </div>
-                </div>
-                 <div class="centerDiv">
-                    <div class="centerText">
-                        <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                        <div class="axisCentre">
-                            <span class="xu">序</span>
-                            <span>30条评论</span>
-                            <span>652124浏览</span>
+                            <span>{{item.status}}条评论</span>
+                            <span>{{item.visitNum}}浏览</span>
                         </div>
                         
                     </div>
@@ -103,14 +34,15 @@ export default {
     },
     data() {
         return {
-            active:0
+            active:0,
+            cultural:[]
         };
     },
     computed: {
 
     },
     created() {
-
+        this.culturala()
     },
     mounted() {
 
@@ -119,7 +51,14 @@ export default {
 
     },
     methods: {
-
+        culturala() {
+            // 家族文化
+          this.api.get(this.api.county.base + "/genogram/fanNewsCulture/index/getFamilyIndexCulturePage?siteId=1")
+          .then( res =>  {
+              console.log(res)
+              this.cultural = res.data
+          })  
+        }
     },
     components: {
 

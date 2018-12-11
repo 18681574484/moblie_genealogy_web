@@ -339,6 +339,9 @@ export default {
            show: false
        }
    },
+   created() {
+       
+   },
    methods: {
        share() {
            this.show = true
@@ -349,6 +352,10 @@ export default {
    },
    components:{
        Footer
+   },
+   methods: {
+   
+        
    }
   
 }
