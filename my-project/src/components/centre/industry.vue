@@ -94,11 +94,11 @@
                     34
                 </div>
         </div>
-        <div class="centerDiv">
+        <!-- <div class="centerDiv" v-for="item in this.$store.state.property" :key="item.id">
                 <div class="centerText">
                     <h5>中国家谱博物馆落户进-2017年亮相</h5>
                     <div class="axisCentre">
-                    <span>个人产业</span>
+                    <span>{{item.menuName}}</span>
                     <van-icon name="location" />
                     <p>湖北省大鹏村腾睿大厦</p>
                     <div class="centreSolid"></div>
@@ -108,46 +108,7 @@
                 <div class="centerImg">
                     34
                 </div>
-        </div>
-        <div class="titleCenter">
-            <div class="titleTop">
-                <div class="centerLeft">
-                <div class="img">头像</div>
-                <div class="celebrity">
-                    <h5>周星</h5>
-                    <span>慈善名人</span>
-                    <span>125万粉丝关注</span>
-                </div>
-            </div>
-            <div class="gz">+关注</div>
-            </div>
-            <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-        </div>
-        <div class="videoBox">
-            <h4>中国家谱博物馆落户进-2017年亮相</h4>
-            <div class="videoCenter"></div>
-            <a href="#">视频</a>
-            <span>30条评论</span>
-            <span>652次播放</span>
-            <span>2018-10-11</span>
-        </div>
-         <div class="titleCenter">
-            <div class="titleTop">
-                <div class="centerLeft">
-                <div class="img">头像</div>
-                <div class="celebrity">
-                    <h5>周星</h5>
-                    <span>慈善名人</span>
-                    <span>125万粉丝关注</span>
-                </div>
-            </div>
-            <div class="branch">
-                <div>分支后裔</div>
-                <div>千支同源</div>
-            </div>
-            </div>
-            <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-        </div>
+        </div> -->
     </div>
     
     </div>
@@ -197,14 +158,6 @@ export default {
 display: none;/*隐藏滚轮*/
 }
 #appList {
-    // position: relative;
-    // display: flex;
-    // margin-top: 0.45rem;
-    // margin-bottom: 1.2rem;
-    // font-size: 0.24rem;
-    // overflow: hidden;
-    // overflow-y: auto;
-    // overflow-x: hidden;
     .homeList {
         height: 2.85rem;
         width: 100%;
@@ -362,20 +315,7 @@ display: none;/*隐藏滚轮*/
                      }
                 }
         }
-        .titleCenter {
-            padding: 0 0.2rem;
-            position: relative;
-            margin-top: 0.26rem;
-            border-bottom: 0.01rem solid #DEDDDD;
-                .titleTop {
-                        display: flex;
-                        justify-content: space-between;
-                }
-                p {
-                    font-size: 0.24rem;
-                    color: #333333;
-                }
-        }
+     
 
         .gz {
             width: 1.7rem;
@@ -386,59 +326,6 @@ display: none;/*隐藏滚轮*/
             text-align: center;
             line-height: 0.55rem;
             background-color: #D2211B;
-        }
-        // 视频播放样式
-        .videoBox {
-            font-size: 0.2rem;
-            // padding: 0 0.2rem; 
-            margin-top: 0.27rem;
-            border-bottom: 0.01rem solid #DEDDDD;
-                h4 {
-                    font-size: 0.32rem;
-                    font-weight: 500;
-                    color: #333333;
-                    margin: 0;
-                }
-                .videoCenter {
-                    height: 3.55rem;
-                    width: 100%;
-                    margin-top: 0.25rem;
-                    margin-bottom: 0.24rem;
-                    background-color: pink;
-                }
-                a {
-                    display: inline-block;
-                    width: 0.52rem;
-                    height: 0.3rem;
-                    border: 0.01rem solid #0390FD;
-                    color: #0390FD;
-                    text-align: center;
-                    border-radius: 0.05rem;
-                    line-height: 0.3rem;
-                    margin-bottom: 0.2rem;
-                }
-                span {
-                    color: #A1A1A1;
-                    margin-left: 0.17rem;
-                }
-        }
-
-        // 人物分支样式
-        .branch {
-            width: 2.7rem;
-            height: 0.55rem;
-            font-size: 0.24rem;
-            color: #D2211B;
-            text-align: center;
-            line-height: 0.55rem;
-            display: flex;
-            justify-content: space-between;
-                div {
-                    width: 1.24rem;
-                    height: 100%;
-                    border-radius: 0.3rem;
-                    border: 0.01rem solid #D2211B;
-                }
         }
 }
   

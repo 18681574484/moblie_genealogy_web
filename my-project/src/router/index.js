@@ -12,6 +12,7 @@ import culture from '@/components/centre/culture.vue'
 
 import celebrity from '@/components/centre/celebrity.vue'
 import branch from '@/components/centre/branch.vue'
+import industry from '@/components/centre/industry.vue'
 
 
 import faction from '@/components/centre/faction.vue'
@@ -33,6 +34,7 @@ export default new Router({
       redirect: '/home'
     },
     {
+      // 首页
       path: '/home',
       component: Home
     },
@@ -40,7 +42,6 @@ export default new Router({
       path: '/home',
       component: Indexs,
         children:[
-          // 首页
           {
             path:'/HomeList',
             component: HomeList
@@ -78,7 +79,10 @@ export default new Router({
             path: '/personnel',
             component: personnel
           }, 
-
+          {
+            path: '/industry',
+            component: industry
+          }
 
         ]
     },

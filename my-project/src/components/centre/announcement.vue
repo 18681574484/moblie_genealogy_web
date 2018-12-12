@@ -35,9 +35,9 @@
         </div>
         <!-- 简介 -->
         <div class="card-1 card-3">
-            <div class="header-2">联谊概况</div>
+            <div class="header-2">简介</div>
             <div class="card-box" style="display: block;">
-                <p>时考试时录课会计师的合法化了空间的两年了快来角度来讲啊我斯柯达奶粉呢理科生都是你理科生破甲术理查德森,面色柯二楼knew跑到村上里沙看到你买电脑客服呢额鹅鹅鹅鹅鹅鹅饿饿饿饿饿饿鹅鹅鹅呃呃呃的点点滴滴的点点滴滴那你是这里叫出租车将</p>
+                <p>{{this.$store.state.brief.description}}</p>
                 <div class="box-left">
                 <span>族谱总数:
                     <b style="font-style: normal; color: #d53c38;">4525</b> 人
@@ -65,21 +65,10 @@
                 <span>刚刚</span>
             </div>
         </div>
-         <div class="fellowship">
+         <div class="fellowship"  v-for="item in  this.$store.state.announcement.records" :key="item.id">
             <div class="fellowship-header">
-                <span>联谊会公告</span>
+                <span>{{item.newsTitle}}</span>
                 <span>中国家谱博物馆落户-2017亮相</span>
-            </div>
-            <div class="fellowship-box">
-                <span>30条评论</span>
-                <span>652142浏览</span>
-                <span>刚刚</span>
-            </div>
-        </div>
-         <div class="fellowship" v-for="item in auct.records" :key="item.id">
-            <div class="fellowship-header">
-                <span>联谊会公告</span>
-                <span>中国家谱</span>
             </div>
             <div class="fellowship-box">
                 <span>{{item.status}}条评论</span>
@@ -87,6 +76,16 @@
                 <span>刚刚</span>
             </div>
         </div>
+         <!-- <div class="fellowship" v-for="item in auct.records" :key="item.id">
+            <div class="fellowship-header">
+                <span>中国家谱</span>
+            </div>
+            <div class="fellowship-box">
+                <span>{{item.status}}条评论</span>
+                <span>{{item.visitNum}}浏览</span>
+                <span>刚刚</span>
+            </div>
+        </div> -->
    </div>
 </template>
 
@@ -98,16 +97,17 @@ export default {
        }
    },
     created() {
+        this.$store.dispatch('bulletin')
         this.announcement()
     },
    components: {},
    methods: {
       announcement() {
-          this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=124")
-          .then( res => {
-              console.log(res)
-              this.auct = res.data
-          })  
+        //   this.api.get(this.api.county.base + "/genogram/fanIndex/index/getFanIndexInfo?siteId=100")
+        //   .then( res => {
+        //       console.log(res)
+        //       this.auct = res.data
+        //   })  
       }
   }
 }

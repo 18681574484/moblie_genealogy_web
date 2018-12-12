@@ -42,7 +42,7 @@
                     <h2>湖北省咸宁市崇阳县张氏联谊会</h2>
                     <!-- 轮播图 -->
                     <van-swipe :autoplay="3000" indicator-color="white">
-                        <van-swipe-item v-for="item in lunbo" :key="item.id">
+                        <van-swipe-item v-for="item in this.$store.state.lunbo" :key="item.id">
                             <div class="div1" :style="api.imgBG(item.picUrl)"></div>
                         </van-swipe-item>
                     </van-swipe>
@@ -57,10 +57,10 @@
                         <!-- <p>{{brief.data.description}}</p> -->
                     </div>
                     <!-- 联谊情况 -->
-                    <div class="fellowship">
-                        <h4>联谊情况</h4>
+                    <router-link to="/announcement" tag="div" class="fellowship" >
+                        <h4>联谊概况</h4>
                         <img src="@/assets/images/goose.png" alt="">
-                    </div>
+                    </router-link>
                     <div class="count">
                         <router-link  to="/personnel" tag="div" class="cpf" >
                             <h2>公益基金</h2>
@@ -68,7 +68,7 @@
                             <img src="@/assets/images/solid.png" alt="">
 
                             <div class="cpfBottom">
-                                <span class="bottomRight">￥888888.58</span>
+                                <span class="bottomRight">￥{{this.$store.state.fund.remain}}</span>
                                 <span class="sss">捐助</span>
                             </div>
                         </router-link>
@@ -82,34 +82,15 @@
                                 </div>
                             </div>
                             <ul class="flgureUl">
-                                <li>
-                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                    <h5>周星</h5>
-                                    <span>捐助 1000元</span>
+                                <li v-for="item in this.$store. state.celebrity.records" :key="item.id">
+                                    <!-- <img class="portrait" src="@/assets/images/QQ@2x.png" alt=""> -->
+                                    <div class="div1 portrait" :style="api.imgBG(item.allUserLogin.picSrc)"> </div>
+                                    <h5>{{item.allUserLogin.nickName}}</h5>
+                                    <span>捐助 {{item.allUserLogin.role}}元</span>
                                     <div class="bunText">
                                         <span>+关注</span>
                                         <img src="@/assets/images/praise.png" alt="">
-                                        <span>12</span>
-                                    </div>
-                                </li>
-                                    <li>
-                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                    <h5>周星</h5>
-                                    <span>捐助 1000元</span>
-                                    <div class="bunText">
-                                        <span>+关注</span>
-                                        <img src="@/assets/images/praise.png" alt="">
-                                        <span>12</span>
-                                    </div>
-                                </li>
-                                    <li>
-                                    <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                                    <h5>周星</h5>
-                                    <span>捐助 1000元</span>
-                                    <div class="bunText">
-                                        <span>+关注</span>
-                                        <img src="@/assets/images/praise.png" alt="">
-                                        <span>12</span>
+                                        <span>{{item.allUserLogin.status}}</span>
                                     </div>
                                 </li>
                             </ul>
@@ -180,7 +161,7 @@
                         
                     </ul>
                     </div>
-                    <div class="centerDiv" v-for="item in dynamic.records" :key="item.id">
+                    <div class="centerDiv" v-for="item in this.$store.state.dynamic.records" :key="item.id">
                         <div class="centerText">
                             <h5>{{item.newsTitle}}</h5>
                             <div class="axisCentre">
@@ -238,7 +219,6 @@
             </div>
             </div>
     
-    
         <Footer></Footer>
     </div>
 </template>
@@ -252,8 +232,6 @@ export default {
     data() {
         return {
             active: 1,
-            lunbo:[],   // 轮播图
-            dynamic:[],  // 家族动态
             bulletin:{}  // 公告栏   
         };
     },
@@ -261,6 +239,7 @@ export default {
 
     },
     created() {
+        this.$store.dispatch('increment')
         this.home()
     },
     mounted() {
@@ -270,22 +249,13 @@ export default {
 
     },
     methods: {
+        
        home() { 
-            this.api.get(this.api.county.base + '/genogram/fanIndex/index/getFanIndexSlidePicList?siteId=100')
-            // 轮播图 
-           .then( res => {
-               this.lunbo = res.data
-              return this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanIndexFund?siteId=1")
-              // 公益基金
-           }).then( res => {
-            //    console.log(res)
-               return this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=123")
-           }).then( res => {
-               this.dynamic = res.data
-               return this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectVedioPage?showId=125")
-           }).then( res => {
-               console.log(res)
-           })
+
+        //    console.log(this.$store.state.lunbo.picUrl)
+        //    this.lunbo = this.$store.state.lunbo // 轮播图
+        //    this.dynamic = this.$store. state.celebrity // 家族动态
+
        }
 
     },
@@ -600,7 +570,8 @@ export default {
                                                 width: 1rem;
                                                 height: 1rem;
                                                 border-radius: 50%;
-                                                vertical-align:top
+                                                vertical-align:top;
+                                                margin-left: 0.6rem;
                                             }
                                             h5 {
                                                 margin: 0.2rem 0 0.3rem 0;

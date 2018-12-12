@@ -7,6 +7,7 @@ import "../build/rem"
 // import axios from "./config/axios"
 
 import api from './config/api'
+import store from './store/index'
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -19,6 +20,7 @@ Vue.prototype.api = api
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

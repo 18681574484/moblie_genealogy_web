@@ -3,16 +3,15 @@ import Vuex from 'vuex'
 import mutations from './mutations'
 import actions from './action'
 import getters from './getters'
+import state from './state'
 
 Vue.use(Vuex)
 
-const state = {
-	
-}
+
 
 export default new Vuex.Store({
 	state,
 	getters,
 	actions,
-	mutations,
+	mutations
 })

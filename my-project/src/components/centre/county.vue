@@ -6,7 +6,7 @@
             <img src="@/assets/images/solid.png" alt="">
 
             <div class="cpfBottom">
-                <span class="bottomRight">￥888888.58</span>
+                <span class="bottomRight">￥{{this.$store.state.fund.remain}}</span>
                 <span class="sss">捐助</span>
             </div>
           </div>
@@ -20,41 +20,35 @@
                   </div>
               </div>
               <ul class="flgureUl">
-                  <li>
-                      <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                      <h5>周星</h5>
-                      <span>捐助 1000元</span>
-                      <div class="bunText">
-                          <span>+关注</span>
-                          <img src="@/assets/images/praise.png" alt="">
-                          <span>12</span>
-                      </div>
-                  </li>
-                    <li>
-                      <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                      <h5>周星</h5>
-                      <span>捐助 1000元</span>
-                      <div class="bunText">
-                          <span>+关注</span>
-                          <img src="@/assets/images/praise.png" alt="">
-                          <span>12</span>
-                      </div>
-                  </li>
-                    <li>
-                      <img class="portrait" src="@/assets/images/QQ@2x.png" alt="">
-                      <h5>周星</h5>
-                      <span>捐助 1000元</span>
-                      <div class="bunText">
-                          <span>+关注</span>
-                          <img src="@/assets/images/praise.png" alt="">
-                          <span>12</span>
-                      </div>
-                  </li>
+                <li v-for="item in this.$store. state.celebrity.records" :key="item.id">
+                    <div class="div1 portrait" :style="api.imgBG(item.allUserLogin.picSrc)"> </div>
+                    <h5>{{item.allUserLogin.nickName}}</h5>
+                    <span>捐助 {{item.allUserLogin.role}}元</span>
+                    <div class="bunText">
+                        <span>+关注</span>
+                        <img src="@/assets/images/praise.png" alt="">
+                        <span>{{item.allUserLogin.status}}</span>
+                    </div>
+                 </li>
+                
               </ul>
           </div>
           <div class="deal">
               <h3>交易明细</h3>
-              <div class="money">
+              <div class="money" v-for="item in this.$store.state.wasteBook.records" :key="item.id">
+                  <div class="running">
+                      <div class="runningleft">
+                          <h6>10.01</h6>
+                          <span>
+                              <a href="#"></a>
+                            {{item.useFor}}
+                          </span>
+                      </div>
+                      <span class="ring">+{{item.amount}}</span>
+                  </div>
+                  <span class="time">2018</span>
+              </div>
+               <!-- <div class="money">
                   <div class="running">
                       <div class="runningleft">
                           <h6>10.01</h6>
@@ -66,73 +60,24 @@
                       <span class="ring">+50000</span>
                   </div>
                   <span class="time">2018</span>
-              </div>
-               <div class="money">
-                  <div class="running">
-                      <div class="runningleft">
-                          <h6>10.01</h6>
-                          <span>
-                              <a href="#"></a>
-                            家族助学使用
-                          </span>
-                      </div>
-                      <span class="ring">+50000</span>
-                  </div>
-                  <span class="time">2018</span>
-              </div>
-               <div class="money">
-                  <div class="running">
-                      <div class="runningleft">
-                          <h6>10.01</h6>
-                          <span>
-                              <a href="#"></a>
-                            家族助学使用
-                          </span>
-                      </div>
-                      <span class="ring">+50000</span>
-                  </div>
-                  <span class="time">2018</span>
-              </div>
-              <div class="money">
-                  <div class="running">
-                      <div class="runningleft">
-                          <h6>10.01</h6>
-                          <span>
-                              <a href="#"></a>
-                            家族助学使用
-                          </span>
-                      </div>
-                      <span class="ring">+50000</span>
-                  </div>
-                  <span class="time">2018</span>
-              </div>
-              <div class="money">
-                  <div class="running">
-                      <div class="runningleft">
-                          <h6>10.01</h6>
-                          <span>
-                              <a href="#"></a>
-                            家族助学使用
-                          </span>
-                      </div>
-                      <span class="ring">+50000</span>
-                  </div>
-                  <span class="time">2018</span>
-              </div>
+              </div> -->
+           
+             
           </div>
           <div class="titleBox">
               <div class="title">
                   <span>支出明细</span>
-                  <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                  <h5>{{this.$store.state.wasteBook.records[0].newsTitle}}</h5>
               </div>
-               <p>家谱：又称族谱、宗谱等。是一种以表谱形式，记载一个家族的世系繁衍及重要人物事迹的书。皇帝的家谱称玉牒，如新朝玉牒、皇宋玉牒。它以记载父系家族世系、人物为中心，由正史中的帝王本纪及王侯列传、年表等演变而来。</p>
+               <!-- <p>家谱：又称族谱、宗谱等。是一种以表谱形式，记载一个家族的世系繁衍及重要人物事迹的书。皇帝的家谱称玉牒，如新朝玉牒、皇宋玉牒。它以记载父系家族世系、人物为中心，由正史中的帝王本纪及王侯列传、年表等演变而来。</p> -->
+               <p>{{this.$store.state.wasteBook.records[0].newsText}}</p>
                <div class="titleBtm">
-                   <span>30条评论</span>
-                   <span>652142浏览</span>
+                   <span>{{this.$store.state.wasteBook.records[0].status}}条评论</span>
+                   <span>{{this.$store.state.wasteBook.records[0].visitNum}}浏览</span>
                    <span>刚刚</span>
                </div>
           </div>
-          <div class="list">
+          <!-- <div class="list">
                 <div class="title">
                   <span>支出明细</span>
                   <h5>中国家谱博物馆落户进-2017年亮相</h5>
@@ -153,15 +98,15 @@
                    <span>652142浏览</span>
                    <span>刚刚</span>
                </div>
-          </div>
-           <div class="list">
+          </div> -->
+           <div class="list" v-for="item in this.$store.state.wasteBook.records" :key="item.id">
                 <div class="title">
                   <span>支出明细</span>
-                  <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                  <h5>{{item.newsTitle}}</h5>
                 </div>
                  <div class="titleBtm">
-                   <span>30条评论</span>
-                   <span>652142浏览</span>
+                   <span>{{item.status}}条评论</span>
+                   <span>{{item.visitNum}}浏览</span>
                    <span>刚刚</span>
                </div>
           </div>
@@ -183,6 +128,7 @@ export default {
 
     },
     created() {
+        this.$store.dispatch("account")
         this.count()
     },      
     mounted() {
@@ -193,10 +139,10 @@ export default {
     },
     methods: {
         count() {
-             this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
-             .then( res => {
-                 console.log(res)
-             })
+            //  this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
+            //  .then( res => {
+            //      console.log(res)
+            //  })
         }
     },
     components: {
@@ -297,7 +243,9 @@ export default {
                                 width: 1rem;
                                 height: 1rem;
                                 border-radius: 50%;
-                                vertical-align:top
+                                vertical-align:top;
+                                background: no-repeat center / cover;
+                                margin-left: 0.6rem;
                             }
                             h5 {
                                 margin: 0.2rem 0 0.3rem 0;

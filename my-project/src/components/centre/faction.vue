@@ -5,7 +5,7 @@
                 <!-- 红色背景 -->
                 <div class="bgc"></div>
                   <!-- 头部搜索 -->
-                <div class="searchDiv">
+                <div class="searchDiv" >
                             <img src="@/assets/images/search.png" alt="">
                             <input type="text" placeholder="炎黄统谱网"  >
                         <img class="searImg" src="@/assets/images/write.png" alt="">
@@ -41,6 +41,61 @@
                             </div>
                             <div class="listCenter">
                                 <ul>
+                                    <li v-for="item in zipai" :key="item.id">
+                                        <div>
+                                            <p>{{item}}</p>
+                                            <span>32</span>
+                                        </div>
+                                        <b>邦</b>
+                                    </li>
+                                </ul>
+                            </div>
+                            <img class="make" src="@/assets/images/display.png" alt="">
+                            <img class="share" @click="share"  src="@/assets/images/share.png" alt="">
+                            <van-popup v-model="show" position="bottom" :overlay="true">
+                                <div class="bottom">
+                                    <ul class="btnConter">
+                                        <li>
+                                            <div>
+                                                <img src="@/assets/images/wx.png" alt="">
+                                                <p>微信好友</p>
+                                            </div>
+                                            
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <img src="@/assets/images/Circle.png" alt="">
+                                                <p>朋友圈</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <img src="@/assets/images/QQ@2x.png" alt="">
+                                                <p>QQ好友</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <img src="@/assets/images/xl.png" alt="">
+                                                <p>新浪微博</p>
+                                            </div>
+                                        </li>
+                                        <li><div></div></li>
+                                    </ul>
+                                    <button @click="cancel">取消</button>
+                                </div>
+                            </van-popup>
+                        </div>
+                    </div>
+                     
+                    <!-- <div class="selectList">
+                        <div class="List">
+                            <div class="listTop">
+                                <h4>地区:关上大鹏村</h4>
+                                <h4>祖先:张太公</h4>
+                            </div>
+                            <div class="listCenter">
+                                <ul>
                                     <li>
                                         <div>
                                             <p>165</p>
@@ -144,7 +199,7 @@
                                 </ul>
                             </div>
                             <img class="make" src="@/assets/images/display.png" alt="">
-                            <img class="share" @click="share" src="@/assets/images/share.png" alt="">
+                            <img class="share" @click="share"  src="@/assets/images/share.png" alt="">
                             <van-popup v-model="show" position="bottom" :overlay="true">
                                 <div class="bottom">
                                     <ul class="btnConter">
@@ -180,6 +235,7 @@
                             </van-popup>
                         </div>
                     </div>
+                     
                     <div class="selectList">
                         <div class="List">
                             <div class="listTop">
@@ -291,7 +347,7 @@
                                 </ul>
                             </div>
                             <img class="make" src="@/assets/images/display.png" alt="">
-                            <img class="share" @click="share" src="@/assets/images/share.png" alt="">
+                            <img class="share" @click="share"  src="@/assets/images/share.png" alt="">
                             <van-popup v-model="show" position="bottom" :overlay="true">
                                 <div class="bottom">
                                     <ul class="btnConter">
@@ -326,303 +382,9 @@
                                 </div>
                             </van-popup>
                         </div>
-                    </div>
-                      <div class="selectList">
-                        <div class="List">
-                            <div class="listTop">
-                                <h4>地区:关上大鹏村</h4>
-                                <h4>祖先:张太公</h4>
-                            </div>
-                            <div class="listCenter">
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                </ul>
-                            </div>
-                            <img class="make" src="@/assets/images/display.png" alt="">
-                            <img class="share" @click="share" src="@/assets/images/share.png" alt="">
-                            <van-popup v-model="show" position="bottom" :overlay="true">
-                                <div class="bottom">
-                                    <ul class="btnConter">
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/wx.png" alt="">
-                                                <p>微信好友</p>
-                                            </div>
-                                            
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/Circle.png" alt="">
-                                                <p>朋友圈</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/QQ@2x.png" alt="">
-                                                <p>QQ好友</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/xl.png" alt="">
-                                                <p>新浪微博</p>
-                                            </div>
-                                        </li>
-                                        <li><div></div></li>
-                                    </ul>
-                                    <button @click="cancel">取消</button>
-                                </div>
-                            </van-popup>
-                        </div>
-                    </div>
-                    <div class="selectList">
-                        <div class="List">
-                            <div class="listTop">
-                                <h4>地区:关上大鹏村</h4>
-                                <h4>祖先:张太公</h4>
-                            </div>
-                            <div class="listCenter">
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <p>165</p>
-                                            <span>32</span>
-                                        </div>
-                                        <b>邦</b>
-                                    </li>
-                                </ul>
-                            </div>
-                            <img class="make" src="@/assets/images/display.png" alt="">
-                            <img class="share" @click="share" src="@/assets/images/share.png" alt="">
-                            <van-popup v-model="show" position="bottom" :overlay="true">
-                                <div class="bottom">
-                                    <ul class="btnConter">
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/wx.png" alt="">
-                                                <p>微信好友</p>
-                                            </div>
-                                            
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/Circle.png" alt="">
-                                                <p>朋友圈</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/QQ@2x.png" alt="">
-                                                <p>QQ好友</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <img src="@/assets/images/xl.png" alt="">
-                                                <p>新浪微博</p>
-                                            </div>
-                                        </li>
-                                        <li><div></div></li>
-                                    </ul>
-                                    <button @click="cancel">取消</button>
-                                </div>
-                            </van-popup>
-                        </div>
-                    </div>
-            </div> 
+                    </div> -->
 
+            </div> 
         </div>
         <!-- 底部固定 -->
         <Footer></Footer>
@@ -634,11 +396,12 @@ import Footer from '@/components/footer/Footer.vue'
 export default {
    data() {
        return {
-           show: false
+           show: false,
+           zipai: []
        }
    },
    created() {
-       
+       this.zp()
    },
    methods: {
        share() {
@@ -646,16 +409,21 @@ export default {
        },
        cancel () {
            this.show = false
+       },
+       zp() {
+           // 字派
+            this.api.get(this.api.county.base + "genogram/fanNewsCulture/index/getCommonalityIndexPage?showId=10010")
+            .then( res => {
+                var aaa = res.data.split(';')
+                console.log()
+                // this.zipai = aaa.split(',')
+                console.log(this.zipai)
+            })
        }
    },
    components:{
        Footer
-   },
-   methods: {
-   
-        
    }
-  
 }
 </script>
 
