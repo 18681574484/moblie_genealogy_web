@@ -6,7 +6,7 @@
             <img src="@/assets/images/solid.png" alt="">
 
             <div class="cpfBottom">
-                <span class="bottomRight">￥888888.58</span>
+                <span class="bottomRight">￥{{this.$store.state.fund.remain}}</span>
                 <span class="sss">捐助</span>
             </div>
         </div>
@@ -16,7 +16,21 @@
             <span class="van-ri">共1212人</span>            
             <van-tabs @click="onClick">
                 <van-tab title="时间">
-                    <div class="flgure">
+                    <div v-for="(item, index) in expenditureList.records" :key="index" class="flgure">
+                        <div class="lf">
+                            <div :style="api.imgBG(item.allUserLogin.picSrc)" class="img"></div>
+                            <div class="lfText">
+                                <div class="textTop">
+                                    <h5>{{item.allUserLogin.realName}}</h5>
+                                    <img src="@/assets/images/praise.png" alt="">
+                                    <span>{{item.allUserLogin.status}}</span>
+                                </div>
+                                <span>捐助 {{item.allUserLogin.role}}元</span>
+                            </div>
+                        </div>
+                        <div class="rg">+关注</div>
+                    </div>
+                    <!-- <div class="flgure">
                         <div class="lf">
                             <div class="img">头像</div>
                             <div class="lfText">
@@ -99,21 +113,7 @@
                             </div>
                         </div>
                         <div class="rg">+关注</div>
-                    </div>
-                      <div class="flgure">
-                        <div class="lf">
-                            <div class="img">头像</div>
-                            <div class="lfText">
-                                <div class="textTop">
-                                    <h5>周星</h5>
-                                    <img src="@/assets/images/praise.png" alt="">
-                                    <span>12</span>
-                                </div>
-                                <span>捐助1000元</span>
-                            </div>
-                        </div>
-                        <div class="rg">+关注</div>
-                    </div>
+                    </div> -->
                 </van-tab>
                 <van-tab title="金额">
                       <div class="flgure">
@@ -165,10 +165,11 @@ export default {
         },
          expenditure() {
              // 收益公开栏
-             this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=117")
+             this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getPayUser?order=time&label=desc&pageSize=6&showId=10018")
              .then( res => {
-                 console.log(res)
                  this.expenditureList = res.data
+                 console.log(res)
+                //  this.expenditureList = res.data
              })
         }
     },
@@ -280,11 +281,8 @@ export default {
                         .img {
                             width: 1rem;
                             height: 1rem;
-                            border-radius: 50%;
-                            background-color: pink;
-                            text-align: center;
-                            line-height: 1rem;
-                            color: #fff;
+                            border-radius: 50%;    
+                            background: no-repeat center / cover;
                         }
                         .lfText {
                             margin-left: 0.2rem;

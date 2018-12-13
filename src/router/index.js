@@ -13,6 +13,7 @@ import culture from '@/components/centre/culture.vue'
 import celebrity from '@/components/centre/celebrity.vue'
 import branch from '@/components/centre/branch.vue'
 import industry from '@/components/centre/industry.vue'
+import region from '@/components/centre/region.vue'
 
 
 import faction from '@/components/centre/faction.vue'
@@ -46,18 +47,36 @@ export default new Router({
             path:'/HomeList',
             component: HomeList
           },
-          // 视频
+          // 家族视频
           {
             path:'/video',
             component: video
           },
+          // 聊天
           {
             path: '/chatting',
+            component: Home
+          },
+          // 支出明细
+          {
+            path: '/sum',
             component: county
           },
+          // 慈善公益
+          {
+            path: '/famousperson',
+            component: personnel
+          }, 
+          // 加号
           {
             path: '/add',
-            component: personnel
+            component: Home
+          },
+          // 捐款名人
+          // 慈善公益
+          {
+            path: '/public',
+            component: county
           }, 
           {
             path: '/personal',
@@ -83,13 +102,14 @@ export default new Router({
             path: '/industry',
             component: industry
           }
-
         ]
     },
+    // 家族字派
     {
       path: '/faction',
       component: faction
     },
+    // 祖先人物详情
     {
       path: '/characterDeatils',
       component: characterDeatils
@@ -105,6 +125,11 @@ export default new Router({
     {
       path: '/countyLevel',
       component: countyLevel
+    },   
+    // 选择地址
+    {
+      path: '/region',
+      component: region
     }
 
  

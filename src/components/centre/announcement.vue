@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- 联谊会公告 -->
-        <div class="fellowship">
+        <!-- <div class="fellowship">
             <div class="fellowship-header">
                 <span>联谊会公告</span>
                 <span>中国家谱博物馆落户-2017亮相</span>
@@ -64,11 +64,11 @@
                 <span>652142浏览</span>
                 <span>刚刚</span>
             </div>
-        </div>
+        </div> -->
          <div class="fellowship"  v-for="item in  this.$store.state.announcement.records" :key="item.id">
             <div class="fellowship-header">
+                <span>家族公告</span>
                 <span>{{item.newsTitle}}</span>
-                <span>中国家谱博物馆落户-2017亮相</span>
             </div>
             <div class="fellowship-box">
                 <span>{{item.status}}条评论</span>
@@ -76,16 +76,6 @@
                 <span>刚刚</span>
             </div>
         </div>
-         <!-- <div class="fellowship" v-for="item in auct.records" :key="item.id">
-            <div class="fellowship-header">
-                <span>中国家谱</span>
-            </div>
-            <div class="fellowship-box">
-                <span>{{item.status}}条评论</span>
-                <span>{{item.visitNum}}浏览</span>
-                <span>刚刚</span>
-            </div>
-        </div> -->
    </div>
 </template>
 

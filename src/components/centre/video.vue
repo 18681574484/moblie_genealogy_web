@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <div class="videoBox">
+        <!-- <div class="videoBox">
             <h4>中国家谱博物馆落户进-2017年亮相</h4>
             <div class="videoCenter"></div>
             <a href="#">视频</a>
@@ -23,14 +23,15 @@
             <span>30条评论</span>
             <span>652次播放</span>
             <span>2018-10-11</span>
-        </div>
-        <div class="videoBox">
+        </div> -->
+        <div class="videoBox" v-for="(item) in video_list.records" :key="item.id">
             <h4>中国家谱博物馆落户进-2017年亮相</h4>
-            <div class="videoCenter"></div>
-            <a href="#">视频</a>
-            <span>30条评论</span>
+            <div :style="api.imgBG(item.fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
+            <!-- <div  class="videoCenter"></div> -->
+            <a href="#">{{item.title}}</a>
+            <span>{{item.status}}条评论</span>
             <span>652次播放</span>
-            <span>2018-10-11</span>
+            <span>{{item.updateTime.slice(0,10)}}</span>
         </div>
     </div>
     
@@ -43,23 +44,29 @@ export default {
     },
     data() {
         return {
-
+            video_list: []
         };
     },
     computed: {
 
     },
     created() {
-
     },
     mounted() {
-
+        this.video_api()
     },
     watch: {
 
     },
     methods: {
-
+        video_api() {
+            // 家族视频
+            this.api.get("http://192.168.2.179:8090//genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025")
+            .then( res => {
+                this.video_list = res.data
+                // console.log(this.video_list.records)
+            })
+        } 
     },
     components: {
 
@@ -92,12 +99,14 @@ export default {
             width: 100%;
             margin-top: 0.25rem;
             margin-bottom: 0.24rem;
-            background-color: pink;
+            // background-color: pink;
+            background: no-repeat center / cover;
         }
         a {
             display: inline-block;
-            width: 0.52rem;
-            height: 0.3rem;
+            // width: 0.52rem;
+            // height: 0.3rem;
+            padding: 0.03rem;
             border: 0.01rem solid #0390FD;
             color: #0390FD;
             text-align: center;

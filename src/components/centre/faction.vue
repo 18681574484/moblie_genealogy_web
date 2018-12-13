@@ -43,10 +43,10 @@
                                 <ul>
                                     <li v-for="item in zipai" :key="item.id">
                                         <div>
-                                            <p>{{item}}</p>
-                                            <span>32</span>
+                                            <p>{{item[0]}}</p>
+                                            <span>{{item[1]}}</span>
                                         </div>
-                                        <b>邦</b>
+                                        <b>{{item[2]}}</b>
                                     </li>
                                 </ul>
                             </div>
@@ -414,13 +414,22 @@ export default {
            // 字派
             this.api.get(this.api.county.base + "genogram/fanNewsCulture/index/getCommonalityIndexPage?showId=10010")
             .then( res => {
-                var aaa = res.data.split(';')
-                console.log()
-                // this.zipai = aaa.split(',')
-                console.log(this.zipai)
+
+                this.zipai = this.formatZipai(res.data)
+                console.log(res)
             })
-       }
-   },
+       },
+       formatZipai(e) {
+            let list = e ? e.split(";") : [];
+            let obj = [];
+            if (list.length) {
+                obj = list.map(v => {
+                    return v.split("|");
+                });
+            }
+            return obj;
+        } 
+    },
    components:{
        Footer
    }

@@ -164,7 +164,7 @@
                 </div>
             </van-tab>
             <van-tab title="组织架构">
-                <div class="titleCenter">
+                <!-- <div class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
                         <div class="img">头像</div>
@@ -231,8 +231,8 @@
                    </div>
                    </div>
                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
+                </div> -->
+                <!-- <div v-for="(item,key) in organization" :key="item.id" class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
                         <div class="img">头像</div>
@@ -242,19 +242,29 @@
                                 <span>125万粉丝关注</span>
                         </div>
                        </div>
-                    <div class="rank">[副会长]</div>
+                    <div class="rank">{{key}}</div>
                    <div class="gz">
                        <div class="organization">个人主页</div>
                    </div>
                    </div>
                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
+                </div> -->
+                <!-- <div v-for="(item,key) in organization" :key="item.id" class="organization">
+                     <h2>{{key}}</h2>
+                     <div @click="btn" ref="h" class="conter">
+                         <div class="left">
+                             <div class="Img"></div>
+                            <p>sdsfsdf</p>
+                         </div>
+                        <div class="right">
+                            <div class="Img"></div>
+                            <p>sdsfsdf</p>
+                        </div>
+                     </div>
+                </div> -->
+                
+                <button ref="text"  @click="btn">按钮</button>
             </van-tab>
-            <van-tab title="崇阳张氏"></van-tab>
-            <van-tab title="标签 1"> </van-tab>
-            <van-tab title="标签 2"> </van-tab>
-            <van-tab title="标签 3"> </van-tab>
-            <van-tab title="标签 4"> </van-tab>
         </van-tabs>
         <img src="@/assets/images/home_cbb@2x.png" alt="">
       </div>
@@ -269,18 +279,18 @@ export default {
     data() {
         return {
             active:0,
-            arr: [],
-            celebrity: []
+            organization: [],
+            h: 2
         };
     },
     computed: {
 
     },
     created() {
-        this.branch()
+        
     },
     mounted() {
-
+        this.branch()
     },
     watch: {
 
@@ -288,10 +298,17 @@ export default {
     methods: {
         branch() {
             // 组织架构
-            this.api.get(this.api.county.base + "/genogram/fanIndex/getFamilyStructureList?siteId=1")
+            this.api.get(this.api.county.base + "/genogram/fanIndex/getFamilyStructureList?siteId=100")
             .then( res => {
+                this.organization = res.data
                 console.log(res)
             })
+        },
+        btn() {
+        //     var height= this.$refs.h.offsetHeight; //100
+        //     console.log(height)
+        //    this.$refs.text.style.height = 2 + 'rem'
+
         }
     },
     components: {
@@ -413,7 +430,38 @@ export default {
         }
         // 组织架构
         .organization {
-            margin-left: 1.3rem;
+           width: 100%;
+        //    padding: 0 0.2rem;
+           box-sizing: border-box;
+           text-align: center;
+               .conter {
+                   padding: 0 0.2rem;
+                   box-sizing: border-box;
+                   display: flex;
+                   justify-content: space-between;
+                    div {
+                        width: 50%;
+                        flex-grow: 1;
+                        height: 3rem;
+                        margin: 0 0.1rem;
+                        background-color: pink;
+                        position: relative;
+                            .Img {
+                                width: 1rem;
+                                height: 1rem;
+                                background-color: red;
+                                border-radius: 50%;
+                                position: absolute;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                top: -0.3rem;
+                            }
+                            p {
+                                margin-top: 1rem;
+                            }
+                    }
+
+               }
         }
         // 家族栋梁
         .pillar {
@@ -427,5 +475,4 @@ export default {
             line-height: 0.55rem;
         }
 }
-
 </style>

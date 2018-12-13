@@ -11,5 +11,8 @@ export default  {
     },
     family ({ commit }) {
         commit('familyIndustry')
+    },
+    videoPath ({ commit })  {
+        commit('videoList')   
     }
 }

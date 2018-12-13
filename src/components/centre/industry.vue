@@ -13,7 +13,7 @@
                 <div class="imgDiv">3</div>
             </div>
              <div class="axisCentre">
-                 <span>个人产业</span>
+                 <span>家族产业</span>
                  <van-icon name="location" />
                  <p>湖北省大鹏村腾睿大厦</p>
                  <div class="centreSolid"></div>
@@ -23,7 +23,7 @@
             <div class="centerText">
                 <h5>中国家谱博物馆落户进-2017年亮相</h5>
                  <div class="axisCentre">
-                 <span>个人产业</span>
+                 <span>家族产业</span>
                  <van-icon name="location" />
                  <p>湖北省大鹏村腾睿大厦</p>
                  <div class="centreSolid"></div>
@@ -38,7 +38,7 @@
             <div class="centerText">
                 <h5>中国家谱博物馆落户进-2017年亮相</h5>
                  <div class="axisCentre">
-                 <span>个人产业</span>
+                 <span>家族产业</span>
                  <van-icon name="location" />
                  <p>湖北省大鹏村腾睿大厦</p>
                  <div class="centreSolid"></div>
@@ -53,7 +53,7 @@
                 <div class="centerText">
                     <h5>中国家谱博物馆落户进-2017年亮相</h5>
                     <div class="axisCentre">
-                    <span>个人产业</span>
+                    <span>家族产业</span>
                     <van-icon name="location" />
                     <p>湖北省大鹏村腾睿大厦</p>
                     <div class="centreSolid"></div>
@@ -68,7 +68,7 @@
                 <div class="centerText">
                     <h5>中国家谱博物馆落户进-2017年亮相</h5>
                     <div class="axisCentre">
-                    <span>个人产业</span>
+                    <span>家族产业</span>
                     <van-icon name="location" />
                     <p>湖北省大鹏村腾睿大厦</p>
                     <div class="centreSolid"></div>
@@ -83,7 +83,7 @@
                 <div class="centerText">
                     <h5>中国家谱博物馆落户进-2017年亮相</h5>
                     <div class="axisCentre">
-                    <span>个人产业</span>
+                    <span>家族产业</span>
                     <van-icon name="location" />
                     <p>湖北省大鹏村腾睿大厦</p>
                     <div class="centreSolid"></div>
@@ -94,11 +94,11 @@
                     34
                 </div>
         </div>
-        <!-- <div class="centerDiv" v-for="item in this.$store.state.property" :key="item.id">
+        <div class="centerDiv" v-for="item in family.records" :key="item.id">
                 <div class="centerText">
-                    <h5>中国家谱博物馆落户进-2017年亮相</h5>
+                    <h5>{{item.newsTitle}}</h5>
                     <div class="axisCentre">
-                    <span>{{item.menuName}}</span>
+                    <span>家族产业</span>
                     <van-icon name="location" />
                     <p>湖北省大鹏村腾睿大厦</p>
                     <div class="centreSolid"></div>
@@ -108,7 +108,7 @@
                 <div class="centerImg">
                     34
                 </div>
-        </div> -->
+        </div>
     </div>
     
     </div>
@@ -123,7 +123,7 @@ export default {
     },
     data() {
         return {
-
+            family: []
         };
     },
     computed: {
@@ -131,6 +131,7 @@ export default {
     },
     created() {
          this.$store.dispatch("family") 
+         this.dynamic()
     },
     mounted() {
         
@@ -140,11 +141,12 @@ export default {
     },
     methods: {
         dynamic() {
-            // 动态
-            //  this.api.get(this.api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=10023")
-            //  .then( res => {
-            //      console.log(res)
-            //  })
+            // 家族产业
+             this.api.get(this.api.county.base + 'genogram/fanNewsIndustry/getFamilyIndustryPage?showId=10019')
+             .then( res => {
+                 this.family = res.data
+                 console.log(this.family)
+             })
         }
     },
     components: {
@@ -183,7 +185,7 @@ display: none;/*隐藏滚轮*/
         h5 {
             font-size: 0.32rem;
             font-weight: 500;
-            margin: 0 0.1rem 0 0;
+            margin: 0 0.1rem 0 0.3rem;
         }
 /deep/ .van-icon-location::before {
             width: 0.44rem;

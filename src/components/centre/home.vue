@@ -29,7 +29,7 @@
                 <van-icon name="wap-nav" />
                 </div>
                 <div class="region">
-                    <div class="regionLeft"><span>选择地区</span><van-icon name="arrow-down" /></div>
+                    <div class="regionLeft" @click="pop"><span>选择地区</span><van-icon name="arrow-down" /></div>
                     <div><van-icon name="location" /><span>武汉江夏</span></div>
                     <div class="cloce">关注</div>
                 </div>
@@ -76,7 +76,7 @@
                             <div class="flgureText">
                                 <h5>刚刚捐款完亲</h5>
                                 <div class="textLeft">
-                                    <span>共158人</span>
+                                    <router-link to="/famousperson" tag="span">共158人</router-link>
                                     <van-icon name="arrow" />
                                     <van-icon name="arrow" />
                                 </div>
@@ -126,9 +126,9 @@
                                 <img src="@/assets/images/dynamic.png" alt="">
                                 <p>家族动态</p>
                         </router-link>
-                        <router-link to="/personnel" tag="li">
+                        <router-link to="/famousperson" tag="li">
                                 <img src="@/assets/images/gold.png" alt="">
-                                <p>慈善公积金</p>
+                                <p>慈善公益</p>
                         </router-link>
                         <router-link to="/culture" tag="li">
                                 <img src="@/assets/images/book.png" alt="">
@@ -137,7 +137,7 @@
                         
                     </ul>
                     <ul class="swipeUl ui-bottom">
-                        <router-link to="/" tag="li">
+                        <router-link to="/industry" tag="li">
                                 <img src="@/assets/images/family.png" alt="">
                                 <p>家族产业</p>
                         </router-link>
@@ -148,15 +148,15 @@
                         </router-link>
                             <router-link to="/branch" tag="li">
                                 <img src="@/assets/images/branch.png" alt="">
-                                <p>家族分支</p>
+                                <p>祖先分支</p>
                         </router-link>
-                        <router-link to="/" tag="li">
+                        <router-link to="/video" tag="li">
                                 <img src="@/assets/images/shi@2x.png" alt="">
                                 <p>家族视频</p>
                         </router-link>
                          <router-link to="/" tag="li">
                                 <img src="@/assets/images/help.png" alt="">
-                                <p>家族视频</p>
+                                <p>慈善帮扶</p>
                         </router-link>
                         
                     </ul>
@@ -192,11 +192,11 @@
                     </div>
                     <div class="videoBox">
                         <h4>中国家谱博物馆落户进-2017年亮相</h4>
-                        <div class="videoCenter"></div>
+                        <div :style="api.imgBG(video_list.records[0].fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
                         <a href="#">视频</a>
-                        <span>30条评论</span>
-                        <span>652次播放</span>
-                        <span>2018-10-11</span>
+                        <span>{{video_list.records[0].fanNewsUploadFile[0].status}}条评论</span>
+                        <span>666次播放</span>
+                        <span>{{video_list.records[0].fanNewsUploadFile[0].createTime.slice(0,10)}}</span>
                     </div>
                     <div class="titleCenter">
                     <div class="titleTop">
@@ -220,6 +220,14 @@
             </div>
     
         <Footer></Footer>
+        <!-- 弹出层 -->
+        <van-popup v-model="show" position="bottom" :overlay="false">
+            <van-area @change="reset"
+                 :area-list="areaList" 
+                 :columns-num="3" 
+                 title="选择地区" />
+        </van-popup>
+
     </div>
 </template>
 
@@ -232,7 +240,33 @@ export default {
     data() {
         return {
             active: 1,
-            bulletin:{}  // 公告栏   
+            bulletin:{},  // 公告栏  
+            show: false,
+            areaList: {
+                province_list: {
+                    110000: '北京市',
+                    120000: '天津市'
+                },
+                city_list: {
+                    110100: '北京市',
+                    110200: '县',
+                    120100: '天津市',
+                    120200: '县'
+                },
+                county_list: {
+                    110101: '东城区',
+                    110102: '西城区',
+                    110105: '朝阳区',
+                    110106: '丰台区',
+                    120101: '和平区',
+                    120102: '河东区',
+                    120103: '河西区',
+                    120104: '南开区',
+                    120105: '河北区',
+                    // ....
+                }
+            },
+            video_list: [] // 家族视频
         };
     },
     computed: {
@@ -240,24 +274,31 @@ export default {
     },
     created() {
         this.$store.dispatch('increment')
-        this.home()
     },
     mounted() {
-        
+        this.video_api()
     },
     watch: {
 
     },
     methods: {
-        
-       home() { 
-
-        //    console.log(this.$store.state.lunbo.picUrl)
-        //    this.lunbo = this.$store.state.lunbo // 轮播图
-        //    this.dynamic = this.$store. state.celebrity // 家族动态
-
-       }
-
+        change() {
+            console.log(111)
+        },
+       pop() {
+           this.show = !this.show
+       },
+       reset(e) {
+           console.log(e)
+       },  
+       video_api() {
+            // 家族视频
+            this.api.get("http://192.168.2.179:8090//genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025")
+            .then( res => {
+                this.video_list = res.data
+                console.log(this.video_list.records[0].fanNewsUploadFile[0].status)
+            })
+        } 
     },
     components: {
 
@@ -757,7 +798,9 @@ export default {
                                 width: 100%;
                                 margin-top: 0.25rem;
                                 margin-bottom: 0.24rem;
-                                background-color: pink;
+                                // background-color: pink;
+                                background: no-repeat center / cover;
+
                             }
                             a {
                                 display: inline-block;
@@ -799,7 +842,21 @@ export default {
             width: 20%;
         }
     }
+  
+    // /deep/.van-picker__cancel, .van-picker__confirm {
+    //     display: none;
+    // }
  
 }
+  // 弹框
+    /deep/.van-popup--bottom {
+        top: 2.7rem;
+    }
+    /deep/.van-picker__cancel {
+        opacity: 0;
+    }
+    /deep/.van-picker__confirm {
+        opacity: 0;
+    }
 </style>
 

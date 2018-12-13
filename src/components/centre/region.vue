@@ -13,21 +13,51 @@
         </div>
         <!-- 导入左右滑动模块 -->
         <navigation></navigation>
-        <!-- 导入轮播图模块 -->
-        <swipe></swipe>
+        <div class="dj" @click="btn">
+           
+            <van-icon name="location" />
+            点击选择其他省份
+        </div>
+         <van-popup v-model="show" position="bottom" :overlay="false">
+             <van-area :area-list="areaList" :columns-num="2" title="当前地区" />
+        </van-popup>
     </div>
 </template>
 
 <script>
 import navigation from '@/components/Header/navigation.vue'
-import swipe from '@/components/swipe/swipe.vue'
+
 export default {
     props: {
 
     },
     data() {
         return {
-
+            show:true,
+            areaList: {
+                province_list: {
+                    110000: '北京市',
+                    120000: '天津市'
+                },
+                city_list: {
+                    110100: '北京市',
+                    110200: '县',
+                    120100: '天津市',
+                    120200: '县'
+                },
+                county_list: {
+                    110101: '东城区',
+                    110102: '西城区',
+                    110105: '朝阳区',
+                    110106: '丰台区',
+                    120101: '和平区',
+                    120102: '河东区',
+                    120103: '河西区',
+                    120104: '南开区',
+                    120105: '河北区',
+                    // ....
+                }
+            }
         };
     },
     computed: {
@@ -43,12 +73,13 @@ export default {
 
     },
     methods: {
-
+        btn() {
+            this.show = !this.show
+        }
     },
     components: {
-        navigation,
-        swipe
-    },
+        navigation
+    }
 };
 </script>
 
@@ -61,7 +92,7 @@ export default {
     z-index: 9999;
     top: 0;
         .boxBgc {
-            height: 2.85rem;
+            height: 3.9rem;
             width: 100%;
             position: fixed;
             top: 0;
@@ -108,5 +139,13 @@ export default {
                     }
                 }
         }
+}
+.dj {
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center;
+}
+/deep/.van-popup--bottom {
+    top: 2.7rem;
 }
 </style>

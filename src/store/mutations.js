@@ -7,7 +7,6 @@ export default {
         .then( res => {
             // 轮播图
             state.lunbo = res.data
-            console.log(state.lunbo)
             return api.get("http://192.168.2.179:8090/genogram/fanNewsFamilyRecord/selectRecortPage?showId=123")
         })
         .then( res => {
@@ -52,10 +51,20 @@ export default {
         .then( res => {
             // 家族资产
             state.property = res.data
-            console.log( state.property )
+            // console.log( state.property )
         })
     },
-    video () {
-
+    family_celebrity() {
+        api.get("http://192.168.2.179:8090//genogram/fanIndex/getFamilyStructureList?siteId=100")
+        .then( res => {
+            console.log(res)
+        })
+    },
+    // 家族视频
+    videoList() {
+        api.get(api.county.base + "/genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025")
+        .then( res => {
+            console.log(res)
+        }) 
     }
 }

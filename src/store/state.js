@@ -7,6 +7,7 @@ const state = {
     announcement: [], // 县级公告
     brief:{},  // 简介
     wasteBook: [], // 支出明细
-    property: [] // 家族产业
+    property: [], // 家族产业
+    videoArr: [] // 家族视频
 }
 export default state
