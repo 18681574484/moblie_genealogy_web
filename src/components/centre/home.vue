@@ -76,15 +76,14 @@
                             <div class="flgureText">
                                 <h5>刚刚捐款完亲</h5>
                                 <div class="textLeft">
-                                    <router-link to="/famousperson" tag="span">共158人</router-link>
+                                    <router-link to="/personnel" tag="span">共158人</router-link>
                                     <van-icon name="arrow" />
                                     <van-icon name="arrow" />
                                 </div>
                             </div>
                             <ul class="flgureUl">
                                 <li v-for="item in this.$store. state.celebrity.records" :key="item.id">
-                                    <!-- <img class="portrait" src="@/assets/images/QQ@2x.png" alt=""> -->
-                                    <div class="div1 portrait" :style="api.imgBG(item.allUserLogin.picSrc)"> </div>
+                                    <router-link to="/characterElite" tag="div" class="div1 portrait" :style="api.imgBG(item.allUserLogin.picSrc)"> </router-link>
                                     <h5>{{item.allUserLogin.nickName}}</h5>
                                     <span>捐助 {{item.allUserLogin.role}}元</span>
                                     <div class="bunText">
@@ -122,11 +121,11 @@
                                 <img src="@/assets/images/notice.png" alt="">
                                 <p>家族公告</p>
                         </router-link>
-                        <router-link  to="/HomeList" tag="li">
+                        <router-link  to="/dynamic" tag="li">
                                 <img src="@/assets/images/dynamic.png" alt="">
                                 <p>家族动态</p>
                         </router-link>
-                        <router-link to="/famousperson" tag="li">
+                        <router-link to="/county" tag="li">
                                 <img src="@/assets/images/gold.png" alt="">
                                 <p>慈善公益</p>
                         </router-link>
@@ -142,11 +141,11 @@
                                 <p>家族产业</p>
                         </router-link>
                         
-                        <router-link to="/branch" tag="li">
+                        <router-link to="/personal/1" tag="li">
                                 <img src="@/assets/images/person.png" alt="">
                                 <p>家族名人</p>
                         </router-link>
-                            <router-link to="/branch" tag="li">
+                            <router-link to="/personal/0" tag="li">
                                 <img src="@/assets/images/branch.png" alt="">
                                 <p>祖先分支</p>
                         </router-link>
@@ -192,16 +191,16 @@
                     </div>
                     <div class="videoBox">
                         <h4>中国家谱博物馆落户进-2017年亮相</h4>
-                        <div :style="api.imgBG(video_list.records[0].fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
+                        <div :style="api.imgBG(video_list.fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
                         <a href="#">视频</a>
-                        <span>{{video_list.records[0].fanNewsUploadFile[0].status}}条评论</span>
+                        <span>{{video_list.fanNewsUploadFile[0].status}}条评论</span>
                         <span>666次播放</span>
-                        <span>{{video_list.records[0].fanNewsUploadFile[0].createTime.slice(0,10)}}</span>
+                        <span>{{video_list.fanNewsUploadFile[0].createTime.slice(0,10)}}</span>
                     </div>
                     <div class="titleCenter">
                     <div class="titleTop">
                         <div class="centerLeft">
-                        <div class="img">头像</div>
+                        <router-link to="/characterDeatils" tag="div" class="img">头像</router-link>
                         <div class="celebrity">
                             <h5>周星</h5>
                                 <span>慈善名人</span>
@@ -295,8 +294,8 @@ export default {
             // 家族视频
             this.api.get("http://192.168.2.179:8090//genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025")
             .then( res => {
-                this.video_list = res.data
-                console.log(this.video_list.records[0].fanNewsUploadFile[0].status)
+                this.video_list = res.data.records
+                console.log( this.video_list)
             })
         } 
     },

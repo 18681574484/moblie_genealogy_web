@@ -5,21 +5,21 @@
             <van-swipe-item>
                 <div class="swipeContent">
                    <ul class="swipeUl">
-                        <router-link to="/" tag="li">
+                        <router-link to="/announcement" tag="li">
                                 <img src="@/assets/images/notice.png" alt="">
                                 <p>家族公告</p>
                         </router-link>
-                        <router-link  to="/" tag="li">
+                        <router-link  to="/dynamic" tag="li">
                                 <img src="@/assets/images/dynamic.png" alt="">
                                 <p>家族动态</p>
                         </router-link>
-                        <router-link to="/personnel" tag="li">
+                        <router-link to="/county" tag="li">
                                 <img src="@/assets/images/gold.png" alt="">
                                 <p>慈善公积金</p>
                         </router-link>
-                        <router-link to="/video" tag="li">
+                        <router-link to="/culture" tag="li">
                                 <img src="@/assets/images/book.png" alt="">
-                                <p>家族视频</p>
+                                <p>家族文化</p>
                         </router-link>
                    </ul>
                 </div>
@@ -27,26 +27,26 @@
             <van-swipe-item>
                 <div class="swipeContent">
                    <ul class="swipeUl">
-                        <router-link to="/" tag="li">
+                        <router-link to="/industry" tag="li">
                                 <img src="@/assets/images/family.png" alt="">
                                 <p>家族产业</p>
                         </router-link>
                         
-                        <router-link to="/characterDeatils" tag="li">
+                        <router-link to="/personal" tag="li">
                                 <img src="@/assets/images/person.png" alt="">
                                 <p>家族名人</p>
                         </router-link>
-                            <router-link to="/branch" tag="li">
+                            <router-link to="/" tag="li">
                                 <img src="@/assets/images/branch.png" alt="">
                                 <p>家族分支</p>
                         </router-link>
-                        <router-link to="/" tag="li">
+                        <router-link to="/video" tag="li">
                                 <img src="@/assets/images/shi@2x.png" alt="">
                                 <p>家族视频</p>
                         </router-link>
                          <router-link to="/" tag="li">
                                 <img src="@/assets/images/help.png" alt="">
-                                <p>家族视频</p>
+                                <p>慈善帮扶</p>
                         </router-link>
                    </ul>
                 </div>

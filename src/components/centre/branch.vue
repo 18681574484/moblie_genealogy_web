@@ -5,14 +5,14 @@
         <van-icon name="arrow-down" />
        <van-tabs v-model="active">
             <van-tab title="家族长老">
-                <div class="titleCenter">
+                <div v-for="(item,index) in elder.records" :key="index" class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <router-link to="/characterIntroduction" tag="div" class="img">头像</router-link>
+                       <div :style="api.imgBG(item.picFileSrc)" class="img"></div>
                        <div class="celebrity">
-                           <router-link to="/characterElite" tag="h5">周星</router-link>
+                           <h5>{{item.personName}}</h5>
                             <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
+                            <span>{{item.visitNum}}万粉丝关注</span>
                        </div>
                    </div>
                    <div class="gz">
@@ -20,79 +20,12 @@
                        <div>千支同源</div>
                    </div>
                    </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="gz">
-                       <div>分支后裔</div>
-                       <div>千支同源</div>
-                   </div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="gz">
-                       <div>分支后裔</div>
-                       <div>千支同源</div>
-                   </div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="gz">
-                       <div>分支后裔</div>
-                       <div>千支同源</div>
-                   </div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
-                   <div class="titleTop">
-                       <div class="centerLeft">
-                       <div class="img">头像</div>
-                       <div class="celebrity">
-                           <h5>周星</h5>
-                            <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
-                       </div>
-                   </div>
-                   <div class="gz">
-                       <div>分支后裔</div>
-                       <div>千支同源</div>
-                   </div>
-                   </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                   <!-- <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p> -->
+                   <p>{{item.personSummary}}</p>
                 </div>
             </van-tab>
             <van-tab title="家族栋梁">
-                <div class="titleCenter">
+                <!-- <div class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
                        <router-link to="/characterDeatils" tag="div" class="img">头像</router-link>
@@ -147,20 +80,21 @@
                    <div class="pillar">+关注</div>
                    </div>
                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
-                </div>
-                <div class="titleCenter">
+                </div> -->
+                <div v-for="(item,index) in pillar.records" :key="index" class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <div class="img">头像</div>
+                       <div :style="api.imgBG(item.picFileSrc)" class="img"></div>
                        <div class="celebrity">
-                           <h5>周星</h5>
+                           <h5>{{item.personName}}</h5>
                             <span>慈善名人</span>
-                            <span>125万粉丝关注</span>
+                            <span>{{item.visitNum}}万粉丝关注</span>
                        </div>
                    </div>
                    <div class="pillar">+关注</div>
                    </div>
-                   <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
+                   <!-- <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p> -->
+                   <p>{{item.personSummary}}</p>
                 </div>
             </van-tab>
             <van-tab title="组织架构">
@@ -262,8 +196,42 @@
                         </div>
                      </div>
                 </div> -->
-                
-                <button ref="text"  @click="btn">按钮</button>
+                <!-- <div class="architect">
+                    <h2>会长</h2>
+                    <div class="conter">
+                       <div>
+                           <div class="Img"></div>
+                            <h5>周星</h5>
+                            <p>
+                                sdfsfsdfsdfdsfdsfsfdsfsfdsfdsffsdfsfsdfsdfdsfdsfsfdsfsfdsfdsff
+                                sdfsfsdfsdfdsfdsfsfdsfsfdsfdsffsdfsfsdfsdfdsfdsfsfdsfsfdsfdsff
+                                sdfsfsdfsdfdsfdsfsfdsfsfdsfdsffsdfsfsdfsdfdsfdsfsfdsfsfdsfdsff
+                                sdfsfsdfsdfdsfdsfsfdsfsfdsfdsffsdfsfsdfsdfdsfdsfsfdsfsfdsfdsff
+                            </p>
+                       </div>
+                  
+                    </div>
+                </div> -->
+                <div  v-for="(item,key) in organization" :key="key" class="architect">
+                    <h2>{{key}}</h2>
+                    <div class="conter">
+                       <div v-for="(item,index) in item" :key="index">
+                           <div :style="api.imgBG(item.picFileSrc)" class="Img"></div>
+                            <h5>{{item.personName}}</h5>
+                            <p>
+                               {{item.personSummary.slice(0,70)}}
+                            </p>
+                       </div>
+                  
+                    </div>
+                </div>
+                <!-- <div v-for="(item,index) in organization" :key="index" class="architect">
+                    <h2>{{index}}</h2>
+                    <div class="conter">
+                       <div>1</div>
+                       <div>2</div>
+                    </div>
+                </div> -->
             </van-tab>
         </van-tabs>
         <img src="@/assets/images/home_cbb@2x.png" alt="">
@@ -280,7 +248,9 @@ export default {
         return {
             active:0,
             organization: [],
-            h: 2
+            elder: [],
+            pillar:[]
+            
         };
     },
     computed: {
@@ -291,24 +261,42 @@ export default {
     },
     mounted() {
         this.branch()
+        this.urlPath()
     },
     watch: {
-
+         "$route": "branch"
     },
     methods: {
         branch() {
-            // 组织架构
-            this.api.get(this.api.county.base + "/genogram/fanIndex/getFamilyStructureList?siteId=100")
+            // 家族长老
+            this.api.get(this.api.county.base + "/genogram/fanNewsFamous/selectPersonPage?showId=10021")
             .then( res => {
-                this.organization = res.data
+                this.elder = res.data
+                // 家族栋梁
+                return this.api.get(this.api.county.base + "/genogram/fanNewsFamous/selectPersonPage?showId=10022")
+            })
+            .then( res => {
+                this.pillar = res.data
+                return this.api.get(this.api.county.base + "genogram/fanIndex/getFamilyStructureList?siteId=100")
+            })
+            .then( res => {
                 console.log(res)
+                this.organization = res.data
             })
         },
         btn() {
-        //     var height= this.$refs.h.offsetHeight; //100
-        //     console.log(height)
-        //    this.$refs.text.style.height = 2 + 'rem'
-
+        // //     var height= this.$refs.h.offsetHeight; //100
+        // //     console.log(height)
+        // //    this.$refs.text.style.height = 2 + 'rem'
+         },
+        urlPath() {
+            let url = this.$route.path
+            if(url = "personal/1"){
+                this.active = 1
+            }
+            if(url = "personal/0"){
+                this.active = 0
+            }
         }
     },
     components: {
@@ -368,10 +356,8 @@ export default {
                     width: 1.36rem;
                     height: 1.36rem;
                     border-radius: 50%;
-                    background-color: pink;
-                    text-align: center;
-                    line-height: 1.36rem;
-                    color: #fff;
+                    background: no-repeat center / cover;
+
                 }
                 .celebrity {
                     display: flex;
@@ -449,12 +435,13 @@ export default {
                             .Img {
                                 width: 1rem;
                                 height: 1rem;
-                                background-color: red;
+                                // background-color: red;
                                 border-radius: 50%;
                                 position: absolute;
                                 left: 50%;
                                 transform: translateX(-50%);
                                 top: -0.3rem;
+                                background: no-repeat center / cover;
                             }
                             p {
                                 margin-top: 1rem;
@@ -473,6 +460,71 @@ export default {
             color: #D2211B;
             text-align: center;
             line-height: 0.55rem;
+        }
+        // 组织架构修改
+        .architect {
+            width: 100%;
+            padding: 0.3rem 0.2rem;
+            box-sizing: border-box;
+            height: 100%;
+            clear:both;
+            border-left: 0.01rem dashed #ccc;
+            margin-left: 0.5rem;
+                h2 {
+                    margin:0 0 0 -0.6rem;
+                    background-color: red;
+                    display: inline;
+                    padding: 0.05rem;
+                    font-size: 0.32rem;
+                    border-radius: 0.1rem;
+                    color: #fff;
+                    // margin-top: 0.3rem;
+                }
+                .conter {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                   div {
+                       width: 42%;
+                       height: 4rem;
+                       box-shadow: 0 0 8px #ccc;
+                       border-radius: 0.2rem;
+                       margin: 0.1rem 0.1rem  0.5rem;
+                       position: relative;
+                       padding: 0 0.2rem;
+                       box-sizing: border-box;
+                            .Img {
+                                width: 1rem;
+                                height: 1rem;
+                                background-color: red;
+                                border-radius: 50%;
+                                position: absolute;
+                                // left: 0.78rem;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                top: -0.5rem;
+                                background: no-repeat center / cover;
+                            }
+                            h5 {
+                                position: absolute;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                top:0.3rem;
+                                font-size: 0.32rem;
+                            }
+                            p {
+                                height: 2.5rem;
+                                width: 88%;
+                                word-wrap : break-word;
+                                position: absolute;
+                                top: 1.2rem;
+                                overflow: hidden;
+                                font-size: 0.16rem;
+                                color: #666666;
+                             
+                            }
+                   }
+                }
         }
 }
 </style>

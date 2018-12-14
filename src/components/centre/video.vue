@@ -1,34 +1,10 @@
 <template>
     <div class="box">
-        <!-- <div class="videoBox">
-            <h4>中国家谱博物馆落户进-2017年亮相</h4>
-            <div class="videoCenter"></div>
-            <a href="#">视频</a>
-            <span>30条评论</span>
-            <span>652次播放</span>
-            <span>2018-10-11</span>
-        </div>
-        <div class="videoBox">
-            <h4>中国家谱博物馆落户进-2017年亮相</h4>
-            <div class="videoCenter"></div>
-            <a href="#">视频</a>
-            <span>30条评论</span>
-            <span>652次播放</span>
-            <span>2018-10-11</span>
-        </div>
-        <div class="videoBox">
-            <h4>中国家谱博物馆落户进-2017年亮相</h4>
-            <div class="videoCenter"></div>
-            <a href="#">视频</a>
-            <span>30条评论</span>
-            <span>652次播放</span>
-            <span>2018-10-11</span>
-        </div> -->
         <div class="videoBox" v-for="(item) in video_list.records" :key="item.id">
-            <h4>中国家谱博物馆落户进-2017年亮相</h4>
+            <h4>{{item.title}}</h4>
             <div :style="api.imgBG(item.fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
             <!-- <div  class="videoCenter"></div> -->
-            <a href="#">{{item.title}}</a>
+            <a href="#">视频</a>
             <span>{{item.status}}条评论</span>
             <span>652次播放</span>
             <span>{{item.updateTime.slice(0,10)}}</span>

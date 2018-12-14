@@ -1,8 +1,7 @@
 <template>
     <div class="celebrity">
        <van-tabs v-model="active">
-            <van-tab title="家族祠堂">
-                
+            <van-tab title="家族祠堂">  
                  <div class="centerDiv" v-for="item in cultural.records" :key="item.id">
                     <div class="centerText">
                         <h5>{{item.newsTitle}}</h5>
@@ -13,12 +12,58 @@
                         </div>
                         
                     </div>
-                    <div class="centerImg">
+                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''"  class="centerImg">
                         34
                     </div>
                 </div>
             </van-tab>
-            <van-tab title="源流"></van-tab>
+            <van-tab title="源流">
+                <div class="centerDiv" v-for="item in origin.records" :key="item.id">
+                    <div class="centerText">
+                        <h5>{{item.newsTitle}}</h5>
+                        <div class="axisCentre">
+                            <span class="xu">源流</span>
+                            <span>{{item.status}}条评论</span>
+                            <span>{{item.visitNum}}浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
+                        34
+                    </div>
+                </div>
+            </van-tab>
+            <van-tab title="新加类别">
+                <div class="centerDiv" v-for="item in category.records" :key="item.id">
+                    <div class="centerText">
+                        <h5>{{item.newsTitle}}</h5>
+                        <div class="axisCentre">
+                            <span class="xu">源流</span>
+                            <span>{{item.status}}条评论</span>
+                            <span>{{item.visitNum}}浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
+                        34
+                    </div>
+                </div>
+            </van-tab>
+            <van-tab title="祠堂修改">
+                <div class="centerDiv" v-for="item in modification" :key="item.id">
+                    <div class="centerText">
+                        <h5>{{item.newsTitle}}</h5>
+                        <div class="axisCentre">
+                            <span class="xu">祠堂</span>
+                            <span>{{item.status}}条评论</span>
+                            <span>{{item.visitNum}}浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
+                    </div>
+                </div>
+            </van-tab>
             <van-tab title="序"></van-tab>
             <van-tab title="宗规族约"></van-tab>
             <van-tab title="传说典故"> </van-tab>
@@ -35,7 +80,11 @@ export default {
     data() {
         return {
             active:0,
-            cultural:[]
+            cultural:[], // 家族祠堂
+            origin:[], // 源流 
+            category:[], // 新加
+            modification:[] ,//祠堂修改
+            list:[],
         };
     },
     computed: {
@@ -52,12 +101,28 @@ export default {
     },
     methods: {
         culturala() {
-            // 家族文化
+            // 家族祠堂
           this.api.get(this.api.county.base + "/genogram/fanNewsCulture/index/getFamilyIndexCulturePage?siteId=1")
           .then( res =>  {
+              if(res.code == 200) {
+                 this.cultural = res.data
+              }
+            return  this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=10012")
+          })
+          .then( res => {
+              this.origin = res.data
+              return this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=100200")
+          })
+          .then( res => {
+              this.category = res.data
               console.log(res)
-              this.cultural = res.data
-          })  
+              return  this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=10011")
+          })
+          .then( res => {
+              if(res.code==200){
+              this.modification = res.data.records;
+              }
+          })
         }
     },
     components: {
@@ -119,6 +184,7 @@ export default {
                 height: 1.44rem;
                 justify-content: flex-end ;
                 background: pink;
+                background: no-repeat center / cover;
             }
         }
 

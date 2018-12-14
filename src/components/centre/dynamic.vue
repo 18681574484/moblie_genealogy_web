@@ -3,103 +3,31 @@
         <div class="centre">
          <div class="centreDiv">
             <span class="newest">最新</span>
-            <h5 class="zx">中国家谱博物馆落户进-2017年度亮相</h5>
-            <p>
+            <h5 class="zx">{{dynamicList.records[1].newsTitle}}</h5>
+            <!-- <p>
                 法定防守打法发的萨芬萨芬撒十大萨芬撒发的反倒是手法都是是东方时尚发颠倒是非大师傅暗室逢灯法定防守打法发的萨芬萨芬撒十大萨芬撒发的反倒是手法都是是东方时尚发
-            </p>
+            </p> -->
+            <p v-html="dynamicList.records[1].newsText.slice(0,98)"></p>
             <div class="centreImg">
                 <div class="imgDiv">1</div>
                 <div class="imgDiv">2</div>
                 <div class="imgDiv">3</div>
             </div>
-             <div class="axisCentre">
-                 <span>家族产业</span>
+             <!-- <div class="axisCentre">
+                 <span>家族动态</span>
                  <van-icon name="location" />
                  <p>湖北省大鹏村腾睿大厦</p>
                  <div class="centreSolid"></div>
-             </div>
+             </div> -->
         </div>
-        <!-- <div class="centerDiv">
-            <div class="centerText">
-                <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                 <div class="axisCentre">
-                 <span>家族产业</span>
-                 <van-icon name="location" />
-                 <p>湖北省大鹏村腾睿大厦</p>
-                 <div class="centreSolid"></div>
-             </div>
-                
-            </div>
-            <div class="centerImg">
-                34
-            </div>
-        </div>
-        <div class="centerDiv">
-            <div class="centerText">
-                <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                 <div class="axisCentre">
-                 <span>家族产业</span>
-                 <van-icon name="location" />
-                 <p>湖北省大鹏村腾睿大厦</p>
-                 <div class="centreSolid"></div>
-             </div>
-                
-            </div>
-            <div class="centerImg">
-                34
-            </div>
-        </div>
-        <div class="centerDiv">
-                <div class="centerText">
-                    <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                    <div class="axisCentre">
-                    <span>家族产业</span>
-                    <van-icon name="location" />
-                    <p>湖北省大鹏村腾睿大厦</p>
-                    <div class="centreSolid"></div>
-                </div>
-                    
-                </div>
-                <div class="centerImg">
-                    34
-                </div>
-        </div>
-        <div class="centerDiv">
-                <div class="centerText">
-                    <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                    <div class="axisCentre">
-                    <span>家族产业</span>
-                    <van-icon name="location" />
-                    <p>湖北省大鹏村腾睿大厦</p>
-                    <div class="centreSolid"></div>
-                </div>
-                    
-                </div>
-                <div class="centerImg">
-                    34
-                </div>
-        </div>
-        <div class="centerDiv">
-                <div class="centerText">
-                    <h5>中国家谱博物馆落户进-2017年亮相</h5>
-                    <div class="axisCentre">
-                    <span>家族产业</span>
-                    <van-icon name="location" />
-                    <p>湖北省大鹏村腾睿大厦</p>
-                    <div class="centreSolid"></div>
-                </div>
-                    
-                </div>
-                <div class="centerImg">
-                    34
-                </div>
-        </div> -->
-        <div class="centerDiv" v-for="item in family.records" :key="item.id">
+        
+        <div class="centerDiv" v-for="item in dynamicList.records" :key="item.id">
                 <div class="centerText">
                     <h5>{{item.newsTitle}}</h5>
                     <div class="axisCentre">
-                    <span>家族产业</span>
-                    <van-icon name="location" />
+                    <span class="title">家族动态</span>
+                     <span>{{item.status}}条评论</span>
+                     <span>{{item.visitNum}}浏览</span>
                     <p>{{item.industryLocation}}</p>
                     <div class="centreSolid"></div>
                 </div>
@@ -123,7 +51,7 @@ export default {
     },
     data() {
         return {
-            family: []
+            dynamicList: []
         };
     },
     computed: {
@@ -141,11 +69,11 @@ export default {
     },
     methods: {
         dynamic() {
-            // 家族产业
-             this.api.get(this.api.county.base + 'genogram/fanNewsIndustry/getFamilyIndustryPage?showId=10019')
+            // 家族动态
+             this.api.get(this.api.county.base + '/genogram/fanNewsFamilyRecord/selectRecortPage?showId=10023')
              .then( res => {
-                 this.family = res.data
-                 console.log(this.family)
+                 this.dynamicList = res.data
+                 console.log(this.dynamicList)
              })
         }
     },
@@ -267,7 +195,7 @@ display: none;/*隐藏滚轮*/
                     height: 0.55rem;
                     position: relative;
                     display: flex;
-                    span {
+                    .title {
                         display: inline-block;
                         height: 0.3rem;
                         width: 0.9rem;
@@ -276,6 +204,10 @@ display: none;/*隐藏滚轮*/
                         border-radius: 0.03rem;
                         margin-right: 0.28rem;
                         color: #D2211B;
+                    }
+                    span {
+                        color: #AFAFAF;
+                        margin-left: 0.1rem;
                     }
                     /deep/ .van-icon-location::before { 
                         margin-top: 0.02rem;

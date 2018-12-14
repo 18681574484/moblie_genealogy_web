@@ -2,7 +2,7 @@
     <div class="biography">
         <!-- 头部固定导航 -->
         <header>
-            <van-icon name="arrow-left" />
+            <van-icon name="arrow-left" @click="go" />
             <h2>人物介绍</h2>
             <img src="@/assets/images/share.png" alt="">
         </header>
@@ -123,7 +123,9 @@ export default {
 
     },
     methods: {
-
+        go() {
+            this.$router.go(-1)
+        }
     },
     components: {
 
