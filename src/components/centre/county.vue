@@ -14,13 +14,13 @@
               <div class="flgureText">
                   <h5>刚刚捐款完亲</h5>
                   <div class="textLeft">
-                      <span>共158人</span>
+                      <router-link to="/personnel" tag="span">共158人</router-link>
                       <van-icon name="arrow" />
                       <van-icon name="arrow" />
                   </div>
               </div>
               <ul class="flgureUl">
-                <li v-for="item in this.$store. state.celebrity.records" :key="item.id">
+                <li v-for="item in celebrity" :key="item.id">
                     <div class="div1 portrait" :style="api.imgBG(item.allUserLogin.picSrc)"> </div>
                     <h5>{{item.allUserLogin.nickName}}</h5>
                     <span>捐助 {{item.allUserLogin.role}}元</span>
@@ -35,7 +35,7 @@
           </div>
           <div class="deal">
               <h3>交易明细</h3>
-              <div class="money" v-for="item in this.$store.state.wasteBook.records" :key="item.id">
+              <div class="money" v-for="item in flow" :key="item.id">
                   <div class="running">
                       <div class="runningleft">
                           <h6>10.01</h6>
@@ -48,32 +48,19 @@
                   </div>
                   <span class="time">2018</span>
               </div>
-               <!-- <div class="money">
-                  <div class="running">
-                      <div class="runningleft">
-                          <h6>10.01</h6>
-                          <span>
-                              <a href="#"></a>
-                            家族助学使用
-                          </span>
-                      </div>
-                      <span class="ring">+50000</span>
-                  </div>
-                  <span class="time">2018</span>
-              </div> -->
            
              
           </div>
           <div class="titleBox">
               <div class="title">
                   <span>支出明细</span>
-                  <h5>{{this.$store.state.wasteBook.records[0].newsTitle}}</h5>
+                  <h5>{{flow.length ?  flow[1].newsTitle : ''}}</h5>
               </div>
                <!-- <p>家谱：又称族谱、宗谱等。是一种以表谱形式，记载一个家族的世系繁衍及重要人物事迹的书。皇帝的家谱称玉牒，如新朝玉牒、皇宋玉牒。它以记载父系家族世系、人物为中心，由正史中的帝王本纪及王侯列传、年表等演变而来。</p> -->
-               <p>{{this.$store.state.wasteBook.records[0].newsText}}</p>
+               <p>{{flow.length ? flow[1].newsText : ''}}</p>
                <div class="titleBtm">
-                   <span>{{this.$store.state.wasteBook.records[0].status}}条评论</span>
-                   <span>{{this.$store.state.wasteBook.records[0].visitNum}}浏览</span>
+                   <span>{{flow.length ? flow[1].status : ''}}条评论</span>
+                   <span>{{flow.length ? flow[1].visitNum : ''}}浏览</span>
                    <span>刚刚</span>
                </div>
           </div>
@@ -121,7 +108,8 @@ export default {
     },
     data() {
         return {
-
+            celebrity: [], // 捐款名人
+            flow: [] // 交易明细
         };
     },
     computed: {
@@ -139,10 +127,15 @@ export default {
     },
     methods: {
         count() {
-            //  this.api.get(this.api.county.base + "/genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
-            //  .then( res => {
-            //      console.log(res)
-            //  })
+             this.api.get(this.api.county.base + "genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
+             .then( res => {
+                 // 交易明细
+                 this.flow = res.data.records
+                 console.log(this.flow)
+             })
+             // 捐款名人
+            this.celebrity =  this.$store.state.celebrity
+            // console.log(this.$store.state.wasteBook)
         }
     },
     components: {

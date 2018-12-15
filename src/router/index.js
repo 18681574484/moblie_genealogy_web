@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Indexs from '@/components/views/index.vue'
 import Home from '@/components/centre/home.vue'
-import HomeCentre from '@/components/centre/homeCentre.vue'
 import HomeList from '@/components/centre/homeList.vue'
 import county from '@/components/centre/county.vue'
 import personnel from '@/components/centre/personnel.vue'
@@ -67,8 +66,7 @@ export default new Router({
             path: '/personal',
             component: branch,
                 children:[
-                 { path:'/personal/1',component: branch},
-                 { path:'/personal/0',component: branch}
+                 { path:'/personal/1',component: branch}
               ]
           },
           // 县级公告
@@ -113,6 +111,7 @@ export default new Router({
       path: '/characterElite',
       component: characterElite
     },
+    // 文章详情
     {
       path: '/characterIntroduction',
       component: characterIntroduction
@@ -135,10 +134,19 @@ export default new Router({
     {
       path: '/add',
       component: Home
+    },
+    {
+      path: '/celebrity',
+      component: celebrity
     }
 
- 
- 
-   
-  ]
+  ],
+  // 页面回到最顶部
+  scrollBehavior(to, from,savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
+
 })

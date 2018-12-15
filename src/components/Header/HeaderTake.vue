@@ -74,6 +74,7 @@ export default {
             padding:  0 0.2rem;
             box-sizing: border-box;
             display: flex;
+            // margin-top: 0.1rem;
                 img {
                     width: 0.56rem;
                     height: 0.56rem;

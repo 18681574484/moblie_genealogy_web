@@ -94,7 +94,7 @@
                     34
                 </div>
         </div> -->
-        <div class="centerDiv" v-for="item in family.records" :key="item.id">
+        <div class="centerDiv" v-for="item in family" :key="item.id">
                 <div class="centerText">
                     <h5>{{item.newsTitle}}</h5>
                     <div class="axisCentre">
@@ -105,8 +105,8 @@
                 </div>
                     
                 </div>
-                <div class="centerImg">
-                    34
+                <div  :style="api.imgBG(item.newsUploadFileList.length ? item.newsUploadFileList[0].filePath : '')" class="centerImg">
+                    
                 </div>
         </div>
     </div>
@@ -144,7 +144,7 @@ export default {
             // 家族产业
              this.api.get(this.api.county.base + 'genogram/fanNewsIndustry/getFamilyIndustryPage?showId=10019')
              .then( res => {
-                 this.family = res.data
+                 this.family = res.data.records
                  console.log(this.family)
              })
         }
@@ -211,7 +211,8 @@ display: none;/*隐藏滚轮*/
                 width: 2.3rem;
                 height: 1.44rem;
                 justify-content: flex-end ;
-                background: pink;
+                background: no-repeat center / cover;
+                background-color: pink;
             }
              .centerHr {
                 width: 200%;
@@ -271,11 +272,13 @@ display: none;/*隐藏滚轮*/
                         display: inline-block;
                         height: 0.3rem;
                         width: 0.9rem;
-                        font-size: 0.12rem;
+                        font-size: 0.16rem;
                         border: 0.01rem solid #D2211B; 
                         border-radius: 0.03rem;
                         margin-right: 0.28rem;
                         color: #D2211B;
+                        text-align: center;
+                        line-height: 0.3rem;
                     }
                     /deep/ .van-icon-location::before { 
                         margin-top: 0.02rem;

@@ -5,10 +5,10 @@
         <van-icon name="arrow-down" />
        <van-tabs v-model="active">
             <van-tab title="家族长老">
-                <div v-for="(item,index) in elder.records" :key="index" class="titleCenter">
+                <div v-for="(item,index) in elder" :key="index" class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <div :style="api.imgBG(item.picFileSrc)" class="img"></div>
+                       <router-link to="/characterDeatils" tag="div" :style="api.imgBG(item.picFileSrc)" class="img"></router-link>
                        <div class="celebrity">
                            <h5>{{item.personName}}</h5>
                             <span>慈善名人</span>
@@ -21,7 +21,7 @@
                    </div>
                    </div>
                    <!-- <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p> -->
-                   <p>{{item.personSummary}}</p>
+                   <p>{{item.personSummary.slice(0,100)}}</p>
                 </div>
             </van-tab>
             <van-tab title="家族栋梁">
@@ -81,10 +81,10 @@
                    </div>
                    <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p>
                 </div> -->
-                <div v-for="(item,index) in pillar.records" :key="index" class="titleCenter">
+                <div v-for="(item,index) in pillar" :key="index" class="titleCenter">
                    <div class="titleTop">
                        <div class="centerLeft">
-                       <div :style="api.imgBG(item.picFileSrc)" class="img"></div>
+                       <router-link to="/characterElite" tag="div" :style="api.imgBG(item.picFileSrc)" class="img"></router-link>
                        <div class="celebrity">
                            <h5>{{item.personName}}</h5>
                             <span>慈善名人</span>
@@ -257,10 +257,9 @@ export default {
 
     },
     created() {
-        
+        this.branch()        
     },
     mounted() {
-        this.branch()
         this.urlPath()
     },
     watch: {
@@ -269,18 +268,12 @@ export default {
     methods: {
         branch() {
             // 家族长老
-            this.api.get(this.api.county.base + "/genogram/fanNewsFamous/selectPersonPage?showId=10021")
+            this.elder = this.$store.state.elder
+            // 家族栋梁
+            this.pillar = this.$store.state.pillar
+            console.log(this.elder)
+            this.api.get(this.api.county.base +"genogram/fanIndex/getFamilyStructureList?siteId=100")
             .then( res => {
-                this.elder = res.data
-                // 家族栋梁
-                return this.api.get(this.api.county.base + "/genogram/fanNewsFamous/selectPersonPage?showId=10022")
-            })
-            .then( res => {
-                this.pillar = res.data
-                return this.api.get(this.api.county.base + "genogram/fanIndex/getFamilyStructureList?siteId=100")
-            })
-            .then( res => {
-                console.log(res)
                 this.organization = res.data
             })
         },

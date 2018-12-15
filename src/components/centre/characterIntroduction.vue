@@ -119,23 +119,26 @@ export default {
     },
     data() {
         return {
-
+            culture: [] //文章详情
         };
     },
     computed: {
-
+        
     },
     created() {
 
     },
     mounted() {
-
+        this.wenzhang()
     },
     watch: {
 
     },
     methods: {
-
+        wenzhang() {
+            this.culture = this.$store.state.culture
+             console.log(this.$store.state.culture)
+        }
     },
     components: {
 

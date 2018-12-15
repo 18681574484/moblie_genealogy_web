@@ -4,7 +4,7 @@
             <van-tab title="家族祠堂">  
                  <div class="centerDiv" v-for="item in cultural.records" :key="item.id">
                     <div class="centerText">
-                        <h5>{{item.newsTitle}}</h5>
+                        <router-link to="/characterIntroduction" tag="h5">{{item.newsTitle}}</router-link>
                         <div class="axisCentre">
                             <span class="xu">序</span>
                             <span>{{item.status}}条评论</span>
@@ -34,7 +34,7 @@
                 </div>
             </van-tab>
             <van-tab title="新加类别">
-                <div class="centerDiv" v-for="item in category.records" :key="item.id">
+                <div class="centerDiv" v-for="item in category" :key="item.id">
                     <div class="centerText">
                         <h5>{{item.newsTitle}}</h5>
                         <div class="axisCentre">
@@ -101,7 +101,7 @@ export default {
     },
     methods: {
         culturala() {
-            // 家族祠堂
+            // 家族文化
           this.api.get(this.api.county.base + "/genogram/fanNewsCulture/index/getFamilyIndexCulturePage?siteId=1")
           .then( res =>  {
               if(res.code == 200) {
@@ -114,7 +114,8 @@ export default {
               return this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=100200")
           })
           .then( res => {
-              this.category = res.data
+              this.category = res.data.records
+              this.$store.state.culture = res.data
               console.log(res)
               return  this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=10011")
           })

@@ -3,11 +3,9 @@
         <div class="centre">
          <div class="centreDiv">
             <span class="newest">最新</span>
-            <h5 class="zx">{{dynamicList.records[1].newsTitle}}</h5>
-            <!-- <p>
-                法定防守打法发的萨芬萨芬撒十大萨芬撒发的反倒是手法都是是东方时尚发颠倒是非大师傅暗室逢灯法定防守打法发的萨芬萨芬撒十大萨芬撒发的反倒是手法都是是东方时尚发
-            </p> -->
-            <p v-html="dynamicList.records[1].newsText.slice(0,98)"></p>
+            <h5 class="zx">{{dynamicList.length ? dynamicList[1].newsTitle : ''}}</h5>
+         
+            <p v-html="dynamicList.length ? dynamicList[1].newsText.slice(0,98) : '' "></p>
             <div class="centreImg">
                 <div class="imgDiv">1</div>
                 <div class="imgDiv">2</div>
@@ -21,7 +19,7 @@
              </div> -->
         </div>
         
-        <div class="centerDiv" v-for="item in dynamicList.records" :key="item.id">
+        <div class="centerDiv" v-for="item in dynamicList" :key="item.id">
                 <div class="centerText">
                     <h5>{{item.newsTitle}}</h5>
                     <div class="axisCentre">
@@ -70,11 +68,7 @@ export default {
     methods: {
         dynamic() {
             // 家族动态
-             this.api.get(this.api.county.base + '/genogram/fanNewsFamilyRecord/selectRecortPage?showId=10023')
-             .then( res => {
-                 this.dynamicList = res.data
-                 console.log(this.dynamicList)
-             })
+            this.dynamicList = this.$store.state.dynamic 
         }
     },
     components: {
@@ -204,6 +198,8 @@ display: none;/*隐藏滚轮*/
                         border-radius: 0.03rem;
                         margin-right: 0.28rem;
                         color: #D2211B;
+                        text-align: center;
+                        line-height: 0.3rem;
                     }
                     span {
                         color: #AFAFAF;

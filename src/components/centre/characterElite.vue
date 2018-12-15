@@ -10,14 +10,17 @@
         <div class="characters">
             <div class="charctersBox">
                   <div class="message">
-                    <div class="Img"></div>
+                    <div  
+                    :style="api.imgBG(Particulars.picFileSrc)" 
+                    class="Img"></div>
                     <div>
-                        <h3>于小雨</h3>
+                        <h3>{{Particulars.personName}}</h3>
                         <span>企业家、慈善家</span>
                     </div>
                 </div>
-                <h2>基本介绍</h2>
-                <p>俞敏洪，1962年9月4日 出生于江苏省江阴市夏港街道，新东方教育集团创始人，英语教学与管理专家。担任新东方教育集团董事长、洪泰基金联合创始人、中国青年企业家协会副会长、中华全国青年联合会委员等职。</p>
+                <h2>基本简介</h2>
+                <!-- <p>俞敏洪，1962年9月4日 出生于江苏省江阴市夏港街道，新东方教育集团创始人，英语教学与管理专家。担任新东方教育集团董事长、洪泰基金联合创始人、中国青年企业家协会副会长、中华全国青年联合会委员等职。</p> -->
+                <p v-html="Particulars.personSummary"></p>
             </div>
             
             <div class="Character">
@@ -89,7 +92,6 @@
             </ul>
         </div>
 
-
         <!-- 底部评论 -->
         <div class="observer">
             <input type="text" placeholder="我来说两句...">
@@ -107,17 +109,17 @@ export default {
     },
     data() {
         return {
-
+            Particulars: [] // 名人详情
         };
     },
     computed: {
 
     },
     created() {
-
+        
     },
     mounted() {
-
+        this.particulars()
     },
     watch: {
 
@@ -125,6 +127,12 @@ export default {
     methods: {
         go() {
             this.$router.go(-1)
+        },
+        particulars() {
+             this.api.get(this.api.county.base + 'genogram/fanNewsFamous/getFamilyFamilyDetail?id=84')
+             .then( res => {
+                 this.Particulars = res.data
+             })
         }
     },
     components: {
@@ -232,9 +240,9 @@ export default {
                         .Img {
                             width: 2.2rem;
                             height: 2.2rem;
-                            background-color: pink;
                             border-radius: 0.05rem;
                             margin-right: 0.32rem;
+                            background: no-repeat center / cover;
                         }
                         h3 {
                             margin: 0.52rem 0 0.1rem 0;

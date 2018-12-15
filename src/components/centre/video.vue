@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <div class="videoBox" v-for="(item) in video_list.records" :key="item.id">
+        <div class="videoBox" v-for="(item) in video_list" :key="item.id">
             <h4>{{item.title}}</h4>
             <div :style="api.imgBG(item.fanNewsUploadFile[0].filePath)" class="videoCenter"></div>
             <!-- <div  class="videoCenter"></div> -->
@@ -24,12 +24,13 @@ export default {
         };
     },
     computed: {
-
+        
     },
     created() {
+        this.video_api()         
     },
     mounted() {
-        this.video_api()
+       
     },
     watch: {
 
@@ -37,11 +38,7 @@ export default {
     methods: {
         video_api() {
             // 家族视频
-            this.api.get("http://192.168.2.179:8090//genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025")
-            .then( res => {
-                this.video_list = res.data
-                // console.log(this.video_list.records)
-            })
+            this.video_list = this.$store.state.videoArr
         } 
     },
     components: {

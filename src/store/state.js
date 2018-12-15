@@ -8,6 +8,9 @@ const state = {
     brief:{},  // 简介
     wasteBook: [], // 支出明细
     property: [], // 家族产业
-    videoArr: [] // 家族视频
+    videoArr: [], // 家族视频
+    elder: [],   // 家族长老
+    pillar: [], // 家族栋梁
+    culture: [] // 家族文化文章详情
 }
 export default state

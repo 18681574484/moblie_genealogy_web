@@ -12,7 +12,7 @@ export default  {
     family ({ commit }) {
         commit('familyIndustry')
     },
-    videoPath ({ commit })  {
+    videoPath  ({ commit })   {
         commit('videoList')   
     }
 }

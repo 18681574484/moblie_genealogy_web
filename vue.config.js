@@ -3,7 +3,7 @@ const resolve = dir => {
     return path.join(__dirname, dir)
 }
 const BASE_URL = process.env.NODE_ENV === 'production' ?
-    '/dist/' :
+    '/fan_moble_dist/' :
     '/'
 
 module.exports = {
