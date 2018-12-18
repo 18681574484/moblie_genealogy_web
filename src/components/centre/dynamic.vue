@@ -5,7 +5,7 @@
             <span class="newest">最新</span>
             <h5 class="zx">{{dynamicList.length ? dynamicList[1].newsTitle : ''}}</h5>
          
-            <p v-html="dynamicList.length ? dynamicList[1].newsText.slice(0,98) : '' "></p>
+            <router-link :to="{ name: 'dynamicDetails', params: { id: dynamicList.length ? dynamicList[1].id : '' }}" tag="p" v-html="dynamicList.length ? dynamicList[1].newsText.slice(0,98) : '' "></router-link>
             <div class="centreImg">
                 <div class="imgDiv">1</div>
                 <div class="imgDiv">2</div>
@@ -19,7 +19,7 @@
              </div> -->
         </div>
         
-        <div class="centerDiv" v-for="item in dynamicList" :key="item.id">
+        <router-link :to="{ name: 'dynamicDetails', params: { id: item.id }}" tag="div" class="centerDiv" v-for="item in dynamicList" :key="item.id">
                 <div class="centerText">
                     <h5>{{item.newsTitle}}</h5>
                     <div class="axisCentre">
@@ -34,7 +34,7 @@
                 <div class="centerImg">
                     34
                 </div>
-        </div>
+        </router-link>
     </div>
     
     </div>
@@ -69,6 +69,7 @@ export default {
         dynamic() {
             // 家族动态
             this.dynamicList = this.$store.state.dynamic 
+            console.log(this.dynamicList)
         }
     },
     components: {

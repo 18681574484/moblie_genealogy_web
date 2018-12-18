@@ -20,8 +20,13 @@ import faction from '@/components/centre/faction.vue'
 import characterDeatils from '@/components/centre/characterDetails.vue'
 import characterElite from '@/components/centre/characterElite.vue'
 import characterIntroduction from '@/components/centre/characterIntroduction.vue'
+import test from '@/components/centre/test.vue'
 import countyLevel from '@/components/centre/countyLevel.vue'
 
+//  详情页
+import notice from '@/components/particulars/detailsNotice.vue' // 公告
+import dynamicDetails from '@/components/particulars/dynamicDetails.vue' // 动态
+import theArticleDetails from '@/components/particulars/theArticleDetails.vue' // 首页文章详情
 
 
 
@@ -64,11 +69,8 @@ export default new Router({
           }, 
           // 家族名人
           {
-            path: '/personal',
+            path: '/branch',
             component: branch,
-                children:[
-                 { path:'/personal/1',component: branch}
-              ]
           },
           // 县级公告
           {
@@ -110,11 +112,13 @@ export default new Router({
     // 祖先人物详情
     {
       path: '/characterDeatils',
+      name: 'characterDeatils',
       component: characterDeatils
     },
     // 捐款名人文章详情
     {
-      path: '/characterElite',
+      path: '/characterElite/:id',
+      name: 'characterElite',
       component: characterElite
     },
     // 文章详情
@@ -122,11 +126,28 @@ export default new Router({
       path: '/characterIntroduction',
       component: characterIntroduction
     },
+    // 公告详情
+    {
+      path: '/notice/:id',
+      name:'notice',
+      component: notice
+    },
+    // 动态详情
+    {
+      path: '/dynamicDetails/:id',
+      name:'dynamicDetails',
+      component: dynamicDetails
+    },
     // 慈善帮扶详情
     {
       path: '/countyLevel',
       component: countyLevel
-    },   
+    },  
+    // 首页文章详情
+    {
+      path: '/theArticleDetails',
+      component: theArticleDetails
+    }, 
     // 选择地址
     {
       path: '/region',

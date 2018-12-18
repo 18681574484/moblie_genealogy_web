@@ -13,19 +13,21 @@
             <div class="Img"></div>
             <div>
                 <h2>周星</h2>
-                <span>粉丝： {{culture.length ?  culture[0].status : ''}} </span>
-                <span>文章： {{culture.length ?  culture[0].visitNum : ''}} </span>
+                <span>粉丝： {{ culture.status }} </span>
+                <span>文章： {{ culture.visitNum }} </span>
             </div>
             <div class="gz">+关注</div>
         </div>
         <!-- 文章内容 -->
         <div class="article">
             <div class="articleConter">
-                <h2>{{culture.length ?  culture[0].newsTitle : ''}}</h2>
-                <p>{{culture.length ?  culture[0].newsText.slice(0,88) : ''}}  </p>
+                <h2>{{ culture.newsTitle }}</h2>
+                <p v-html="culture.newsText.slice(0,130)">  </p>
                 <div class="picture"></div>
-                <p>{{culture.length ?  culture[0].newsText.slice(88,9999) : ''}}  </p>             
+                <p v-html="culture.newsText.slice(130,9999)"> </p>             
             </div>
+
+            <!-- 相关推荐 -->
             <div class="still">
                 <img src="@/assets/images/reward.png" alt="">
                 <h2>相关推荐</h2>
@@ -126,7 +128,6 @@ export default {
         
     },
     created() {
-
     },
     mounted() {
         this.wenzhang()
@@ -136,8 +137,14 @@ export default {
     },
     methods: {
         wenzhang() {
-            this.culture = this.$store.state.culture
-             console.log(this.$store.state.culture)
+            // let id = this.$router.history.current.params.id
+            // let name = this.$router.history.current.params.name
+            // if(name = 'notice'){
+            //     // 判断类型赋值
+            //     this.culture = this.$store.state.announcement.records[id]
+            //     console.log(this.culture)
+            // }
+            this.culture = this.$store.state.culture[0]
         },
         go() {
             // 后退

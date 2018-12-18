@@ -26,7 +26,7 @@
           <van-icon name="wap-nav"/>
         </div>
         <div class="region">
-          <div class="regionLeft" @click="pop">
+          <div class="regionLeft" @click.stop="pop">
             <span>选择地区</span>
             <van-icon name="arrow-down"/>
           </div>
@@ -34,7 +34,7 @@
             <van-icon name="location"/>
             <span>武汉江夏</span>
           </div>
-          <div class="cloce">关注</div>
+          <div class="cloce" @click="followed" >{{attention}}</div>
         </div>
       </div>
       <!-- 内容滑动区域 -->
@@ -58,18 +58,22 @@
                 顶 置
                 <span>公</span> 告
               </div>
-              <h4>{{stick.length ? stick[0].newsTitle : ''}}</h4>
+              <h4>{{ stick.newsTitle }}</h4>
               <!-- <h4>{{brief.data.siteName}}</h4> -->
             </div>
-            <router-link to="/" tag="p"  v-html="stick.length ? stick[0].newsText : ''"></router-link>
+            <router-link :to="{ name: 'notice', params: { id: stick.id }}" tag="p"  v-html=" stick.newsText"></router-link>
           </div>
           <!-- 联谊情况 -->
           <router-link to="/announcement" tag="div" class="fellowship">
             <h4>联谊概况</h4>
             <van-swipe :autoplay="3000" indicator-color="white">
-              <van-swipe-item>
-                  <div class="item_bgc"></div>
-                  <!-- <img src="@/assets/images/goose.png" alt=""> -->
+              <van-swipe-item v-for="item in general" :key="item.id">
+                  <!-- <div class="item_bgc"></div> -->
+                  <div class="swipeBox">
+                    <span>{{item.rootGroup}}</span>
+                    <b>ZANWU</b>
+                    <img src="@/assets/images/goose.png" alt="">
+                  </div>
               </van-swipe-item>
             </van-swipe>
             
@@ -126,9 +130,12 @@
                 {{dynamic.length ? dynamic[0].updateTime.slice(5,7) : ''}}
                 月
                 {{dynamic.length ? dynamic[0].updateTime.slice(8,10) : ''}}
-                日星期五</span>
+                日星期五
+            </span>
           </div>
-          <router-link to="/dynamic" tag="div" class="centerDiv">
+          <router-link
+           :to="{ name: 'dynamicDetails', params: { id: dynamic.length ? dynamic[0].id : '' }}"
+            tag="div" class="centerDiv">
             <div class="centerText">
               <h5>{{dynamic.length ? dynamic[0].newsTitle : ''}}</h5>
               <div class="axisCentre">
@@ -164,7 +171,7 @@
                 <p>家族产业</p>
               </router-link>
 
-              <router-link to="/personal/1" tag="li">
+              <router-link to="/branch" tag="li">
                 <img src="@/assets/images/person.png" alt>
                 <p>家族名人</p>
               </router-link>
@@ -182,7 +189,7 @@
               </router-link>
             </ul>
           </div>
-          <div class="centerDiv" v-for="item in dynamic" :key="item.id">
+          <!-- <div class="centerDiv" v-for="item in dynamic" :key="item.id">
             <div class="centerText">
               <h5>{{item.newsTitle}}</h5>
               <div class="axisCentre">
@@ -194,13 +201,26 @@
             <div 
                 :style="api.imgBG(item.length || item.fanNewsUploadFileList.length ? item.fanNewsUploadFileList[0].filePath : '')"
                 class="centerImg"></div>
+          </div> -->
+          <div class="centerDiv" v-for="item in article" :key="item.id">
+            <router-link to="/theArticleDetails" tag="div" class="centerText">
+              <h5>{{item.title}}</h5>
+              <div class="axisCentre">
+                <span class="xu">家族动态</span>
+                <span>{{item.sysStatus}}条评论</span>
+                <span>0浏览</span>
+              </div>
+            </router-link>
+            <div 
+                :style="api.imgBG(item.newsFaceUrl)"
+                class="centerImg"></div>
           </div>
 
           <div class="titleCenter">
             <div class="titleTop">
               <div class="centerLeft">
                 <router-link
-                  to="/characterElite"
+                  :to="{ name: 'characterElite', params: { id: pillar.length ? pillar[0].id : '' }}"
                   tag="div"
                   :style="api.imgBG(pillar.length ? pillar[0].picFileSrc : '')"
                   class="img"
@@ -307,7 +327,9 @@ export default {
       celebrity: [], // 捐款名人
       general: [], // 联谊概况
       autoplay: false, // 视频控制开关
-      stick: [] // 置顶共告
+      stick: [], // 置顶共告
+      attention: '关注',
+      article: [] // 首页文章
     };
   },
   computed: {},
@@ -315,6 +337,7 @@ export default {
     this.$store.dispatch("increment");
     this.$store.dispatch('bulletin')
     this.video_api();
+    this.article_get()
   },
   mounted() {},
   watch: {},
@@ -324,15 +347,19 @@ export default {
     },
     // 选择地区弹框
     pop() {
-      console.log(this.show)
       this.show = !this.show;
+    },
+    // 全局关闭选择地区
+    conceal() {
+      this.show = false
     },
     // 选择地区
     reset(e) {
       console.log(e);
     },
-    conceal() {
-      
+    // 关注事件
+    followed() {
+      this.attention = "已关注"
     },
     video_api() {
       this.api
@@ -347,7 +374,8 @@ export default {
             this.$store.state.videoArr = res.data.records;
           }
           // 置顶公告
-          this.stick = this.$store.state.announcement.records
+          this.stick = this.$store.state.announcement.records[0]
+          console.log(this.stick)
           return this.api.get(
             this.api.county.base +
               "/genogram/fanNewsFamous/selectPersonPage?showId=10021"
@@ -382,9 +410,7 @@ export default {
         })
         .then( res => {
             // 捐款名人
-            console.log(res)
            if(res.code == 200) {
-             console.log(res)
               this.$store.state.celebrity = res.data.records
               this.celebrity = res.data.records
            }
@@ -397,10 +423,20 @@ export default {
             console.log(this.general)
         })
     },
+    article_get() {
+      this.api.get(this.api.county.base + '/genogram/fanIndex/getAllUserNewsInfoPage?siteId=111&pageNo=1&pageSize=6')
+      .then( res => {
+        if(res.code == 200) {
+          this.article = res.data.records
+          console.log(this.article)
+        }
+      })
+    },
     play(e) {
       console.log(e.target)
       this.autoplay = !this.autoplay
     }
+   
   },
   components: {}
 };
@@ -953,10 +989,20 @@ export default {
   opacity: 0;
 }
 // 联谊概况
-.item_bgc {
-  background: url('../../assets/images/goose.png') no-repeat center;
-  width: 100%;
-  height: 2.35rem;
+.swipeBox {
+    position: relative;
+    color: #fff;
+    font-size: 0.26rem;
+      span {
+        position: absolute;
+        top: 0.6rem;
+        right: 2.3rem;
+      }
+      b {
+        position: absolute;
+        right: 2rem;
+        top: 1.3rem;
+      }
 }
 </style>
 

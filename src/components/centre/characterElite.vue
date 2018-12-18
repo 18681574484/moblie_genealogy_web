@@ -129,10 +129,16 @@ export default {
             this.$router.go(-1)
         },
         particulars() {
-             this.api.get(this.api.county.base + 'genogram/fanNewsFamous/getFamilyFamilyDetail?id=84')
-             .then( res => {
-                 this.Particulars = res.data
-             })
+            let id = this.$router.history.current.params.id
+            //  this.api.get(this.api.county.base + 'genogram/fanNewsFamous/getFamilyFamilyDetail?id=84')
+            //  .then( res => {
+            //      this.Particulars = res.data
+            //  })
+            this.api.get(this.api.county.base + this.api.county.detail.famous,{id:id})
+            .then( res => {
+                this.Particulars = res.data
+            })
+            console.log(id)
         }
     },
     components: {

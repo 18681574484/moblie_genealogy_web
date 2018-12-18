@@ -10,7 +10,7 @@
                 <span></span>
                 <div class="header-right">{{cement.length ? cement[0].newsTitle : ''}}</div>
             </div>
-            <div class="card-box" v-html="cement.length ? cement[0].newsText : ''"></div>
+            <router-link :to="{ name: 'notice', params: { id: cement.length ? cement[0].id : '' }}" class="card-box card-top" tag="div" v-html="cement.length ? cement[0].newsText : ''"></router-link>
         </div>
          <!-- 联谊概况 -->
         <div class="card-1 card-2" >
@@ -68,7 +68,7 @@
          <div class="fellowship"  v-for="item in  cement" :key="item.id">
             <div class="fellowship-header">
                 <span>联谊会公告</span>
-                <span>{{item.newsTitle}}</span>
+                <router-link :to="{ name: 'notice', params: { id: item.id }}" tag="span">{{item.newsTitle}}</router-link>
             </div>
             <div class="fellowship-box">
                 <span>{{item.status}}条评论</span>
@@ -116,6 +116,7 @@ export default {
     box-shadow: 0 0 0.25rem #ccc;
     border-radius: 0.1rem;
     margin: 0 0.2rem;
+    overflow: hidden;
     .header {
       display: flex;
       font-size: 0.35rem;
@@ -228,6 +229,9 @@ export default {
         margin-right: 0.15rem;
       }
     }
+  }
+  .card-top {
+      height: 3.7rem;
   }
 }
 </style>
