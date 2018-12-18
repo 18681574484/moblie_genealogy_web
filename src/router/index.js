@@ -14,6 +14,7 @@ import branch from '@/components/centre/branch.vue'
 import industry from '@/components/centre/industry.vue'
 import region from '@/components/centre/region.vue'
 import dynamic from '@/components/centre/dynamic.vue'
+import articleCharacterDetails from '@/components/centre/articleCharacterDetails.vue'
 
 import faction from '@/components/centre/faction.vue'
 import characterDeatils from '@/components/centre/characterDetails.vue'
@@ -93,6 +94,11 @@ export default new Router({
           {
             path: '/dynamic',
             component: dynamic
+          },
+          // 慈善帮扶
+          {
+            path: '/articleCharacterDetails',
+            component: articleCharacterDetails
           }
         ]
     },
@@ -116,6 +122,7 @@ export default new Router({
       path: '/characterIntroduction',
       component: characterIntroduction
     },
+    // 慈善帮扶详情
     {
       path: '/countyLevel',
       component: countyLevel
@@ -135,6 +142,7 @@ export default new Router({
       path: '/add',
       component: Home
     },
+    // 家族名人备案
     {
       path: '/celebrity',
       component: celebrity

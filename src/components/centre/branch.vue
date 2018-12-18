@@ -20,7 +20,6 @@
                        <div>千支同源</div>
                    </div>
                    </div>
-                   <!-- <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p> -->
                    <p>{{item.personSummary.slice(0,100)}}</p>
                 </div>
             </van-tab>
@@ -93,7 +92,6 @@
                    </div>
                    <div class="pillar">+关注</div>
                    </div>
-                   <!-- <p>周星是中国慈善名人帮第一人，是 《中国慈善家》 杂志年度重量级榜单人物之一。</p> -->
                    <p>{{item.personSummary}}</p>
                 </div>
             </van-tab>
@@ -225,13 +223,6 @@
                   
                     </div>
                 </div>
-                <!-- <div v-for="(item,index) in organization" :key="index" class="architect">
-                    <h2>{{index}}</h2>
-                    <div class="conter">
-                       <div>1</div>
-                       <div>2</div>
-                    </div>
-                </div> -->
             </van-tab>
         </van-tabs>
         <img src="@/assets/images/home_cbb@2x.png" alt="">
@@ -272,7 +263,7 @@ export default {
             // 家族栋梁
             this.pillar = this.$store.state.pillar
             console.log(this.elder)
-            this.api.get(this.api.county.base +"genogram/fanIndex/getFamilyStructureList?siteId=100")
+            this.api.get(this.api.county.base +"genogram/fanIndex/getFamilyStructureList?siteId=111")
             .then( res => {
                 this.organization = res.data
             })

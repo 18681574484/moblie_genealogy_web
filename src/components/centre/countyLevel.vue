@@ -2,7 +2,7 @@
     <div class="introduction">
         <!-- 头部固定导航 -->
         <header>
-            <van-icon name="arrow-left" />
+            <van-icon name="arrow-left" @click="go" />
             <h2>人物介绍</h2>
             <img src="@/assets/images/share.png" alt="">
         </header>
@@ -12,8 +12,8 @@
         <div class="figure">
             <div class="Img"></div>
             <div>
-                <h2>周星</h2>
-                <span>粉丝： 234324</span>
+                <h2>{{charityHelping.applyName}}</h2>
+                <span>粉丝： {{charityHelping.status}}</span>
                 <span>文章： 253</span>
             </div>
             <div class="gz">+关注</div>
@@ -21,10 +21,10 @@
         <!-- 文章内容 -->
         <div class="article">
             <div class="articleConter">
-                <h2>编修新家谱是继承文化传统的需要</h2>
+                <h2>{{charityHelping.title}}</h2>
                 <p>萨芬电风扇发的上到发大师傅答复撒萨芬等等撒放十大发多少发放多少发放速度发斯蒂芬发送到</p>
                 <div class="picture"></div>
-                <p>萨芬电风扇发的上到发大师傅答复撒萨芬等等撒放十大发多少发放多少发放速度发斯蒂芬发送到</p>                
+                <p>{{charityHelping.pictureAddress}}</p>                
             </div>
             <!-- 帮扶 -->
             <div class="audit">
@@ -34,7 +34,7 @@
                         <h2>经办人： 周星</h2>
                     </div>
                     <div class="money">
-                        <b>￥ 50000</b>
+                        <b>￥ {{charityHelping.applyMoney}}</b>
                         <div>
                             <van-icon name="passed" />
                             <span>审批通过</span>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                  <h6>审批流程</h6>
-                 <div class="audit-list">
+                 <div v-for="item in flow" :key="item.id" class="audit-list" >
                      <div class="list-top">
                          <div class="state"></div>
                          <h4>申请人意见</h4>
@@ -50,12 +50,12 @@
                      <div class="statement">
                          <div class="Img"></div>
                          <div class="conter">
-                             <div>张顺德 <span> [会长]</span></div>
-                             <p>同意帮扶！同意帮扶！同意帮扶！同意帮扶！同意帮扶！</p>
+                             <div>{{item.applyName}} <span> [会长]</span></div>
+                             <p>{{item.pictureAddress}}</p>
                          </div>
                      </div>
                  </div>
-                 <div class="audit-list">
+                 <!-- <div class="audit-list">
                      <div class="list-top">
                          <div class="state"></div>
                          <h4>申请人意见</h4>
@@ -80,7 +80,7 @@
                              <p>同意帮扶！同意帮扶！同意帮扶！同意帮扶！同意帮扶！</p>
                          </div>
                      </div>
-                 </div>
+                 </div> -->
                   <div class="list-state audit-list">
                      <div class="list-top">
                          <h5>帮扶情况</h5>
@@ -192,7 +192,8 @@ export default {
     },
     data() {
         return {
-
+            charityHelping: [],
+            flow:[] // 申请流程
         };
     },
     computed: {
@@ -202,12 +203,27 @@ export default {
 
     },
     mounted() {
-
+        this.banfu()
     },
     watch: {
 
     },
     methods: {
+        go() {
+            this.$router.go(-1)
+        },
+        banfu() {
+            this.api.get(this.api.county.base + 'genogram/fanSysCharitableDeclare/getFamilyStructureDetails?id=3')
+            .then( res => {
+                this.charityHelping = res.data
+                // console.log(res)
+                return this.api.get(this.api.county.base + '/genogram/fanSysCharitableDeclare/getSysCharitableDeclare?pageNo=1&pageSize=6')
+            })
+            .then( res => {
+                this.flow = res.data.records
+                console.log(res)
+            })
+        }
 
     },
     components: {

@@ -9,8 +9,11 @@ import store from './store/index'
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
 Vue.use(Vant);
+import VideoPlayer from 'vue-video-player'
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+Vue.use(VideoPlayer)
 Vue.config.productionTip = false
 Vue.prototype.api = api
 

@@ -4,16 +4,19 @@ import state from './state'
 export default {
     
     homeArr() {
-        api.get(api.county.base + "genogram/fanIndex/index/getFanIndexSlidePicList?siteId=100")
+        api.get(api.county.base + "genogram/fanIndex/index/getFanIndexSlidePicList?siteId=111")
         .then( res => {
             // 轮播图
-            state.lunbo = res.data
+            if(res.code == 200) {
+                state.lunbo = res.data
+                console.log('ok')
+            }
             return api.get(api.county.base + "genogram/fanNewsFamilyRecord/selectRecortPage?showId=123")
         })
         .then( res => {
             // 家族动态
             state.dynamic = res.data
-            return api.get(api.county.base + "genogram/fanNewsCharity/index/getFanIndexFund?siteId=100")
+            return api.get(api.county.base + "genogram/fanNewsCharity/index/getFanIndexFund?siteId=111")
         })
         .then( res => {
             // 公益基金
@@ -26,7 +29,7 @@ export default {
         .then( res => {
             // 县级公告
             state.announcement = res.data
-            return api.get(api.county.base + "/genogram/fanIndex/index/getFanIndexInfo?siteId=100")
+            return api.get(api.county.base + "/genogram/fanIndex/index/getFanIndexInfo?siteId=111")
         })
         .then( res => {
             // 简介
@@ -42,14 +45,14 @@ export default {
         })
     },
     familyIndustry () {
-        api.get(api.county.base + "genogram/fanMenu/getIndexMenuBySiteId?siteId=10")
+        api.get(api.county.base + "genogram/fanMenu/getIndexMenuBySiteId?siteId=111")
         .then( res => {
             // 家族资产
             state.property = res.data
         })
     },
     family_celebrity() {
-        api.get(api.county.base + "genogram/fanIndex/getFamilyStructureList?siteId=100")
+        api.get(api.county.base + "genogram/fanIndex/getFamilyStructureList?siteId=111")
         .then( res => {
             console.log(res)
         })

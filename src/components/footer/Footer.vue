@@ -16,7 +16,7 @@
                 <img :src="video" alt="">
                 <p>视频</p>
            </router-link>
-           <router-link to="personal" tag="li">
+           <router-link to="/" tag="li">
                 <img :src="personage" alt="">
                 <p>我的</p>
            </router-link>

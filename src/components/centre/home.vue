@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="home">
+    <div @click="conceal" class="home">
       <!-- 背景 -->
       <div class="bgc"></div>
       <div class="homeHeader">
@@ -44,11 +44,13 @@
         <div class="contentTop">
           <h2>湖北省咸宁市崇阳县张氏联谊会</h2>
           <!-- 轮播图 -->
-          <van-swipe :autoplay="3000" indicator-color="white">
-            <van-swipe-item v-for="item in this.$store.state.lunbo" :key="item.id">
-              <div class="div1" :style="api.imgBG(item.picUrl)"></div>
-            </van-swipe-item>
-          </van-swipe>
+          <div class="swipeTop">
+            <van-swipe :autoplay="3000" indicator-color="white">
+              <van-swipe-item v-for="item in this.$store.state.lunbo" :key="item.id">
+                <div class="div1" :style="api.imgBG(item.picUrl)"></div>
+              </van-swipe-item>
+            </van-swipe>
+          </div>
           <!-- 置顶公告 -->
           <div class="notice">
             <div class="noticeSogin">
@@ -56,19 +58,24 @@
                 顶 置
                 <span>公</span> 告
               </div>
-              <h4>崇阳联谊会在某地召开崇阳联谊会在某地召开</h4>
+              <h4>{{stick.length ? stick[0].newsTitle : ''}}</h4>
               <!-- <h4>{{brief.data.siteName}}</h4> -->
             </div>
-            <p>所谓图腾，就是原始时代的人们把某种动物，植物或非生物等当作自己的亲属，祖先或者保护神。相信他们有一种超自然力，会保护自己，并且还可以获得他们的力量和技能。在原始人的眼里，图腾实际是一个被人格化崇拜的对象</p>
-            <!-- <p>{{brief.data.description}}</p> -->
+            <router-link to="/" tag="p"  v-html="stick.length ? stick[0].newsText : ''"></router-link>
           </div>
           <!-- 联谊情况 -->
           <router-link to="/announcement" tag="div" class="fellowship">
             <h4>联谊概况</h4>
-            <img src="@/assets/images/goose.png" alt>
+            <van-swipe :autoplay="3000" indicator-color="white">
+              <van-swipe-item>
+                  <div class="item_bgc"></div>
+                  <!-- <img src="@/assets/images/goose.png" alt=""> -->
+              </van-swipe-item>
+            </van-swipe>
+            
           </router-link>
           <div class="count">
-            <router-link to="/personnel" tag="div" class="cpf">
+            <router-link to="/" tag="div" class="cpf">
               <h2>公益基金</h2>
               <span>总金额</span>
               <img src="@/assets/images/solid.png" alt>
@@ -82,7 +89,7 @@
               <div class="flgureText">
                 <h5>刚刚捐款完亲</h5>
                 <div class="textLeft">
-                  <router-link to="/personnel" tag="span">共158人</router-link>
+                  <router-link to="/personnel" tag="span">共{{celebrity.length}}人</router-link>
                   <van-icon name="arrow"/>
                   <van-icon name="arrow"/>
                 </div>
@@ -121,7 +128,7 @@
                 {{dynamic.length ? dynamic[0].updateTime.slice(8,10) : ''}}
                 日星期五</span>
           </div>
-          <div class="centerDiv">
+          <router-link to="/dynamic" tag="div" class="centerDiv">
             <div class="centerText">
               <h5>{{dynamic.length ? dynamic[0].newsTitle : ''}}</h5>
               <div class="axisCentre">
@@ -131,7 +138,7 @@
               </div>
             </div>
             <div :style="api.imgBG(dynamic.length ? dynamic[0].fanNewsUploadFileList[0].filePath : '')" class="centerImg"></div>
-          </div>
+          </router-link>
           <div class="slideshow">
             <ul class="swipeUl">
               <router-link to="/announcement" tag="li">
@@ -169,7 +176,7 @@
                 <img src="@/assets/images/shi@2x.png" alt>
                 <p>家族视频</p>
               </router-link>
-              <router-link to="/" tag="li">
+              <router-link to="/articleCharacterDetails" tag="li">
                 <img src="@/assets/images/help.png" alt>
                 <p>慈善帮扶</p>
               </router-link>
@@ -211,9 +218,16 @@
           <div class="videoBox">
             <h4>{{video_list.length ? video_list[0].title : ''}}</h4>
             <div
+              @click="play($event)"
               :style="api.imgBG(video_list.length  ? video_list[0].fanNewsUploadFile[0].filePath  : '')"
-              class="videoCenter"
-            ></div>
+              class="videoCenter">
+             <video 
+                :src="video_list.length ? api.imghost + video_list[0].fanUploadVedioList[0].filePath : ''"
+                v-if="autoplay"
+                :autoplay="autoplay"
+                >
+              </video>
+            </div>
             <a href="#">视频</a>
             <span>{{video_list.length ? video_list[0].status : ''}}条评论</span>
             <span>666次播放</span>
@@ -259,7 +273,7 @@ export default {
   props: {},
   data() {
     return {
-      active: 1,
+      active: 3,
       bulletin: {}, // 公告栏
       show: false,
       areaList: {
@@ -290,12 +304,16 @@ export default {
       elder: [], // 家族长老
       pillar: [], // 家族栋梁
       dynamic: [], // 家族动态
-      celebrity: [] // 捐款名人
+      celebrity: [], // 捐款名人
+      general: [], // 联谊概况
+      autoplay: false, // 视频控制开关
+      stick: [] // 置顶共告
     };
   },
   computed: {},
   created() {
     this.$store.dispatch("increment");
+    this.$store.dispatch('bulletin')
     this.video_api();
   },
   mounted() {},
@@ -304,14 +322,19 @@ export default {
     change() {
       console.log(111);
     },
+    // 选择地区弹框
     pop() {
+      console.log(this.show)
       this.show = !this.show;
     },
+    // 选择地区
     reset(e) {
       console.log(e);
     },
+    conceal() {
+      
+    },
     video_api() {
-      // 家族视频
       this.api
         .get(
           this.api.county.base +
@@ -319,9 +342,12 @@ export default {
         )
         .then(res => {
           if (res.code == 200) {
+            // 家族视频
             this.video_list = res.data.records;
             this.$store.state.videoArr = res.data.records;
           }
+          // 置顶公告
+          this.stick = this.$store.state.announcement.records
           return this.api.get(
             this.api.county.base +
               "/genogram/fanNewsFamous/selectPersonPage?showId=10021"
@@ -340,6 +366,7 @@ export default {
         })
         .then(res => {
             if(res.code == 200) {
+                // 家族产业
                 this.pillar = res.data.records;
                 this.$store.state.pillar = res.data.records;
             }
@@ -347,17 +374,32 @@ export default {
         })
         .then( res => {
             if(res.code == 200) {
+               // 家族动态
                 this.dynamic = res.data.records
                 this.$store.state.dynamic = res.data.records
             }
-            // 捐款名人
             return this.api.get(this.api.county.base + "genogram/fanNewsCharity/index/getPayUser?order=time&label=desc&pageSize=4&showId=10018")
         })
         .then( res => {
-            this.$store.state.celebrity = res.data.records
+            // 捐款名人
             console.log(res)
-            this.celebrity = res.data.records
+           if(res.code == 200) {
+             console.log(res)
+              this.$store.state.celebrity = res.data.records
+              this.celebrity = res.data.records
+           }
+            return this.api.get(this.api.county.base + "/genogram/fanIndex/index/getFanIndexFamilySummarysPage?siteId=111")
         })
+        .then( res => {
+            // 联谊概况
+            this.general = res.data.records
+            this.$store.state.general = res.data.records
+            console.log(this.general)
+        })
+    },
+    play(e) {
+      console.log(e.target)
+      this.autoplay = !this.autoplay
     }
   },
   components: {}
@@ -506,29 +548,31 @@ export default {
         font-size: 0.32rem;
         color: #fff;
       }
-      /deep/.van-swipe {
-        height: 4rem;
-        border-radius: 0.2rem;
-        .van-swipe-item {
-          background-color: pink;
-        }
+      .swipeTop {
+            /deep/.van-swipe {
+            height: 4rem;
+            border-radius: 0.2rem;
+            .van-swipe-item {
+              background-color: pink;
+            }
 
-        // 标记点父元素
-        .van-swipe__indicators {
-          // 标记点子元素
-          .van-swipe__indicator {
-            width: 0.12rem;
-            height: 0.12rem;
-            background-color: #999999 !important;
+            // 标记点父元素
+            .van-swipe__indicators {
+              // 标记点子元素
+              .van-swipe__indicator {
+                width: 0.12rem;
+                height: 0.12rem;
+                background-color: #999999 !important;
+              }
+              .van-swipe__indicator--active {
+                opacity: none;
+                background-color: #d2211b !important;
+              }
+              .van-swipe__indicator {
+                opacity: none;
+              }
+            }
           }
-          .van-swipe__indicator--active {
-            opacity: none;
-            background-color: #d2211b !important;
-          }
-          .van-swipe__indicator {
-            opacity: none;
-          }
-        }
       }
       .notice {
         width: 7.1rem;
@@ -539,6 +583,7 @@ export default {
         padding: 0.2rem 0.35rem 0;
         box-sizing: border-box;
         box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
         .noticeSogin {
           height: 1.1rem;
           width: 100%;
@@ -576,6 +621,7 @@ export default {
       .fellowship {
         font-size: 0.32rem;
         text-align: center;
+        margin-bottom: 0.4rem;
         img {
           width: 3.95rem;
           height: 2.35rem;
@@ -847,6 +893,10 @@ export default {
           margin-bottom: 0.24rem;
           // background-color: pink;
           background: no-repeat center / cover;
+            video {
+              width: 100%;
+              height: 100%;
+            }
         }
         a {
           display: inline-block;
@@ -901,6 +951,12 @@ export default {
 }
 /deep/.van-picker__confirm {
   opacity: 0;
+}
+// 联谊概况
+.item_bgc {
+  background: url('../../assets/images/goose.png') no-repeat center;
+  width: 100%;
+  height: 2.35rem;
 }
 </style>
 

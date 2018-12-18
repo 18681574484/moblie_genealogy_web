@@ -2,8 +2,8 @@
     <div class="introduction">
         <!-- 头部固定导航 -->
         <header>
-            <van-icon name="arrow-left" />
-            <h2>人物介绍</h2>
+            <van-icon name="arrow-left" @click="go" />
+            <h2>文化详情</h2>
             <img src="@/assets/images/share.png" alt="">
         </header>
         <!-- 背景 -->
@@ -13,18 +13,18 @@
             <div class="Img"></div>
             <div>
                 <h2>周星</h2>
-                <span>粉丝： 234324</span>
-                <span>文章： 253</span>
+                <span>粉丝： {{culture.length ?  culture[0].status : ''}} </span>
+                <span>文章： {{culture.length ?  culture[0].visitNum : ''}} </span>
             </div>
             <div class="gz">+关注</div>
         </div>
         <!-- 文章内容 -->
         <div class="article">
             <div class="articleConter">
-                <h2>编修新家谱是继承文化传统的需要</h2>
-                <p>萨芬电风扇发的上到发大师傅答复撒萨芬等等撒放十大发多少发放多少发放速度发斯蒂芬发送到</p>
+                <h2>{{culture.length ?  culture[0].newsTitle : ''}}</h2>
+                <p>{{culture.length ?  culture[0].newsText.slice(0,88) : ''}}  </p>
                 <div class="picture"></div>
-                <p>萨芬电风扇发的上到发大师傅答复撒萨芬等等撒放十大发多少发放多少发放速度发斯蒂芬发送到</p>                
+                <p>{{culture.length ?  culture[0].newsText.slice(88,9999) : ''}}  </p>             
             </div>
             <div class="still">
                 <img src="@/assets/images/reward.png" alt="">
@@ -138,6 +138,10 @@ export default {
         wenzhang() {
             this.culture = this.$store.state.culture
              console.log(this.$store.state.culture)
+        },
+        go() {
+            // 后退
+            this.$router.go(-1)
         }
     },
     components: {

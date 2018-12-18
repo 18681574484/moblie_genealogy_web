@@ -1,12 +1,12 @@
 <template>
     <div class="celebrity">
        <van-tabs v-model="active">
-            <van-tab title="家族祠堂">  
+            <!-- <van-tab title="家族祠堂">  
                  <div class="centerDiv" v-for="item in cultural.records" :key="item.id">
                     <div class="centerText">
                         <router-link to="/characterIntroduction" tag="h5">{{item.newsTitle}}</router-link>
                         <div class="axisCentre">
-                            <span class="xu">序</span>
+                            <span class="xu">家族祠堂</span>
                             <span>{{item.status}}条评论</span>
                             <span>{{item.visitNum}}浏览</span>
                         </div>
@@ -14,6 +14,21 @@
                     </div>
                     <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''"  class="centerImg">
                         34
+                    </div>
+                </div>
+            </van-tab> -->
+            <van-tab title="家族祠堂">
+                <div class="centerDiv" v-for="item in modification" :key="item.id">
+                    <div class="centerText">
+                        <router-link to="/characterIntroduction" tag="h5">{{item.newsTitle}}</router-link>
+                        <div class="axisCentre">
+                            <span class="xu">祠堂</span>
+                            <span>{{item.status}}条评论</span>
+                            <span>{{item.visitNum}}浏览</span>
+                        </div>
+                        
+                    </div>
+                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
                     </div>
                 </div>
             </van-tab>
@@ -38,7 +53,7 @@
                     <div class="centerText">
                         <h5>{{item.newsTitle}}</h5>
                         <div class="axisCentre">
-                            <span class="xu">源流</span>
+                            <span class="xu">新加类别</span>
                             <span>{{item.status}}条评论</span>
                             <span>{{item.visitNum}}浏览</span>
                         </div>
@@ -46,21 +61,6 @@
                     </div>
                     <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
                         34
-                    </div>
-                </div>
-            </van-tab>
-            <van-tab title="祠堂修改">
-                <div class="centerDiv" v-for="item in modification" :key="item.id">
-                    <div class="centerText">
-                        <h5>{{item.newsTitle}}</h5>
-                        <div class="axisCentre">
-                            <span class="xu">祠堂</span>
-                            <span>{{item.status}}条评论</span>
-                            <span>{{item.visitNum}}浏览</span>
-                        </div>
-                        
-                    </div>
-                    <div :style="item.newsUploadFileList.length ? api.imgBG(item.newsUploadFileList[0].filePath) : ''" class="centerImg">
                     </div>
                 </div>
             </van-tab>
@@ -102,7 +102,7 @@ export default {
     methods: {
         culturala() {
             // 家族文化
-          this.api.get(this.api.county.base + "/genogram/fanNewsCulture/index/getFamilyIndexCulturePage?siteId=1")
+          this.api.get(this.api.county.base + "/genogram/fanNewsCulture/index/getFamilyIndexCulturePage?siteId=111")
           .then( res =>  {
               if(res.code == 200) {
                  this.cultural = res.data
@@ -115,7 +115,7 @@ export default {
           })
           .then( res => {
               this.category = res.data.records
-              this.$store.state.culture = res.data
+              this.$store.state.culture = res.data.records
               console.log(res)
               return  this.api.get(this.api.county.base + "/genogram/fanNewsCulture/getFamilyCulturePage?showId=10011")
           })
@@ -214,6 +214,7 @@ export default {
                                 text-align: center;
                                 line-height: 0.3rem;
                                 border-radius: 0.05rem;
+                                font-size: 0.16rem;
                             }
                             span {
                                 color: #666666;

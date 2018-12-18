@@ -8,24 +8,24 @@
                 <i class="red">公</i>告
                 </div>
                 <span></span>
-                <div class="header-right">崇阳联谊在某地召开崇阳联谊在某地召开</div>
+                <div class="header-right">{{cement.length ? cement[0].newsTitle : ''}}</div>
             </div>
-            <div class="card-box">所谓图腾，就是原始时代的人们把某种动物，植物或非生物等当作自己的亲属，祖先或者保护神。相信他们有一种超自然力，会保护自己，并且还可以获得他们的力量和技能。在原始人的眼里，图腾实际是一个被人格化崇拜的对象</div>
+            <div class="card-box" v-html="cement.length ? cement[0].newsText : ''"></div>
         </div>
          <!-- 联谊概况 -->
         <div class="card-1 card-2" >
             <div class="header-2">联谊概况</div>
             <div class="card-box card-box2">
                 <div class="box-left">
-                <p>堂: 清河堂</p>
-                <p>始迁祖: 太史公</p>
-                <p>负责人: 周星</p>
-                <p>电话: 12222222222</p>
+                <p>堂: {{general.length ? general[0].rootGroup : ''}} </p>
+                <p>始迁祖: {{general.length ? general[0].rootPerson : ''}}</p>
+                <p>负责人: {{general.length ? general[0].leader : ''}}</p>
+                <p>电话: {{general.length ? general[0].leaderPhone : ''}}</p>
                 <p>
                     <img src="@/assets/images/赞@3x.png" alt class="left-img">
-                    <span>586</span>
+                    <span>{{general.length ? general[0].status : ''}}</span>
                     <img src="@/assets/images/爱心-(2)@3x.png" alt class="right-img">
-                    <span>586</span>
+                    <span>{{general.length ? general[0].worshipNum : ''}}</span>
                 </p>
                 </div>
                 <div class="box-right">
@@ -65,9 +65,9 @@
                 <span>刚刚</span>
             </div>
         </div> -->
-         <div class="fellowship"  v-for="item in  this.$store.state.announcement.records" :key="item.id">
+         <div class="fellowship"  v-for="item in  cement" :key="item.id">
             <div class="fellowship-header">
-                <span>家族公告</span>
+                <span>联谊会公告</span>
                 <span>{{item.newsTitle}}</span>
             </div>
             <div class="fellowship-box">
@@ -83,21 +83,21 @@
 export default {
    data() {
        return {
-           auct: []
+           auct: [],
+           general: [], // 联谊概况
+           cement: [] // 家族公告
        }
    },
     created() {
-        this.$store.dispatch('bulletin')
         this.announcement()
     },
    components: {},
    methods: {
       announcement() {
-        //   this.api.get(this.api.county.base + "/genogram/fanIndex/index/getFanIndexInfo?siteId=100")
-        //   .then( res => {
-        //       console.log(res)
-        //       this.auct = res.data
-        //   })  
+          this.general = this.$store.state.general
+          this.cement = this.$store.state.announcement.records
+          
+        
       }
   }
 }

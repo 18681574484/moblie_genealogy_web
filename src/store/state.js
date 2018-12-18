@@ -11,6 +11,7 @@ const state = {
     videoArr: [], // 家族视频
     elder: [],   // 家族长老
     pillar: [], // 家族栋梁
-    culture: [] // 家族文化文章详情
+    culture: [], // 家族文化文章详情
+    general: [] // 联谊概况 
 }
 export default state

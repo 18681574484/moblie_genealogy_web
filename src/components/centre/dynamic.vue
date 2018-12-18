@@ -193,7 +193,7 @@ display: none;/*隐藏滚轮*/
                         display: inline-block;
                         height: 0.3rem;
                         width: 0.9rem;
-                        font-size: 0.12rem;
+                        font-size: 0.16rem;
                         border: 0.01rem solid #D2211B; 
                         border-radius: 0.03rem;
                         margin-right: 0.28rem;
