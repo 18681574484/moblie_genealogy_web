@@ -118,7 +118,7 @@ export default {
   props: {},
   data() {
     return {
-      culture: [] //文章详情
+      culture: [] //首页文章详情
     };
   },
   computed: {},

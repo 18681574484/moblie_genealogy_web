@@ -1,6 +1,5 @@
 export default  {
     increment ({ commit }) {
-        commit('homeArr')
         commit('bulletin')
       },
     bulletin ({ commit }) {

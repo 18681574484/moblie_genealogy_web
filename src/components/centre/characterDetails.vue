@@ -140,11 +140,9 @@ export default {
       this.$router.go(-1);
     },
     particulars() {
+      let id = this.$router.history.current.params.id
       this.api
-        .get(
-          this.api.county.base +
-            "/genogram/proNewsAncestor/getFamousAncestorDetails?id=1"
-        )
+        .get(this.api.county.base + this.api.county.ancestor_info,{id: id})
         .then(res => {
           console.log(res.data);
           this.particulars_list = res.data;
@@ -243,7 +241,6 @@ export default {
     // overflow-x: hidden;
     // position: relative;
     padding: 0rem 0.2rem 0;
-
     .message {
       display: flex;
       margin-bottom: 0.5rem;
@@ -408,9 +405,11 @@ export default {
       justify-content: space-around;
     }
   }
-  
 }
-img {
-      margin-left: -0.4rem;
-  }
+</style>
+<style >
+/* img {
+    margin-left: -0.4rem;
+    transform: scale(0.5);
+  } */
 </style>

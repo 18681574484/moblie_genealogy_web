@@ -12,6 +12,8 @@ const state = {
     elder: [],   // 家族长老
     pillar: [], // 家族栋梁
     culture: [], // 家族文化文章详情
-    general: [] // 联谊概况 
+    general: [], // 联谊概况
+    stairAsk: [], // 首页一级请求
+    aaa:[] 
 }
 export default state

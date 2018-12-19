@@ -31,8 +31,10 @@
                 </div>
                     
                 </div>
-                <div class="centerImg">
-                    34
+                <div
+                 :style="api.imgBG(item.fanNewsUploadFileList.length ? item.fanNewsUploadFileList[0].filePath    : '')"
+                 class="centerImg">
+                    
                 </div>
         </router-link>
     </div>
@@ -68,8 +70,14 @@ export default {
     methods: {
         dynamic() {
             // 家族动态
-            this.dynamicList = this.$store.state.dynamic 
-            console.log(this.dynamicList)
+            // this.dynamicList = this.$store.state.dynamic 
+            // console.log(this.dynamicList)
+            this.api.get(this.api.county.base + '/genogram/fanNewsFamilyRecord/selectRecortPage?showId=1119923')
+            .then(res => {
+                if(res.code == 200){
+                    this.dynamicList = res.data.records
+                }
+            })
         }
     },
     components: {
@@ -134,7 +142,8 @@ display: none;/*隐藏滚轮*/
                 width: 2.3rem;
                 height: 1.44rem;
                 justify-content: flex-end ;
-                background: pink;
+                // background: pink;
+                background: no-repeat center / cover;
             }
              .centerHr {
                 width: 200%;

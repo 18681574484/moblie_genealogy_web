@@ -20,13 +20,13 @@ import faction from '@/components/centre/faction.vue'
 import characterDeatils from '@/components/centre/characterDetails.vue'
 import characterElite from '@/components/centre/characterElite.vue'
 import characterIntroduction from '@/components/centre/characterIntroduction.vue'
-import test from '@/components/centre/test.vue'
 import countyLevel from '@/components/centre/countyLevel.vue'
 
 //  详情页
-import notice from '@/components/particulars/detailsNotice.vue' // 公告
+import detailsNotice from '@/components/particulars/detailsNotice.vue' // 公告
 import dynamicDetails from '@/components/particulars/dynamicDetails.vue' // 动态
 import theArticleDetails from '@/components/particulars/theArticleDetails.vue' // 首页文章详情
+import IndustryInDetails from '@/components/particulars/IndustryInDetails.vue' // 家族产业详情
 
 
 
@@ -121,16 +121,17 @@ export default new Router({
       name: 'characterElite',
       component: characterElite
     },
-    // 文章详情
+    // 家族文化详情
     {
       path: '/characterIntroduction',
+      name: 'characterIntroduction',
       component: characterIntroduction
     },
     // 公告详情
     {
-      path: '/notice/:id',
-      name:'notice',
-      component: notice
+      path: '/detailsNotice/:id',
+      name:'detailsNotice',
+      component: detailsNotice
     },
     // 动态详情
     {
@@ -148,6 +149,12 @@ export default new Router({
       path: '/theArticleDetails',
       component: theArticleDetails
     }, 
+    // 家族产业详情
+    {
+      path: '/IndustryInDetails',
+      name: 'IndustryInDetails',
+      component: IndustryInDetails
+    },
     // 选择地址
     {
       path: '/region',

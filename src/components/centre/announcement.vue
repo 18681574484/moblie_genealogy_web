@@ -10,34 +10,39 @@
                 <span></span>
                 <div class="header-right">{{cement.length ? cement[0].newsTitle : ''}}</div>
             </div>
-            <router-link :to="{ name: 'notice', params: { id: cement.length ? cement[0].id : '' }}" class="card-box card-top" tag="div" v-html="cement.length ? cement[0].newsText : ''"></router-link>
+            <router-link :to="{ name: 'detailsNotice', params: { id: cement.length ? cement[0].id : '' }}" class="card-box card-top" tag="div" v-html="cement.length ? cement[0].newsText : ''"></router-link>
         </div>
          <!-- 联谊概况 -->
-        <div class="card-1 card-2" >
-            <div class="header-2">联谊概况</div>
-            <div class="card-box card-box2">
-                <div class="box-left">
-                <p>堂: {{general.length ? general[0].rootGroup : ''}} </p>
-                <p>始迁祖: {{general.length ? general[0].rootPerson : ''}}</p>
-                <p>负责人: {{general.length ? general[0].leader : ''}}</p>
-                <p>电话: {{general.length ? general[0].leaderPhone : ''}}</p>
-                <p>
-                    <img src="@/assets/images/赞@3x.png" alt class="left-img">
-                    <span>{{general.length ? general[0].status : ''}}</span>
-                    <img src="@/assets/images/爱心-(2)@3x.png" alt class="right-img">
-                    <span>{{general.length ? general[0].worshipNum : ''}}</span>
-                </p>
-                </div>
-                <div class="box-right">
-                <img src="@/assets/images/图层-2440-拷贝@2x.png">
+         <van-swipe :autoplay="3000" indicator-color="white">
+            <van-swipe-item v-for="(item,i) in general" :key="i">
+                <div class="card-1 card-2" >
+                <div class="header-2">联谊概况</div>
+                <div class="card-box card-box2">
+                    <div class="box-left">
+                    <p>堂: {{item.rootGroup}} </p>
+                    <p>始迁祖: {{item.rootPerson}}</p>
+                    <p>负责人: {{item.leader}}</p>
+                    <p>电话: {{item.leaderPhone}}</p>
+                    <p>
+                        <img src="@/assets/images/赞@3x.png" alt class="left-img">
+                        <span>{{item.status}}</span>
+                        <img src="@/assets/images/爱心-(2)@3x.png" alt class="right-img">
+                        <span>{{item.worshipNum}}</span>
+                    </p>
+                    </div>
+                    <div class="box-right">
+                    <img src="@/assets/images/图层-2440-拷贝@2x.png">
+                    </div>
                 </div>
             </div>
-        </div>
+            </van-swipe-item>
+        </van-swipe>
+       
         <!-- 简介 -->
         <div class="card-1 card-3">
             <div class="header-2">简介</div>
             <div class="card-box" style="display: block;">
-                <p>{{this.$store.state.brief.description}}</p>
+                <p>{{this.$store.state.brief.description.slice(0,200)}}</p>
                 <div class="box-left">
                 <span>族谱总数:
                     <b style="font-style: normal; color: #d53c38;">4525</b> 人
@@ -53,22 +58,11 @@
                 </div>
             </div>
         </div>
-        <!-- 联谊会公告 -->
-        <!-- <div class="fellowship">
-            <div class="fellowship-header">
-                <span>联谊会公告</span>
-                <span>中国家谱博物馆落户-2017亮相</span>
-            </div>
-            <div class="fellowship-box">
-                <span>30条评论</span>
-                <span>652142浏览</span>
-                <span>刚刚</span>
-            </div>
-        </div> -->
+
          <div class="fellowship"  v-for="item in  cement" :key="item.id">
             <div class="fellowship-header">
                 <span>联谊会公告</span>
-                <router-link :to="{ name: 'notice', params: { id: item.id }}" tag="span">{{item.newsTitle}}</router-link>
+                <router-link :to="{ name: 'detailsNotice', params: { id: item.id }}" tag="span">{{item.newsTitle}}</router-link>
             </div>
             <div class="fellowship-box">
                 <span>{{item.status}}条评论</span>
@@ -94,9 +88,27 @@ export default {
    components: {},
    methods: {
       announcement() {
-          this.general = this.$store.state.general
-          this.cement = this.$store.state.announcement.records
-          
+        this.general = this.$store.state.general
+        this.api
+        .get(
+          this.api.county.base +
+            "genogram/fanNewsFamilyRecord/selectRecortPage?showId=1119924"
+        )
+        .then(res => {
+            if(res.code == 200) {
+                this.cement = res.data.records
+            }
+            return   this.api
+            .get(
+            this.api.county.base +
+                "/genogram/fanIndex/index/getFanIndexFamilySummarysPage?siteId=111"
+            )
+        })
+        .then(res => {
+            if(res.code == 200) {
+                console.log(res)
+            }
+        })
         
       }
   }

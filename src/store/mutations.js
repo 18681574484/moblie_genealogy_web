@@ -3,27 +3,6 @@ import state from './state'
 
 export default {
     
-    homeArr() {
-        api.get(api.county.base + "genogram/fanIndex/index/getFanIndexSlidePicList?siteId=111")
-        .then( res => {
-            // 轮播图
-            if(res.code == 200) {
-                state.lunbo = res.data
-                console.log('ok')
-            }
-            return api.get(api.county.base + "genogram/fanNewsFamilyRecord/selectRecortPage?showId=123")
-        })
-        .then( res => {
-            // 家族动态
-            state.dynamic = res.data
-            return api.get(api.county.base + "genogram/fanNewsCharity/index/getFanIndexFund?siteId=111")
-        })
-        .then( res => {
-            // 公益基金
-            state.fund = res.data
-            // console.log(res)     
-        })
-    },
     bulletin() {
         api.get(api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=10024")
         .then( res => {

@@ -272,12 +272,13 @@ export default {
         )
         .then(res => {
           this.organization = res.data;
-        });
-    },
-    btn() {
-      // //     var height= this.$refs.h.offsetHeight; //100
-      // //     console.log(height)
-      // //    this.$refs.text.style.height = 2 + 'rem'
+          return this.api
+        .get(
+          this.api.county.base + '/genogram/fanNewsFamous/selectPersonPage?showId=1119921')
+        })
+        .then(res => {
+          console.log(res)
+        })
     }
   },
   components: {}

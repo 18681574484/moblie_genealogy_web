@@ -10,7 +10,9 @@
         <div class="bgc"></div>
         <!-- 人物 -->
         <div class="figure">
-            <div class="Img"></div>
+            <div 
+            :style="api.imgBG(culture.newsUploadFileList ? culture.newsUploadFileList[0].filePath : '')"
+            class="Img"></div>
             <div>
                 <h2>周星</h2>
                 <span>粉丝： {{ culture.status }} </span>
@@ -22,9 +24,7 @@
         <div class="article">
             <div class="articleConter">
                 <h2>{{ culture.newsTitle }}</h2>
-                <p v-html="culture.newsText.slice(0,130)">  </p>
-                <div class="picture"></div>
-                <p v-html="culture.newsText.slice(130,9999)"> </p>             
+                <p v-html="culture.newsText"> </p>             
             </div>
 
             <!-- 相关推荐 -->
@@ -137,14 +137,17 @@ export default {
     },
     methods: {
         wenzhang() {
-            // let id = this.$router.history.current.params.id
-            // let name = this.$router.history.current.params.name
-            // if(name = 'notice'){
-            //     // 判断类型赋值
-            //     this.culture = this.$store.state.announcement.records[id]
-            //     console.log(this.culture)
-            // }
-            this.culture = this.$store.state.culture[0]
+            let id = this.$router.history.current.params.id
+            this.api
+            .get(this.api.county.base + this.api.county.detail.culture,{id: id})
+            .then( res => {
+                if(res.code == 200) {
+                    console.log(res)
+                    this.culture = res.data
+                }     
+            })
+           
+           
         },
         go() {
             // 后退
@@ -265,6 +268,7 @@ export default {
                     height: 1rem;
                     background-color: pink;
                     border-radius: 50%;
+                    background: no-repeat center / cover;
                 }
                 :nth-child(2) {
                     margin: 0.6rem 0 0 0.17rem;

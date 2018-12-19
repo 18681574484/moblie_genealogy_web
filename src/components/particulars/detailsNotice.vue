@@ -22,9 +22,8 @@ n<template>
     <div class="article">
       <div class="articleConter">
         <h2>{{ culture.newsTitle }}</h2>
-        <p v-html="culture.newsText.slice(0,100)"></p>
+        <p v-html="culture.newsText"></p>
         <div class="picture"></div>
-        <p v-html="culture.newsText.slice(100,999)"></p>
       </div>
 
       <!-- 相关推荐 -->
@@ -131,7 +130,6 @@ export default {
   methods: {
     wenzhang() {
       let id = this.$router.history.current.params.id
-    //    this.api.county.base +this.api.county.detail.family_record
       this.api.get(
           this.api.county.base +this.api.county.detail.family_record,{id:id} 
       )

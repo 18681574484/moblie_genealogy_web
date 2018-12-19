@@ -10,11 +10,11 @@ n<template>
     <div class="bgc"></div>
     <!-- 人物 -->
     <div class="figure">
-      <div 
-      :style="api.imgBG(culture.newsUploadFileList.length ? culture.newsUploadFileList[0].filePath : '')"
-      class="Img"></div>
+      <div
+      :style="api.imgBG(culture.fanNewsUploadFileList ? culture.fanNewsUploadFileList[0].filePath : '')"
+       class="Img"></div>
       <div>
-        <h2>周星</h2>
+        <h2>{{culture.createUserName}}</h2>
         <span>粉丝： {{ culture.status }}</span>
         <span>文章： {{ culture.visitNum }}</span>
       </div>
@@ -25,7 +25,10 @@ n<template>
       <div class="articleConter">
         <h2>{{ culture.newsTitle }}</h2>
         <p v-html="culture.newsText"></p>
-        <!-- <div class="picture"></div> -->
+        <div
+         :style="api.imgBG(culture.fanNewsUploadFileList ? culture.fanNewsUploadFileList[0].filePath : '')"
+         class="picture"></div>
+        <!-- <p v-html="culture.newsText.slice(100,999)"></p> -->
       </div>
 
       <!-- 相关推荐 -->
@@ -120,7 +123,7 @@ export default {
   props: {},
   data() {
     return {
-      culture: [] //公告详情
+      culture: [] //产业详情
     };
   },
   computed: {},
@@ -132,12 +135,13 @@ export default {
   methods: {
     wenzhang() {
       let id = this.$router.history.current.params.id
+      console.log(id)
       this.api.get(
-          this.api.county.base +this.api.county.detail.family_record,{id:id} 
+          this.api.county.base + this.api.county.detail.industry,{id:id} 
       )
       .then( res => {
-          console.log(res)
           this.culture = res.data
+          console.log(this.culture)
       })
     },
     go() {
@@ -255,8 +259,8 @@ export default {
       margin: 0.45rem 0 0 0.32rem;
       width: 1rem;
       height: 1rem;
-      // background-color: pink;
       background: no-repeat center / cover;
+    //   background-color: pink;
       border-radius: 50%;
     }
     :nth-child(2) {
@@ -304,7 +308,8 @@ export default {
       .picture {
         height: 4rem;
         width: 7.1rem;
-        background-color: pink;
+        // background-color: pink;
+        background: no-repeat center / cover;
       }
     }
     .still {
