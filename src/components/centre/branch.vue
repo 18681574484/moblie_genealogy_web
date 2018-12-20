@@ -252,33 +252,51 @@ export default {
   created() {
     this.branch();
   },
-  mounted() {
-    
-  },
+  mounted() {},
   watch: {
     $route: "branch"
   },
   methods: {
     branch() {
-      // 家族长老
-      this.elder = this.$store.state.elder;
-      // 家族栋梁
-      this.pillar = this.$store.state.pillar;
-      console.log(this.elder);
-      this.api
-        .get(
-          this.api.county.base +
-            "genogram/fanIndex/getFamilyStructureList?siteId=111"
-        )
-        .then(res => {
-          this.organization = res.data;
-          return this.api
-        .get(
-          this.api.county.base + '/genogram/fanNewsFamous/selectPersonPage?showId=1119921')
-        })
-        .then(res => {
-          console.log(res)
-        })
+      let elderUrl;
+      let pillarUrl;
+      let siteId = this.$store.state.id;
+      if (siteId) {
+        this.api
+          .get(
+            this.api.county.base + "genogram/fanIndex/getFamilyStructureList",
+            { siteId: siteId }
+          )
+          .then(res => {
+            // 组织架构
+            this.organization = res.data;
+            return this.api.get(
+              this.api.county.base + "/genogram/fanMenu/getTitlesByMenuId",
+              { siteId: siteId, menuId: 5 }
+            );
+          })
+          .then(res => {
+            if (res.code == 200) {
+              elderUrl = res.data[0].apiUrl;
+              pillarUrl = res.data[1].apiUrl;
+            }
+            return this.api.get(this.api.county.base + elderUrl);
+          })
+          .then(res => {
+            if (res.code == 200) {
+              // 家族长老
+              this.elder = res.data.records;
+            }
+            return this.api.get(this.api.county.base + pillarUrl);
+          })
+          .then(res => {
+            if (res.code == 200) {
+              // 家族栋梁
+              this.pillar = res.data.records;
+            }
+          });
+      }
+
     }
   },
   components: {}

@@ -6,7 +6,7 @@
       <img src="@/assets/images/solid.png" alt>
 
       <div class="cpfBottom">
-        <span class="bottomRight">￥{{this.$store.state.fund.remain}}</span>
+        <span class="bottomRight">￥{{fund.remain}}</span>
         <span class="sss">捐助</span>
       </div>
     </div>
@@ -16,7 +16,7 @@
       <span class="van-ri">共1212人</span>
       <van-tabs @click="onClick">
         <van-tab title="时间">
-          <div v-for="(item, index) in expenditureList.records" :key="index" class="flgure">
+          <div v-for="(item, index) in expenditureList" :key="index" class="flgure">
             <div class="lf">
               <div :style="api.imgBG(item.allUserLogin.picSrc)" class="img"></div>
               <div class="lfText">
@@ -58,7 +58,8 @@ export default {
   data() {
     return {
       active: 1,
-      expenditureList: []
+      expenditureList: [], //捐款名人
+      fund: {} // 基金
     };
   },
   computed: {},
@@ -72,16 +73,24 @@ export default {
       this.$toast(title);
     },
     expenditure() {
-      // 收益公开栏
+      let stairAsk = this.$store.state.apiList;
       this.api
         .get(
           this.api.county.base +
-            "/genogram/fanNewsCharity/index/getPayUser?order=time&label=desc&pageSize=6&showId=10018"
+            stairAsk.index_architecture_pay_in_person_1.apiUrl
         )
         .then(res => {
-          this.expenditureList = res.data;
-          console.log(res);
-          //  this.expenditureList = res.data
+          if (res.code == 200) {
+            this.expenditureList = res.data.records;
+          }
+          return this.api.get(
+            this.api.county.base + stairAsk.index_fund_1.apiUrl
+          );
+        })
+        .then(res => {
+          if (res.code == 200) {
+            this.fund = res.data;
+          }
         });
     }
   },

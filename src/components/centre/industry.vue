@@ -3,22 +3,22 @@
     <div class="centre">
       <div class="centreDiv">
         <span class="newest">最新</span>
-        <h5 class="zx">{{familyList.length ? familyList[0].newsTitle : ''}}</h5>
+        <h5 class="zx">{{strip.newsTitle}}</h5>
 
-        <p>{{familyList.length ? familyList[0].newsText : ''}}</p>
+        <p v-html="strip.newsText.slice(0,100)"></p>
         <div class="centreImg">
           <div
+            :style="api.imgBG(strip.newsUploadFileList.length ? strip.newsUploadFileList[0].filePath : '' )"
+            class="imgDiv"
+          ></div>
+          <!-- <div
             :style="api.imgBG(familyList.length ? familyList[0].newsUploadFileList[0].filePath : '' )"
             class="imgDiv"
           ></div>
           <div
             :style="api.imgBG(familyList.length ? familyList[0].newsUploadFileList[0].filePath : '' )"
             class="imgDiv"
-          ></div>
-          <div
-            :style="api.imgBG(familyList.length ? familyList[0].newsUploadFileList[0].filePath : '' )"
-            class="imgDiv"
-          ></div>
+          ></div> -->
         </div>
         <div class="axisCentre">
           <span>家族产业</span>
@@ -29,7 +29,7 @@
       </div>
 
       <div v-for="(item,key) in familyIndustry" :key="key">
-        <div>
+        <div class="familyTop">
           <div v-for="(item,i) in familyList" :key="i" class="centerDiv">
             <div class="centerText">
               <router-link
@@ -81,7 +81,8 @@ export default {
     return {
       familyIndustry: [], // 家族产业一级
       familyList: [], // 家族产业
-      personage: [] // 个人产业
+      personage: [], // 个人产业
+      strip:[] // 第一条
     };
   },
   computed: {},
@@ -93,37 +94,44 @@ export default {
   watch: {},
   methods: {
     dynamic() {
-      // 家族产业
+      let stairAsk
+      let siteId = this.$store.state.id;
+      if(siteId) {
+         // 家族产业
       this.api
         .get(
           this.api.county.base +
-            "genogram/fanMenu/getTitlesByMenuId?siteId=111&menuId=4"
+            "genogram/fanMenu/getTitlesByMenuId",{siteId:siteId,menuId:4}
         )
         .then(res => {
           if (res.code == 200) {
             this.familyIndustry = res.data;
+            stairAsk = res.data
             console.log(res);
           }
           return this.api.get(
-            this.api.county.base +
-              "genogram/fanNewsIndustry/getFamilyIndustryPage?showId=1119919"
+            this.api.county.base + stairAsk[0].apiUrl
           );
         })
         .then(res => {
           if (res.code == 200) {
             this.familyList = res.data.records;
-            console.log(res);
+            this.strip = res.data.records.shift()
           }
+            this.familyList.shift()
+            console.log(this.familyList)
           return this.api.get(
-            this.api.county.base +
-              "genogram/fanNewsIndustry/getFamilyIndustryPage?&showId=1119920"
+            this.api.county.base + stairAsk[1].apiUrl
           );
         })
         .then(res => {
           if (res.code == 200) {
+            console.log(res)
             this.personage = res.data.records;
           }
         });
+      }
+     
     }
   },
   components: {}
@@ -307,6 +315,10 @@ export default {
     text-align: center;
     line-height: 0.55rem;
     background-color: #d2211b;
+  }
+  // 家族修改
+  .familyTop {
+    margin-top: 1rem;
   }
 }
 </style>

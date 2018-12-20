@@ -1,39 +1,16 @@
-import api from '../config/api'
-import state from './state'
-
-export default {
-    
-    bulletin() {
-        api.get(api.county.base + "/genogram/fanNewsFamilyRecord/selectRecortPage?showId=10024")
-        .then( res => {
-            // 县级公告
-            state.announcement = res.data
-            return api.get(api.county.base + "/genogram/fanIndex/index/getFanIndexInfo?siteId=111")
-        })
-        .then( res => {
-            // 简介
-            state.brief = res.data
-            // console.log( state.brief)
-        })
+const mutations = {
+    updateUser(state, obj) {
+        localStorage.user = JSON.stringify(obj)
+        state.user = obj
     },
-    expenditure() {
-        api.get(api.county.base + "genogram/fanNewsCharity/index/getFanNewsCharityOutPage?showId=10016")
-        .then( res => {
-            // 慈善公益
-            state.wasteBook = res.data
-        })
+    setApiList(state, obj) {
+        state.apiList = obj
     },
-    familyIndustry () {
-        api.get(api.county.base + "genogram/fanMenu/getIndexMenuBySiteId?siteId=111")
-        .then( res => {
-            // 家族资产
-            state.property = res.data
-        })
+    updateCountyId(state, obj) {
+        localStorage.county_id = obj
+        state.apiList = null
+        state.id = obj
     },
-    family_celebrity() {
-        api.get(api.county.base + "genogram/fanIndex/getFamilyStructureList?siteId=111")
-        .then( res => {
-            console.log(res)
-        })
-    }
 }
+
+export default mutations

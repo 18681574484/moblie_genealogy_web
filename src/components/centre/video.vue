@@ -69,10 +69,16 @@ export default {
   watch: {},
   methods: {
     video_api() {
-      // 家族视频
-      this.video_list = this.$store.state.videoArr;
-      console.log(this.video_list);
-      console.log();
+      let stailAsk = this.$store.state.apiList;
+      this.api
+        .get(this.api.county.base + stailAsk.index_family_video.apiUrl)
+        .then(res => {
+          if (res.code == 200) {
+            // 家族视频
+            this.video_list = res.data.records
+            console.log(res)
+          }
+        });
     },
     pop(index) {
       this.play = !this.play;
@@ -85,8 +91,7 @@ export default {
       this.videoPop[index].list = !this.videoPop[index].list;
     },
     add(index) {
-        this.videoPop[index].list = !this.videoPop[index].list;
-        console.log(1)
+      this.videoPop[index].list = !this.videoPop[index].list;
     }
   },
   components: {}

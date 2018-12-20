@@ -5,7 +5,7 @@
         <!-- 中间组件 -->
         <router-view></router-view>
         <!-- 底部组件 -->
-        <!-- <Footer></Footer> -->
+        <Footer></Footer>
     </div>
 </template>
 

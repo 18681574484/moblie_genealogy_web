@@ -48,43 +48,46 @@ export default {
   watch: {},
   methods: {
     culturala() {
-      // 家族文化
-      this.api
-        .get(
-          this.api.county.base +
-            "/genogram/fanMenu/getTitlesByMenuId?siteId=111&menuId=2"
-        )
-        .then(res => {
-          if (res.code == 200) {
-            this.familyCulture = res.data;
-            console.log(res);
-          }
-          return  this.api
-                    .get(
-                    this.api.county.base +
-                        "/genogram/fanNewsCulture/getFamilyCulturePage?showId=1119911"
-                    )
-        })
-        .then(res => {
-            if(res.code == 200) {
-                this.modification = res.data.records;
-            }
-        })
-    },
-    tabClick(e, i) {
-        let id = this.familyCulture[e].showId;
+      let siteId = this.$store.state.id;
+      if (siteId) {
+        // 家族文化
         this.api
           .get(
             this.api.county.base +
-              "/genogram/fanNewsCulture/getFamilyCulturePage",
-            { showId: id }
+              "/genogram/fanMenu/getTitlesByMenuId",{siteId:siteId,menuId:2}
           )
+          .then(res => {
+            if (res.code == 200) {
+              let arr = res.data;
+              arr.shift()
+              this.familyCulture = arr
+              console.log(arr);
+            }
+            return this.api.get(
+              this.api.county.base +
+                "/genogram/fanNewsCulture/getFamilyCulturePage?showId=1119911"
+            );
+          })
           .then(res => {
             if (res.code == 200) {
               this.modification = res.data.records;
             }
           });
-      
+      }
+    },
+    tabClick(e, i) {
+      let id = this.familyCulture[e].showId;
+      this.api
+        .get(
+          this.api.county.base +
+            "/genogram/fanNewsCulture/getFamilyCulturePage",
+          { showId: id }
+        )
+        .then(res => {
+          if (res.code == 200) {
+            this.modification = res.data.records;
+          }
+        });
     }
   },
   components: {}

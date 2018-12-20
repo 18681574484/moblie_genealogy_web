@@ -20,7 +20,7 @@
             <van-tab title="全国张氏"></van-tab>
             <van-tab title="省级张氏"></van-tab>
             <van-tab title="崇阳张氏"></van-tab>
-            <van-tab title="寻根"></van-tab>
+            <van-tab title="字派"></van-tab>
             <van-tab title="家谱"></van-tab>
           </van-tabs>
           <van-icon name="wap-nav"/>
@@ -62,7 +62,7 @@
               <!-- <h4>{{brief.data.siteName}}</h4> -->
             </div>
             <router-link
-              :to="{ name: 'notice', params: { id: stick.id }}"
+              :to="{ name: 'detailsNotice', params: { id: stick.id }}"
               tag="p"
               v-html=" stick.newsText"
             ></router-link>
@@ -104,7 +104,7 @@
               <ul class="flgureUl">
                 <li v-for="item in celebrity" :key="item.id">
                   <router-link
-                    to="/characterElite"
+                    to="/"
                     tag="div"
                     class="div1 portrait"
                     :style="api.imgBG(item.allUserLogin.picSrc)"
@@ -128,29 +128,29 @@
               <b>动</b>态
             </h3>
             <span>
-              {{dynamic.length ? dynamic[0].updateTime.slice(0,4) : ''}}
+              {{ dynamic.updateTime.slice(0,4) }}
               年
-              {{dynamic.length ? dynamic[0].updateTime.slice(5,7) : ''}}
+              {{ dynamic.updateTime.slice(5,7) }}
               月
-              {{dynamic.length ? dynamic[0].updateTime.slice(8,10) : ''}}
+              {{ dynamic.updateTime.slice(8,10) }}
               日星期五
             </span>
           </div>
           <router-link
-            :to="{ name: 'dynamicDetails', params: { id: dynamic.length ? dynamic[0].id : '' }}"
+            :to="{ name: 'dynamicDetails', params: { id:  dynamic.id  }}"
             tag="div"
             class="centerDiv"
           >
             <div class="centerText">
-              <h5>{{dynamic.length ? dynamic[0].newsTitle : ''}}</h5>
+              <h5>{{ dynamic.newsTitle }}</h5>
               <div class="axisCentre">
                 <span class="xu">家族动态</span>
-                <span>{{dynamic.length ? dynamic[0].status : ''}}条评论</span>
-                <span>{{dynamic.length ? dynamic[0].visitNum : ''}}浏览</span>
+                <span>{{ dynamic.status }}条评论</span>
+                <span>{{ dynamic.visitNum }}浏览</span>
               </div>
             </div>
             <div
-              :style="api.imgBG(dynamic.length ? dynamic[0].fanNewsUploadFileList[0].filePath : '')"
+              :style="api.imgBG(dynamic.fanNewsUploadFileList.length ? dynamic.fanNewsUploadFileList[0].filePath : '')"
               class="centerImg"
             ></div>
           </router-link>
@@ -197,60 +197,58 @@
               </router-link>
             </ul>
           </div>
-          <!-- <div class="centerDiv" v-for="item in dynamic" :key="item.id">
-            <div class="centerText">
+
+          <!-- 首页家族文化每一项 -->
+          <div class="centerDiv" v-for="item in article" :key="item.id">
+            <router-link
+              :to="{ name: 'characterIntroduction', params: { id: item.id }}"
+              tag="div"
+              class="centerText"
+            >
               <h5>{{item.newsTitle}}</h5>
               <div class="axisCentre">
-                <span class="xu">家族动态</span>
-                <span>{{item.status}}条评论</span>
+                <span class="xu">家族文化</span>
+                <span>{{item.sysStatus}}条评论</span>
                 <span>{{item.visitNum}}浏览</span>
               </div>
-            </div>
-            <div 
-                :style="api.imgBG(item.length || item.fanNewsUploadFileList.length ? item.fanNewsUploadFileList[0].filePath : '')"
-                class="centerImg"></div>
-          </div>-->
-          <div class="centerDiv" v-for="item in article" :key="item.id">
-            <router-link to="/theArticleDetails" tag="div" class="centerText">
-              <h5>{{item.title}}</h5>
-              <div class="axisCentre">
-                <span class="xu">家族动态</span>
-                <span>{{item.sysStatus}}条评论</span>
-                <span>0浏览</span>
-              </div>
             </router-link>
-            <div :style="api.imgBG(item.newsFaceUrl)" class="centerImg"></div>
+            <div
+              :style="api.imgBG(item.newsUploadFileList ? item.newsUploadFileList[0].filePath : '')"
+              class="centerImg"
+            ></div>
           </div>
 
+          <!-- 家族栋梁 -->
           <div class="titleCenter">
             <div class="titleTop">
               <div class="centerLeft">
                 <router-link
-                  :to="{ name: 'characterElite', params: { id: pillar.length ? pillar[0].id : '' }}"
+                  :to="{ name: 'characterElite', params: { id:  pillar.id  }}"
                   tag="div"
-                  :style="api.imgBG(pillar.length ? pillar[0].picFileSrc : '')"
+                  :style="api.imgBG(pillar.picFileSrc )"
                   class="img"
                 ></router-link>
                 <div class="celebrity">
-                  <h5>{{pillar.length ? pillar[0].personName : ''}}</h5>
+                  <h5>{{ pillar.personName }}</h5>
                   <span>慈善名人</span>
-                  <span>{{pillar.length ? pillar[0].visitNum : ''}}万粉丝关注</span>
+                  <span>{{ pillar.visitNum }}万粉丝关注</span>
                 </div>
               </div>
               <div class="pillar">+关注</div>
             </div>
-            <p>{{pillar.length ? pillar[0].personSummary.slice(0,50) : ''}}</p>
+            <p>{{ pillar.personSummary.slice(0,50) }}</p>
           </div>
+          <!-- 家族视频 -->
           <div class="videoBox">
-            <h4>{{video_list.length ? video_list[0].title : ''}}</h4>
+            <h4>{{ video_list.title}}</h4>
             <div
-              :style="api.imgBG(video_list.length  ? video_list[0].fanNewsUploadFile[0].filePath  : '')"
+              :style="api.imgBG(video_list.fanNewsUploadFile.length  ? video_list.fanNewsUploadFile[0].filePath  : '')"
               class="videoCenter"
             >
               <van-popup v-model="show2">
                 <video controls="controls" :autoplay="show2">
                   <source
-                    :src="video_list.length ? api.imghost + video_list[0].fanUploadVedioList[0].filePath : ''"
+                    :src="video_list.fanUploadVedioList.length ? api.imghost + video_list.fanUploadVedioList[0].filePath : '' "
                     type="video/mp4"
                   >
                 </video>
@@ -258,10 +256,11 @@
             </div>
             <img @click="play" src="@/assets/images/play.png" class="play">
             <a href="#">视频</a>
-            <span>{{video_list.length ? video_list[0].status : ''}}条评论</span>
+            <span>{{ video_list.status }}条评论</span>
             <span>666次播放</span>
-            <span>{{video_list.length ? video_list[0].createTime.slice(0,10) : ''}}</span>
+            <span>{{ video_list.createTime.slice(0,10) }}</span>
           </div>
+          <!-- 祖先分支 -->
           <div class="titleCenter">
             <div class="titleTop">
               <div class="centerLeft">
@@ -272,9 +271,9 @@
                   :style="api.imgBG(ancestor.picFileSrc)"
                 ></router-link>
                 <div class="celebrity">
-                  <h5>{{ancestor.ancestorName}}</h5>
+                  <h5>{{ancestor.personName}}</h5>
                   <span>慈善名人</span>
-                  <span>{{elder.length ? elder[0].visitNum : ''}}万粉丝关注</span>
+                  <span>{{ancestor.visitNum }}万粉丝关注</span>
                 </div>
               </div>
               <div class="gz">
@@ -282,7 +281,7 @@
                 <div>千支同源</div>
               </div>
             </div>
-            <p>{{ancestor.ancestorSummary}}</p>
+            <p>{{ancestor.personSummary.slice(0,50)}}</p>
           </div>
         </div>
       </div>
@@ -339,7 +338,7 @@ export default {
       autoplay: false, // 视频控制开关
       stick: [], // 置顶共告
       attention: "关注",
-      article: [], // 首页文章
+      article: [], // 首页家族文化
       ancestor: {}, // 祖先分支
       homeStair: [], // 首页一级
       lunbo: [], // 轮播图
@@ -348,12 +347,8 @@ export default {
   },
   computed: {},
   created() {
-    this.$store.dispatch("increment");
-    this.$store.dispatch("bulletin");
-    this.video_api();
-    this.article_get();
     this.stair(); // 首页一级
-    this.cultureAks(); // 首页家族文化
+    this.celebrityAsk(); // 首页家族文化
   },
   mounted() {},
   watch: {},
@@ -377,91 +372,15 @@ export default {
     followed() {
       this.attention = "已关注";
     },
-    video_api() {
-      this.api
-        .get(
-          this.api.county.base +
-            "/genogram/fanNewsFamilyRecord/selectVedioPage?showId=10025"
-        )
-        .then(res => {
-          if (res.code == 200) {
-            // 家族视频
-            this.video_list = res.data.records;
-            this.$store.state.videoArr = res.data.records;
-          }
-          return this.api.get(
-            this.api.county.base +
-              "/genogram/fanNewsFamous/selectPersonPage?showId=10021"
-          );
-        })
-        .then(res => {
-          if (res.code == 200) {
-            // 家族长老
-            this.elder = res.data.records;
-            this.$store.state.elder = res.data.records;
-            // console.log(this.elder)
-          }
-          return this.api.get(
-            this.api.county.base +
-              "/genogram/fanNewsFamous/selectPersonPage?showId=10022"
-          );
-        })
-        .then(res => {
-          if (res.code == 200) {
-            // 家族产业
-            this.pillar = res.data.records;
-            this.$store.state.pillar = res.data.records;
-          }
-          return this.api.get(
-            this.api.county.base +
-              "/genogram/fanIndex/index/getFanIndexFamilySummarysPage?siteId=111"
-          );
-        })
-        .then(res => {
-          return this.api.get(
-            this.api.county.base +
-              "/genogram/proNewsAncestor/getFamousAncestorDetails?id=1"
-          );
-        })
-        .then(res => {
-          if (res.code == 200) {
-            this.ancestor = res.data;
-            // console.log(this.ancestor)
-          }
-        });
-    },
-    article_get() {
-      this.api
-        .get(
-          this.api.county.base +
-            "/genogram/fanIndex/getAllUserNewsInfoPage?siteId=111&pageNo=1&pageSize=6"
-        )
-        .then(res => {
-          if (res.code == 200) {
-            this.article = res.data.records;
-            // console.log(this.article);
-          }
-        });
-    },
     play() {
       this.autoplay = !this.autoplay;
       this.show2 = !this.show2;
       // console.log(this.show2);
     },
     stair() {
+      this.homeStair = this.$store.state.apiList;
       this.api
-        .get(this.api.county.site_home, { siteId: 111 })
-        .then(res => {
-          if (res.code == 200) {
-            // 一级接口
-            this.homeStair = res.data.index_show;
-            this.$store.state.stairAsk = res.data.index_show;
-            console.log(res.data);
-          }
-          return this.api.get(
-            this.api.county.base + this.homeStair.fan_index_slide_pic.apiUrl
-          );
-        })
+        .get(this.api.county.base + this.homeStair.fan_index_slide_pic.apiUrl)
         .then(res => {
           if (res.code == 200) {
             // 轮播图
@@ -505,7 +424,7 @@ export default {
         .then(res => {
           if (res.code == 200) {
             // 家族动态
-            this.dynamic = res.data.records;
+            this.dynamic = res.data.records[0];
             // this.$store.state.dynamic = res.data.records;
           }
           return this.api.get(
@@ -517,28 +436,65 @@ export default {
             // 置顶公告
             this.stick = res.data.records[0];
           }
-           return this.api.get(
-             // 首页家族文化
+          return this.api.get(
             this.api.county.base + this.homeStair.index_family_culture.apiUrl
           );
         })
         .then(res => {
-          console.log(res)
+          if (res.code == 200) {
+            // 首页家族文化
+            this.article = res.data.records;
+          }
+          return this.api.get(
+            this.api.county.base + this.homeStair.index_family_video.apiUrl
+          );
         })
+        .then(res => {
+          if (res.code == 200) {
+            // 首页家族视频
+            this.video_list = res.data.records[0];
+          }
+        });
     },
-    cultureAks() {
-      this.api.get(
-        this.api.county.base + this.api.county.detail.culture,{id: 2}
-      )
-      .then(res => {
-        if(res.code == 200){
-          console.log(res)
-        }
-        console.log('ss')
-      })
+    // 首页家族名人
+    celebrityAsk() {
+      let siteId = this.$store.state.id;
+      if (siteId) {
+        let elderUrl;
+        let celebrityUrl;
+        this.api
+          .get(this.api.county.base + "/genogram/fanMenu/getTitlesByMenuId", {
+            siteId: 111,
+            menuId: 5
+          })
+          .then(res => {
+            if (res.code == 200) {
+              // console.log(res)
+              elderUrl = res.data[0].apiUrl;
+              celebrityUrl = res.data[1].apiUrl;
+            }
+            return this.api.get(this.api.county.base + elderUrl);
+          })
+          .then(res => {
+            if (res.code == 200) {
+              // 祖先分支|家族长老
+              this.ancestor = res.data.records[0];
+              console.log(res);
+            }
+            return this.api.get(this.api.county.base + celebrityUrl);
+          })
+          .then(res => {
+            if (res.code == 200) {
+              // 家族栋梁
+              this.pillar = res.data.records[0];
+            }
+          });
+      }
     }
   },
-  components: {}
+  components: {
+    Footer
+  }
 };
 </script>
 
